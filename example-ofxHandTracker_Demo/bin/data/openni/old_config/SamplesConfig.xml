@@ -22,4 +22,10 @@
 		<Node type="Image" name="Image1" stopOnError="false">
 			<Configuration>
 				<Mirror on="true"/>
-			</Configurat
+			</Configuration>
+		</Node>
+		<!--
+		<Node type="Audio" name="Audio1"/>
+		-->
+	</ProductionNodes>
+</OpenNI>
