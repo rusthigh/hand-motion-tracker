@@ -3,4 +3,6 @@
     <Module path="../../../data/openni/lib/libnimCodecs.dylib" />
     <Module path="../../../data/openni/lib/libnimRecorder.dylib" />
     <Module path="../../../data/openni/lib/libXnVCNITE_1_5_2.dylib" configDir="../../../data/openni/config/" />
-    <Module path="../../../data/openni/lib/libXnVFeatures_1_5_2.dylib" configDir="../../../data/openni/confi
+    <Module path="../../../data/openni/lib/libXnVFeatures_1_5_2.dylib" configDir="../../../data/openni/config/" />
+    <Module path="../../../data/openni/lib/libXnVHandGenerator_1_5_2.dylib" configDir="../../../data/openni/config/" />
+    <Module path="../../../data/openni/lib/libXnDeviceSensorV2KM.dylib" configDir
