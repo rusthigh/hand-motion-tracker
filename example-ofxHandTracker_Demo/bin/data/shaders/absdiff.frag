@@ -28,4 +28,12 @@ void main(void)
 
 uniform sampler2DRect tex1;
 uniform sampler2DRect tex2;
-//uniform vec2 mouse
+//uniform vec2 mouse; // if testing with mouse
+//uniform int kernel_size;
+
+
+void main(void)
+{   
+    vec4 v1 = texture2DRect(tex1, gl_TexCoord[0].st);
+    vec4 v2 = texture2DRect(tex2, gl_TexCoord[0].st);
+	vec3 res = vec3(abs(v1.x-v2.x), ab
