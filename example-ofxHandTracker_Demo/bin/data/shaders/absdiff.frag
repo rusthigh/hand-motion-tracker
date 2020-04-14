@@ -36,4 +36,6 @@ void main(void)
 {   
     vec4 v1 = texture2DRect(tex1, gl_TexCoord[0].st);
     vec4 v2 = texture2DRect(tex2, gl_TexCoord[0].st);
-	vec3 res = vec3(abs(v1.x-v2.x), ab
+	vec3 res = vec3(abs(v1.x-v2.x), abs(v1.y-v2.y), abs(v1.z-v2.z));
+    gl_FragColor =  vec4(res.rgb, 1.0);
+}
