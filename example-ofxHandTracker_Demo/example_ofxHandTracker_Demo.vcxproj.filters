@@ -30,4 +30,8 @@
     </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxFingerModel.cpp">
       <Filter>addons\ofxHandTracker\src</Filter>
-    </ClCo
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxFingerSegment.cpp">
+      <Filter>addons\ofxHandTracker\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxHandModel.cpp
