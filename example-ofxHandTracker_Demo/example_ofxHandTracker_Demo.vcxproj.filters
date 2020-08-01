@@ -56,4 +56,9 @@
       <Filter>addons\ofxOpenNI\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxOpenNI\src\ofxHandGenerator.cpp">
-    
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxOpenNI\src\ofxHardwareDriver.cpp">
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClCompile>
+    <ClCompile Includ
