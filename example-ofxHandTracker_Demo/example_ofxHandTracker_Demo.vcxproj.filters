@@ -65,4 +65,9 @@
       <Filter>addons\ofxOpenNI\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxOpenNI\src\ofxIRGenerator.cpp">
-      <Filter>addons\ofxOpenNI\sr
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxOpenNI\src\ofxOpenNIContext.cpp">
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxOpenNI\src\ofxOpenN
