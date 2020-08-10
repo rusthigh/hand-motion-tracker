@@ -88,4 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
-      <UniqueIde
+      <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons">
+      <UniqueIdentifier>{71834f65-f3a9-211e-73b8-dc8563776aec}</UniqueIdentifier>
+    </Filter>
+   
