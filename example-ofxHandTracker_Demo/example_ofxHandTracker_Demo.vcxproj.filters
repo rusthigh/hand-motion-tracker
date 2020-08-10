@@ -80,4 +80,12 @@
       <Filter>addons\ofxOpenNI\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxOpenNI\src\ofxUserGenerator.cpp">
-      <Filter
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Presentation.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIde
