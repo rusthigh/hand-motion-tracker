@@ -97,4 +97,9 @@
       <UniqueIdentifier>{ffa81411-43b9-bd99-75af-1dc3667656e0}</UniqueIdentifier>
     </Filter>
     <Filter Include="addons\ofxOpenCv\src">
-      <UniqueIdentifier>{00de84a0-c
+      <UniqueIdentifier>{00de84a0-c30b-9800-5466-ea4027ba1b0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOpenCv\libs">
+      <UniqueIdentifier>{efe72f22-7f5a-0f39-ec5e-138227be7291}</UniqueIdentifier>
+    </Filter>
+    <Filter Includ
