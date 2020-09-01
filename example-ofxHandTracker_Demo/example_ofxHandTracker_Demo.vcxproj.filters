@@ -121,4 +121,8 @@
       <UniqueIdentifier>{776c25cb-cd33-75a7-df99-b8c6a50899b4}</UniqueIdentifier>
     </Filter>
     <Filter Include="addons\ofxOpenCv\libs\opencv\include\opencv2\core">
-      <UniqueIdentifier>{2abb36d0-fbe0-dd4
+      <UniqueIdentifier>{2abb36d0-fbe0-dd47-75a8-5882d5524eae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOpenCv\libs\opencv\include\opencv2\features2d">
+      <UniqueIdentifier>{ffed61a2-da84-e61f-daa8-23d87e82b0de}</UniqueIdentifier>
+   
