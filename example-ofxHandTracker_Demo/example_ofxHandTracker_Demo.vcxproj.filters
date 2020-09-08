@@ -139,4 +139,9 @@
       <UniqueIdentifier>{e61cd652-51b9-bce9-a2eb-33314ac9a82c}</UniqueIdentifier>
     </Filter>
     <Filter Include="addons\ofxOpenCv\libs\opencv\include\opencv2\legacy">
-      <UniqueIdentifier>{4588ffd4-3240-6021-cf1c-66d1c97f893a}</Uniqu
+      <UniqueIdentifier>{4588ffd4-3240-6021-cf1c-66d1c97f893a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOpenCv\libs\opencv\include\opencv2\ml">
+      <UniqueIdentifier>{c217a119-b337-c774-4eda-1accc9de1693}</UniqueIdentifier>
+    </Filter>
+    <Filter 
