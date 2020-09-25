@@ -151,4 +151,8 @@
       <UniqueIdentifier>{aa1539ed-a548-eda6-1094-37fdc1024f30}</UniqueIdentifier>
     </Filter>
     <Filter Include="addons\ofxOpenCv\libs\opencv\include\opencv2\video">
-      <UniqueIde
+      <UniqueIdentifier>{61e04f54-c77f-b674-c2ab-fec201902d01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxHandTracker">
+      <UniqueIdentifier>{a0519868-f307-aa2d-b585-d0dc8f623026}</UniqueIdentifier>
+    
