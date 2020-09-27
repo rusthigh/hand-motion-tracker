@@ -164,4 +164,11 @@
     </Filter>
     <Filter Include="addons\ofxOpenNI\src">
       <UniqueIdentifier>{ad812f33-7c24-a6ad-00da-ec2b245a4b11}</UniqueIdentifier>
- 
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\testApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvBlob.h">
+      <Filter>addons\ofx
