@@ -200,4 +200,9 @@
     <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvShortImage.h">
       <Filter>addons\ofxOpenCv\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxOpenCv.h">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv\cv.h">
+      <Filter>addons\ofxOpenCv\libs\opencv\include\opencv</Filter>
+    </ClInc
