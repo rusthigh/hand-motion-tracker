@@ -306,4 +306,8 @@
       <Filter>addons\ofxOpenCv\libs\opencv\include\opencv2\flann</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\flann.hpp">
-      <Filter>addons\ofxOpenCv\libs\opencv\includ
+      <Filter>addons\ofxOpenCv\libs\opencv\include\opencv2\flann</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\flann_base.hpp">
+      <Filter>addons\ofxOpenCv\libs\opencv\include\opencv2\flann</Filter>
+ 
