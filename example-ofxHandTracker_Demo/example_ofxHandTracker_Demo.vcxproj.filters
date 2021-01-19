@@ -377,4 +377,7 @@
     <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\saving.h">
       <Filter>addons\ofxOpenCv\libs\opencv\include\opencv2\flann</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\simplex_downhill.h">
+      <Filter>addons\ofxOpenCv\libs\opencv\include\opencv2\flann</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..
