@@ -390,4 +390,7 @@
       <Filter>addons\ofxOpenCv\libs\opencv\include\opencv2\gpu</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\gpumat.hpp">
-      <Filter>addons\ofxOpenCv
+      <Filter>addons\ofxOpenCv\libs\opencv\include\opencv2\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\matrix_operations.hpp">
+      <Filter>addons\ofxOpenCv\libs\opencv\include\opencv2\gpu</Fi
