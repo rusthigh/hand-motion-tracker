@@ -453,3 +453,8 @@
       <Filter>addons\ofxHandTracker\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxFingerSegment.h">
+      <Filter>addons\ofxHandTracker\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxHandModel.h">
+      <Filter>addons\ofxHandTracker\src</Filter>
+    </ClInc
