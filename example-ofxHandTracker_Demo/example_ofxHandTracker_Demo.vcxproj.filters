@@ -461,4 +461,8 @@
     <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxHandParameters.h">
       <Filter>addons\ofxHandTracker\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\ad
+    <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxHandTracker.h">
+      <Filter>addons\ofxHandTracker\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxImageMatcher.h">
+      <Filter>addons\ofxHandTracker\src<
