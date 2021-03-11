@@ -485,4 +485,7 @@
     <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxHardwareDriver.h">
       <Filter>addons\ofxOpenNI\src</Filter>
     </ClInclude>
-    <ClI
+    <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxImageGenerator.h">
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxIRGenerat
