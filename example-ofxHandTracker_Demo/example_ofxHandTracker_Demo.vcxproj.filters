@@ -493,4 +493,8 @@
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxOpenNI.h">
       <Filter>addons\ofxOpenNI\src</Filter>
-   
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxOpenNIContext.h">
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxOpenNIMacro
