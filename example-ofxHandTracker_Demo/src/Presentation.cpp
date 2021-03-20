@@ -31,4 +31,10 @@ void Presentation::setup() {
     for (int i=0; i<dir.numFiles(); i++) {
 		ofImage currentImage;
 
-		currentImage.loadImage(dir.getPa
+		currentImage.loadImage(dir.getPath(i));
+        images.push_back(currentImage);
+              
+        if (maxHeight < currentImage.height) {
+            maxHeight = currentImage.height;
+        }            
+        if (maxWidth <
