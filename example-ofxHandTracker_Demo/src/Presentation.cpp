@@ -24,4 +24,11 @@ void Presentation::setup() {
     int maxHeight = 0;
     int maxWidth = 0;
 
-	ofDirectory dir = ofDi
+	ofDirectory dir = ofDirectory("pptx/");  
+	dir.listDir(); // populates filelist
+	//vector<ofFile> files = dir.getFiles();
+
+    for (int i=0; i<dir.numFiles(); i++) {
+		ofImage currentImage;
+
+		currentImage.loadImage(dir.getPa
