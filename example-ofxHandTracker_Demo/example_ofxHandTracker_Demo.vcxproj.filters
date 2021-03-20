@@ -514,4 +514,6 @@
     </ClInclude>
     <ClInclude Include="src\Presentation.h">
       <Filter>src</Filter>
-    </ClIn
+    </ClInclude>
+  </ItemGroup>
+</Project>
