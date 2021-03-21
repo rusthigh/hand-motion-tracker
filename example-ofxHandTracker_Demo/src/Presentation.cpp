@@ -54,4 +54,8 @@ void Presentation::setup() {
     isSliding = false;
         
     galleryImages.begin();
-    of
+    ofClear(0,0,0,0);
+    for (int i=0; i<images.size(); i++) {
+        images[i].draw((maxWidth * i) + maxWidth/2 - images[i].width/2, maxHeight/2 - images[i].height/2, images[i].width, images[i].height);
+    }
+    galleryImages.e
