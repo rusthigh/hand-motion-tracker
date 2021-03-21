@@ -58,4 +58,12 @@ void Presentation::setup() {
     for (int i=0; i<images.size(); i++) {
         images[i].draw((maxWidth * i) + maxWidth/2 - images[i].width/2, maxHeight/2 - images[i].height/2, images[i].width, images[i].height);
     }
-    galleryImages.e
+    galleryImages.end();
+    
+	// TODO: include back img
+    //backImg.loadImage(assetsLoader.getImage("background").URL);
+
+	ofRegisterMouseEvents(this);
+
+	timerTotal.start(TIMER_TOTAL_DURATION); // 10 mins
+	timerSlide.
