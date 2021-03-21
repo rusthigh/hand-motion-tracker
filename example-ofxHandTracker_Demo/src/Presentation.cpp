@@ -46,4 +46,12 @@ void Presentation::setup() {
     sumWidth = maxWidth * images.size();
         
     galleryArea.allocate(maxWidth, maxHeight);
-    gal
+    galleryImages.allocate(sumWidth, maxHeight);
+    imageIndex = 0;
+        
+    imagePos = ofPoint(0, 0);
+    imageNextPos = imagePos;
+    isSliding = false;
+        
+    galleryImages.begin();
+    of
