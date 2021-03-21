@@ -37,4 +37,13 @@ void Presentation::setup() {
         if (maxHeight < currentImage.height) {
             maxHeight = currentImage.height;
         }            
-        if (maxWidth <
+        if (maxWidth < currentImage.width) {
+            maxWidth = currentImage.width;
+        }
+    }
+    
+        
+    sumWidth = maxWidth * images.size();
+        
+    galleryArea.allocate(maxWidth, maxHeight);
+    gal
