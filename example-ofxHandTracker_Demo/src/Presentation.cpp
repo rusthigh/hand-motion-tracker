@@ -89,4 +89,15 @@ void Presentation::update()
 	imagePos = imagePos + (imageNextPos - imagePos)*0.1;
 	if (imagePos.distance(imageNextPos) < galleryArea.getWidth()/10) {
        // imagePos = imageNextPos; // if this commented enable earlier sliding
-  
+        isSliding = false;
+    }
+}
+
+
+void Presentation::draw()
+{
+    //backImg.draw(ofPoint(0,0,0), ofGetWidth(), ofGetHeight());
+    
+	/*ofPushStyle();
+	ofSetColor(0,0,0);
+	//ofDrawBitmapString("DIFF IMG: " + ofToString((image
