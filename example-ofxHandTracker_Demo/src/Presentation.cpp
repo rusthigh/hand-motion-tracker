@@ -84,4 +84,9 @@ void Presentation::update()
         timeoutTimer.stop();
     }*/
 
-	//float distRatio = (imagePos.distance(imageNextPos))/imagePos.s
+	//float distRatio = (imagePos.distance(imageNextPos))/imagePos.squareDistance(imageNextPos) * 10;
+
+	imagePos = imagePos + (imageNextPos - imagePos)*0.1;
+	if (imagePos.distance(imageNextPos) < galleryArea.getWidth()/10) {
+       // imagePos = imageNextPos; // if this commented enable earlier sliding
+  
