@@ -66,4 +66,14 @@ void Presentation::setup() {
 	ofRegisterMouseEvents(this);
 
 	timerTotal.start(TIMER_TOTAL_DURATION); // 10 mins
-	timerSlide.
+	timerSlide.start(TIMER_SLIDE_DURATION);  // 1 min
+}
+
+Presentation::~Presentation() {
+    //cleanup - determine if needed here
+}
+
+void Presentation::update()
+{
+	bool timerTotalZero = !timerTotal.update();
+	bool timerSlideZ
