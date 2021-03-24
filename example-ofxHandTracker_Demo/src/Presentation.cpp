@@ -76,4 +76,12 @@ Presentation::~Presentation() {
 void Presentation::update()
 {
 	bool timerTotalZero = !timerTotal.update();
-	bool timerSlideZ
+	bool timerSlideZero = !timerSlide.update();
+	/*
+    if(!timeoutTimer.update() && timeoutEnabled)
+    {
+        timeoutEnabled = false;
+        timeoutTimer.stop();
+    }*/
+
+	//float distRatio = (imagePos.distance(imageNextPos))/imagePos.s
