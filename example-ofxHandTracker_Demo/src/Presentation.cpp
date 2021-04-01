@@ -108,3 +108,6 @@ void Presentation::draw()
     galleryImages.draw(imagePos.x, 0);
     galleryArea.end();
     
+    ofPushMatrix(); // scale accordingly to current w/h and full hd w/h -> this fixes problems with unscaled text not fitting into rectangles, overdrawing...
+    ofScale(wRatio, hRatio);
+ 
