@@ -100,4 +100,11 @@ void Presentation::draw()
     
 	/*ofPushStyle();
 	ofSetColor(0,0,0);
-	//ofDrawBitmapString("DIFF IMG: " + ofToString((image
+	//ofDrawBitmapString("DIFF IMG: " + ofToString((imagePos.distance(imageNextPos))/imagePos.squareDistance(imageNextPos)), 100, 130);
+	ofPopStyle();*/
+	
+    galleryArea.begin();
+    ofClear(0,0,0,0);
+    galleryImages.draw(imagePos.x, 0);
+    galleryArea.end();
+    
