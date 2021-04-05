@@ -122,4 +122,10 @@ void Presentation::draw()
     // draw iOS style index circles
     ofPushStyle();
     ofFill();
-    for (int i=0; i<images.size(); i+
+    for (int i=0; i<images.size(); i++) {
+        if (i == imageIndex) {
+            ofSetColor(64, 175, 64, 250);
+        }
+        else
+            ofSetColor(32, 32, 32, 150);
+        ofCircle(FULL_HD_W/2 - ((images.size()-1)*40)/2 + i*40, gAreaY + galleryAre
