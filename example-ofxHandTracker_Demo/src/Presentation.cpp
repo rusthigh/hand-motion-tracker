@@ -128,4 +128,8 @@ void Presentation::draw()
         }
         else
             ofSetColor(32, 32, 32, 150);
-        ofCircle(FULL_HD_W/2 - ((images.size()-1)*40)/2 + i*40, gAreaY + galleryAre
+        ofCircle(FULL_HD_W/2 - ((images.size()-1)*40)/2 + i*40, gAreaY + galleryArea.getHeight() + 10, 5);
+    }
+
+	timerTotal.draw(gAreaX, gAreaY, galleryArea.getWidth(), 5, ofColor::gray);
+	timerSlide.draw(gAreaX, gAreaY + galleryArea.getHeight() - 2, galleryArea.getWidth(), 5, ofColor::gray);
