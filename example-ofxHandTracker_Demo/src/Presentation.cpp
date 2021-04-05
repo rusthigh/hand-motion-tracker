@@ -116,4 +116,10 @@ void Presentation::draw()
 
     ofNoFill();
 	ofSetColor(0, 0, 0);
-    ofRec
+    ofRect(gAreaX, gAreaY, galleryArea.getWidth(), galleryArea.getHeight());
+ 
+    ofSetColor(255, 255, 255);
+    // draw iOS style index circles
+    ofPushStyle();
+    ofFill();
+    for (int i=0; i<images.size(); i+
