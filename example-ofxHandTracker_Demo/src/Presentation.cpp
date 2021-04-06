@@ -153,4 +153,13 @@ void Presentation::windowResized(int w, int h)
 void Presentation::disable()
 {
    /* timeoutEnabled = false;
-    timeou
+    timeoutTimer.stop();
+    
+    //TODO: disable all buttons, etc.
+    
+    ofUnregisterMouseEvents(this);*/
+}
+
+void Presentation::enable()
+{
+    // at the moment timeoutTimer also runs in MM, however,
