@@ -133,3 +133,12 @@ void Presentation::draw()
 
 	timerTotal.draw(gAreaX, gAreaY, galleryArea.getWidth(), 5, ofColor::gray);
 	timerSlide.draw(gAreaX, gAreaY + galleryArea.getHeight() - 2, galleryArea.getWidth(), 5, ofColor::gray);
+
+    ofPopStyle();
+	
+
+    ofPopMatrix();
+    
+    
+    //ofDrawBitmapString("UCT - UNIKI CERJE TOUCH - INTERACTIVE GALLERY", ofPoint(10, 40));
+    //ofDrawBitmapString("TIMEOUT IN: " + ofToString(timeoutTimer.getPercent()), ofP
