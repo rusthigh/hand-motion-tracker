@@ -141,4 +141,16 @@ void Presentation::draw()
     
     
     //ofDrawBitmapString("UCT - UNIKI CERJE TOUCH - INTERACTIVE GALLERY", ofPoint(10, 40));
-    //ofDrawBitmapString("TIMEOUT IN: " + ofToString(timeoutTimer.getPercent()), ofP
+    //ofDrawBitmapString("TIMEOUT IN: " + ofToString(timeoutTimer.getPercent()), ofPoint(10, 60));
+}
+
+void Presentation::windowResized(int w, int h)
+{
+    wRatio = (ofGetWidth() / FULL_HD_W);
+    hRatio = (ofGetHeight() / FULL_HD_H);
+}
+
+void Presentation::disable()
+{
+   /* timeoutEnabled = false;
+    timeou
