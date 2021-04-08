@@ -167,4 +167,13 @@ void Presentation::enable()
     // so is ok if MM jumps back to MM
    /* timeoutEnabled = true;
     timeoutTimer.stop();
-    timeoutTimer.startTimer(INTERACTIVE
+    timeoutTimer.startTimer(INTERACTIVE_GALLERY_TIMEOUT);
+    
+    //TODO: enable all buttons, etc.
+    
+    ofRegisterMouseEvents(this);*/
+}
+
+void Presentation::slideToPage(int _step) {
+	if (!isSliding) {
+        imageIndex += _step
