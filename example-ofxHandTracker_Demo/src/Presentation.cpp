@@ -163,3 +163,8 @@ void Presentation::disable()
 void Presentation::enable()
 {
     // at the moment timeoutTimer also runs in MM, however,
+    // visual is not affected by drawing bugs when timeout occurs,
+    // so is ok if MM jumps back to MM
+   /* timeoutEnabled = true;
+    timeoutTimer.stop();
+    timeoutTimer.startTimer(INTERACTIVE
