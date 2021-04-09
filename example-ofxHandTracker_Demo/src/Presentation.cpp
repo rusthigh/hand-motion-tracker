@@ -184,4 +184,6 @@ void Presentation::slideToPage(int _step) {
 		else if (imageIndex > images.size()-1) {
             imageIndex = images.size()-1;
         }
-     
+        else {
+            //imageNextPos = imagePos + ofPoint(imgData[imageIndex].width,0);
+            imageNextPos = imagePos - ((_step/abs(_step)) * ofPoint(galleryArea.getWidth(),0)) - (ima
