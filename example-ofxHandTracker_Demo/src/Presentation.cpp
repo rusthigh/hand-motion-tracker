@@ -186,4 +186,13 @@ void Presentation::slideToPage(int _step) {
         }
         else {
             //imageNextPos = imagePos + ofPoint(imgData[imageIndex].width,0);
-            imageNextPos = imagePos - ((_step/abs(_step)) * ofPoint(galleryArea.getWidth(),0)) - (ima
+            imageNextPos = imagePos - ((_step/abs(_step)) * ofPoint(galleryArea.getWidth(),0)) - (imagePos - imageNextPos); //last brackets enable earlier sliding
+            isSliding = true;
+
+			timerSlide.stop();
+			timerSlide.start(TIMER_SLIDE_DURATION);
+        }
+    }
+}
+
+//when mouse is pressed reset the timer
