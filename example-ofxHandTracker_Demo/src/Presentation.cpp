@@ -176,4 +176,12 @@ void Presentation::enable()
 
 void Presentation::slideToPage(int _step) {
 	if (!isSliding) {
-        imageIndex += _step
+        imageIndex += _step;
+        if(imageIndex < 0) {
+            // TODO: here disable prev button
+            imageIndex = 0;
+        }
+		else if (imageIndex > images.size()-1) {
+            imageIndex = images.size()-1;
+        }
+     
