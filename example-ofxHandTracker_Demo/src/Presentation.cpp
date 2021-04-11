@@ -196,3 +196,15 @@ void Presentation::slideToPage(int _step) {
 }
 
 //when mouse is pressed reset the timer
+void Presentation::mousePressed(ofMouseEventArgs& args)
+{
+	if(args.button == 0)
+		slideToPage(1);
+	else if(args.button == 2)
+		slideToPage(-1);
+	else {
+		reset();
+	}
+	/*
+    timeoutEnabled = true;
+    time
