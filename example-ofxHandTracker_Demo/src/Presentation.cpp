@@ -217,4 +217,13 @@ void Presentation::reset() {
 	timerTotal.start(TIMER_TOTAL_DURATION);
 
 	timerSlide.stop();
-	timerSlide.start(
+	timerSlide.start(TIMER_SLIDE_DURATION);
+
+	imageIndex = 0;
+
+	imageNextPos = ofPoint(0,0);
+}
+
+bool Presentation::hasFinished() {
+	return imageIndex == images.size()-1;
+}
