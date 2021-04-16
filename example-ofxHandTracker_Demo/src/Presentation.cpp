@@ -207,4 +207,14 @@ void Presentation::mousePressed(ofMouseEventArgs& args)
 	}
 	/*
     timeoutEnabled = true;
-    time
+    timeoutTimer.stop();
+    timeoutTimer.startTimer(INTERACTIVE_GALLERY_TIMEOUT);
+	*/
+}
+
+void Presentation::reset() {
+	timerTotal.stop();
+	timerTotal.start(TIMER_TOTAL_DURATION);
+
+	timerSlide.stop();
+	timerSlide.start(
