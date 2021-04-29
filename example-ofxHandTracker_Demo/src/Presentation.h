@@ -42,4 +42,16 @@ class Presentation
     void        mousePressed(ofMouseEventArgs& args);
     void        mouseDragged(ofMouseEventArgs& args){};
     void        mouseReleased(ofMouseEventArgs& args){};
-    void        mouseMoved(ofMouseEvent
+    void        mouseMoved(ofMouseEventArgs& args){};
+    
+	void		slideToPage(int _step);
+	void		reset(); 
+	bool		hasFinished();
+
+ private:
+	// presentation specific methods
+    
+
+    // presentation specific components
+    vector<ofImage> images;
+    i
