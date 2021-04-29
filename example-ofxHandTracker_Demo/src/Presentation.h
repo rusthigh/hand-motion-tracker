@@ -61,4 +61,11 @@ class Presentation
     ofFbo           galleryImages;
 
 	// scale ratios
-	float			wRatio, hR
+	float			wRatio, hRatio;
+
+    // determines if presentation is in process of animating from
+    // one image to another (when clicked by next or prev button)
+    bool            isSliding; 
+
+	// informative timers
+	ofxUtilit
