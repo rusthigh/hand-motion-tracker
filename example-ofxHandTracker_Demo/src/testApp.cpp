@@ -20,4 +20,12 @@ void testApp::setup(){
 	wasReleased = true;
 
 #ifdef USE_KINECT
-	oniC
+	oniContext.setup();
+	//oniContext.setMirror(true);
+
+	depthGen.setup(&oniContext);
+	imageGen.setup(&oniContext);
+
+	userGen.setup(&oniContext);
+	userGen.setSmoothing(0.1);				// built in openni skeleton smoothing...
+	//userGen.s
