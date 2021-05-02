@@ -7,4 +7,17 @@ void testApp::setup(){
 		activeKeys[i] = false;
 
 	ofSetBackgroundAuto(false); // removes fullscreen flickering (on some PCs)
-	ofBack
+	ofBackground(ofColor::white);
+
+	h.origin.x = ofGetWidth()/2;
+	h.origin.y = ofGetHeight()/2;
+
+	//ofSetFullscreen(true);
+	ofSetFrameRate(30);
+	ofSetVerticalSync(true);
+
+	wasGrabbed = false;
+	wasReleased = true;
+
+#ifdef USE_KINECT
+	oniC
