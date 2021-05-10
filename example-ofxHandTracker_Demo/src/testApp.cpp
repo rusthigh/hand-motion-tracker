@@ -43,4 +43,11 @@ void testApp::setup(){
 #endif
 }
 
-//---
+//--------------------------------------------------------------
+void testApp::update(){
+#ifdef USE_KINECT
+	oniContext.update();
+	imageGen.update();
+	depthGen.update();
+
+	userGen.update(); /
