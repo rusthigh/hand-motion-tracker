@@ -50,4 +50,17 @@ void testApp::update(){
 	imageGen.update();
 	depthGen.update();
 
-	userGen.update(); /
+	userGen.update(); //crashes app if imageGen not created
+	
+	try {
+		tracker->update();
+	}
+	catch(const char *e)
+	{
+		std::cerr << "CRITICAL ERR (update): " << e;
+	}
+	//tracker2->update();
+
+#endif
+
+	thesisPresentation.upd
