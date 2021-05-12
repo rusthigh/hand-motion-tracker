@@ -63,4 +63,16 @@ void testApp::update(){
 
 #endif
 
-	thesisPresentation.upd
+	thesisPresentation.update();
+
+	for(int i=0; i<256; i++)
+		if(activeKeys[i])
+			h.keyPressed(i);
+	
+	h.update();
+
+	int x = ofGetMouseX();
+	int y = ofGetMouseY();
+
+	h.origin.x = h.origin.x + ((x - h.origin.x)*0.3f);
+	h.origin.y = h.origin.
