@@ -83,4 +83,12 @@ void testApp::draw(){
 	
 	ofClear(ofColor::white); // prevents uncleared pixels (caused by auto background set to false in setup)
 
-	of
+	ofPushMatrix();
+	
+	thesisPresentation.draw();
+
+#ifdef USE_KINECT
+
+	ofSetColor(ofColor::white);
+	try {
+		ofPoint hPos = tracker->getHandModel()->origin; // position in boundary dimensions 640x480
