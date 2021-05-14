@@ -92,3 +92,9 @@ void testApp::draw(){
 	ofSetColor(ofColor::white);
 	try {
 		ofPoint hPos = tracker->getHandModel()->origin; // position in boundary dimensions 640x480
+
+		float wRatioKinect = ofGetWidth()/640.0;
+		float hRatioKinect = ofGetHeight()/480.0;
+		ofPoint dispPos = ofPoint(hPos.x * wRatioKinect, hPos.y * hRatioKinect, hPos.z);
+
+		/*if(thesisPresentation.hasFinished())
