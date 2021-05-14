@@ -75,4 +75,12 @@ void testApp::update(){
 	int y = ofGetMouseY();
 
 	h.origin.x = h.origin.x + ((x - h.origin.x)*0.3f);
-	h.origin.y = h.origin.
+	h.origin.y = h.origin.y + ((y - h.origin.y)*0.3f);
+}
+
+//--------------------------------------------------------------
+void testApp::draw(){
+	
+	ofClear(ofColor::white); // prevents uncleared pixels (caused by auto background set to false in setup)
+
+	of
