@@ -97,4 +97,12 @@ void testApp::draw(){
 		float hRatioKinect = ofGetHeight()/480.0;
 		ofPoint dispPos = ofPoint(hPos.x * wRatioKinect, hPos.y * hRatioKinect, hPos.z);
 
-		/*if(thesisPresentation.hasFinished())
+		/*if(thesisPresentation.hasFinished()) {	
+				ofPushMatrix();
+				ofPushStyle();
+				ofSetColor(ofColor::white);
+				//ofTranslate(0, ofGetHeight());
+				imageGen.draw(640, 0, 640, 480);
+				depthGen.draw(0, 0, 640, 480);
+				userGen.draw();	
+				//handGen.drawHan
