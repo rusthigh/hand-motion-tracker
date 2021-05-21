@@ -113,3 +113,11 @@ void testApp::draw(){
 		}*/
 		/*if(tracker->getNumFingerTips() == 0) {
 			hud.mouseDragged(100*((hPos.x)/640.0)-10, 100*((hPos.y)/480.0)-10, 1);
+		}*/
+		
+		/*ofPushStyle();
+		ofSetColor(0,0,0);
+		ofDrawBitmapString("PARAMS: " + ofToString(tracker->getHandModel()->saveFingerParameters().params), 100, 100);
+		ofPopStyle();*/
+
+		/*if (tracker->getHandModel()
