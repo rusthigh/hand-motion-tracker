@@ -120,4 +120,11 @@ void testApp::draw(){
 		ofDrawBitmapString("PARAMS: " + ofToString(tracker->getHandModel()->saveFingerParameters().params), 100, 100);
 		ofPopStyle();*/
 
-		/*if (tracker->getHandModel()
+		/*if (tracker->getHandModel()->saveFingerParameters().params == 16) {
+			thesisPresentation.slideToPage(-1);
+		}
+		else if (tracker->getHandModel()->saveFingerParameters().params == 6) {
+			thesisPresentation.slideToPage(1);
+		}
+		*/
+		if (tracker-
