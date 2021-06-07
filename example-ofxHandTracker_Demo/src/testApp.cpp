@@ -132,4 +132,14 @@ void testApp::draw(){
 				(dispPos.x > ofGetWidth()*0.25 && dispPos.x < ofGetWidth()*0.75)) {
 				wasGrabbed = true;
 				wasReleased = false;
-				po
+				pointGrabbed = dispPos;
+			}
+		}
+		else {
+			if(!wasReleased) {
+				wasReleased = true;
+				wasGrabbed = false;
+
+				if(abs(pointGrabbed.x - pointReleased.x) > ofGetWidth()/10) {
+					if(pointGrabbed.x > pointReleased.x)
+						
