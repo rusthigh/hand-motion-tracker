@@ -142,4 +142,15 @@ void testApp::draw(){
 
 				if(abs(pointGrabbed.x - pointReleased.x) > ofGetWidth()/10) {
 					if(pointGrabbed.x > pointReleased.x)
-						
+						thesisPresentation.slideToPage(-1);
+					else
+						thesisPresentation.slideToPage(1);
+				}
+
+				pointGrabbed = ofPoint(0,0,0);
+				pointReleased = pointGrabbed;
+			}
+		}
+
+		if (wasGrabbed) {
+			pointRelea
