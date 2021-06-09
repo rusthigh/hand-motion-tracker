@@ -172,4 +172,12 @@ void testApp::draw(){
 		ofPopStyle();
 
 
-		ofEnableAl
+		ofEnableAlphaBlending();
+		ofPushMatrix();
+		//ofScale(1.5, 1.5);
+		//ofTranslate(hud.getTranslation().x, hud.getTranslation().y);
+		ofPushStyle();
+		//ofSetLineWidth(3.0);
+		//ofNoFill();
+		ofSetColor(128, 255, 0);
+		//ofCirc
