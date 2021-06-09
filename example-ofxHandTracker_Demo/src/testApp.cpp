@@ -161,4 +161,15 @@ void testApp::draw(){
 				pointGrabbed = ofPoint(0,0,0);
 				pointReleased = pointGrabbed;
 			}
-		
+		}
+
+		ofPushStyle();
+		ofFill();
+		ofSetLineWidth(4.0);
+		ofSetColor(120, 120, 120, 64);
+		ofLine(pointGrabbed, pointReleased);
+		//ofDrawArrow(pointGrabbed, pointReleased, 10.0f);
+		ofPopStyle();
+
+
+		ofEnableAl
