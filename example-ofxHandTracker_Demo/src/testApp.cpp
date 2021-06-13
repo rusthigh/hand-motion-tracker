@@ -197,4 +197,10 @@ void testApp::draw(){
 	// if no hands tracked draw demo counting or shifting
 	/*if(handGen.getNumTrackedHands() == 0) {
 		if(ofGetFrameNum()%10 == 0) {
-			int shift = (ofGetFrameNum()/
+			int shift = (ofGetFrameNum()/10)%10;
+			int val = 1 << shift; // demo shifting
+
+			ofxFingerParameters p = ofxFingerParameters(val); //(ofGetFrameNum()/10)%32 - counting
+			h.restoreFrom(p);
+		}
+		h.origin = ofPoint(ofGetWidth()/2, ofGetHeigh
