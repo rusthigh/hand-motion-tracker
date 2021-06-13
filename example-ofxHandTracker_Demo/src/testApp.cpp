@@ -180,4 +180,11 @@ void testApp::draw(){
 		//ofSetLineWidth(3.0);
 		//ofNoFill();
 		ofSetColor(128, 255, 0);
-		//ofCirc
+		//ofCircle(dispPos, 50);
+		//ofSetColor(255, 240, 100);
+		tracker->getHandModel()->getProjection().draw(dispPos - ofPoint(75, 75));
+		ofPopStyle();
+		ofPopMatrix();
+		ofDisableAlphaBlending();
+	}
+	catch(const char *e)
