@@ -203,4 +203,14 @@ void testApp::draw(){
 			ofxFingerParameters p = ofxFingerParameters(val); //(ofGetFrameNum()/10)%32 - counting
 			h.restoreFrom(p);
 		}
-		h.origin = ofPoint(ofGetWidth()/2, ofGetHeigh
+		h.origin = ofPoint(ofGetWidth()/2, ofGetHeight()/2, 0);
+		h.scaling = ofPoint(.45,.45,.45);
+		h.draw();
+	}*/
+#endif
+
+	ofPopMatrix();
+
+	ofPushStyle();
+	ofSetColor(200, 200, 255);
+	ofDrawBitmapString("FPS: " + ofToStrin
