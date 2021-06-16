@@ -213,4 +213,13 @@ void testApp::draw(){
 
 	ofPushStyle();
 	ofSetColor(200, 200, 255);
-	ofDrawBitmapString("FPS: " + ofToStrin
+	ofDrawBitmapString("FPS: " + ofToString(ofGetFrameRate()), 20, -40, 0);
+	ofPopStyle();
+}
+
+//--------------------------------------------------------------
+void testApp::keyPressed(int key){
+	if(key < 256)
+		activeKeys[key] = true;
+
+	if(key
