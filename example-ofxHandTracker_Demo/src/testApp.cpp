@@ -222,4 +222,13 @@ void testApp::keyPressed(int key){
 	if(key < 256)
 		activeKeys[key] = true;
 
-	if(key
+	if(key == 'p')
+		ofSetFullscreen(true);
+	else if(key == 'l')
+		ofSetFullscreen(false);
+	else if(key == 'r')
+		thesisPresentation.reset();
+}
+
+//--------------------------------------------------------------
+v
