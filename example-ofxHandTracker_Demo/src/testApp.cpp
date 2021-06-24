@@ -231,4 +231,13 @@ void testApp::keyPressed(int key){
 }
 
 //--------------------------------------------------------------
-v
+void testApp::keyReleased(int key){
+	if(key < 256)
+		activeKeys[key] = false;
+}
+
+//--------------------------------------------------------------
+void testApp::mouseMoved(int x, int y ){
+}
+
+//------------------------------------------
