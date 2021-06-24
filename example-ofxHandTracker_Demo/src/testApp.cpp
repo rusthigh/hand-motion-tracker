@@ -247,4 +247,14 @@ void testApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
-	h
+	h.mousePressed(x, y, button);
+
+	activeKeys['q'] = true;
+	activeKeys['w'] = true;
+	activeKeys['e'] = true;
+	activeKeys['r'] = true;
+	activeKeys['t'] = true;
+	activeKeys['z'] = true;
+
+	activeKeys['a'] = false;
+	activeKeys['
