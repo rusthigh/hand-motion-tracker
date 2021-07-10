@@ -257,4 +257,12 @@ void testApp::mousePressed(int x, int y, int button){
 	activeKeys['z'] = true;
 
 	activeKeys['a'] = false;
-	activeKeys['
+	activeKeys['s'] = false;
+	activeKeys['d'] = false;
+	activeKeys['f'] = false;
+	activeKeys['g'] = false;
+	activeKeys['h'] = false;
+}
+
+//--------------------------------------------------------------
+void testApp::mouseRelease
