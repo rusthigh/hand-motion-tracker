@@ -274,4 +274,12 @@ void testApp::mouseReleased(int x, int y, int button){
 	activeKeys['z'] = false;
 
 	activeKeys['a'] = true;
-	activeKeys['s']
+	activeKeys['s'] = true;
+	activeKeys['d'] = true;
+	activeKeys['f'] = true;
+	activeKeys['g'] = true;
+	activeKeys['h'] = true;
+}
+
+//--------------------------------------------------------------
+void testApp::windowResized(int
