@@ -265,4 +265,13 @@ void testApp::mousePressed(int x, int y, int button){
 }
 
 //--------------------------------------------------------------
-void testApp::mouseRelease
+void testApp::mouseReleased(int x, int y, int button){
+	activeKeys['q'] = false;
+	activeKeys['w'] = false;
+	activeKeys['e'] = false;
+	activeKeys['r'] = false;
+	activeKeys['t'] = false;
+	activeKeys['z'] = false;
+
+	activeKeys['a'] = true;
+	activeKeys['s']
