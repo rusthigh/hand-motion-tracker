@@ -292,4 +292,16 @@ void testApp::gotMessage(ofMessage msg){
 }
 
 //--------------------------------------------------------------
-void
+void testApp::dragEvent(ofDragInfo dragInfo){ 
+
+}
+
+//--------------------------------------------------------------
+void testApp::exit(){ 
+
+#ifdef USE_KINECT
+	if (tracker != NULL) {
+		delete tracker;
+		tracker = NULL;
+	}
+
