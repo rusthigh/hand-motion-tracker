@@ -305,3 +305,8 @@ void testApp::exit(){
 		tracker = NULL;
 	}
 
+	// for another tracker
+	//delete tracker2;
+	//tracker2 = NULL;
+#endif
+}
