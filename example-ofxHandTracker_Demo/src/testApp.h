@@ -31,3 +31,13 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 	
+		void exit(); // to do cleanup on exit
+
+		ofxHandModel h;
+		
+		// for multiple keys to be active at the same time
+		bool activeKeys[256];
+
+#ifdef USE_KINECT
+		ofxHandTracker *tracker;
+		//ofxHandTracker *tracker2; // if not poi
