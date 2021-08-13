@@ -48,4 +48,13 @@ class testApp : public ofBaseApp{
 		ofxOpenNIContext	oniContext;
 		ofxDepthGenerator	depthGen;
 		ofxIRGenerator		imageGen;
-		//ofxImageG
+		//ofxImageGenerator   imageGen;
+		//ofxOpenNIRecorder	oniRecorder;
+		ofxUserGenerator	userGen;
+		ofxHandGenerator	handGen;
+
+#endif
+
+#ifdef USE_KINECT
+		// drawing demo app
+		// when user has any pointing fin
