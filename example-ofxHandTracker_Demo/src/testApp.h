@@ -61,4 +61,14 @@ class testApp : public ofBaseApp{
 		// also good option is to have a button which can clear buffer option
 		/*ofFbo				drawBuffer;
 		//vector<ofPoint>		prevActiveFingers;
-		ofPoint				prevIndexP
+		ofPoint				prevIndexPos;
+		ofPoint				prevMidPos;
+		ofPoint				prevPinkyPos;*/
+#endif
+		Presentation		thesisPresentation;
+
+		// points for grabbing & releasing references
+		ofPoint				pointGrabbed;
+		ofPoint				pointReleased;
+
+		bool			
