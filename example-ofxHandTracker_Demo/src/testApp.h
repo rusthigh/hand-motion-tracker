@@ -71,4 +71,6 @@ class testApp : public ofBaseApp{
 		ofPoint				pointGrabbed;
 		ofPoint				pointReleased;
 
-		bool			
+		bool				wasGrabbed;
+		bool				wasReleased;
+};

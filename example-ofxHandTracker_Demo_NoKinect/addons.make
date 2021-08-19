@@ -1,0 +1,4 @@
+
+ofxOpenCv
+ofxHandTracker
+ofxOpenNI
