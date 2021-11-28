@@ -23,4 +23,9 @@
 			<Configuration>
 				<Mirror on="true"/>
 			</Configuration>
-		<
+		</Node>
+		<!--
+		<Node type="Audio" name="Audio1"/>
+		-->
+	</ProductionNodes>
+</OpenNI>
