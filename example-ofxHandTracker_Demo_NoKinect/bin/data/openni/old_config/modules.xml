@@ -1,2 +1,5 @@
 <Modules>
-    <Module path="../../.
+    <Module path="../../../data/openni/lib/libnimMockNodes.dylib" />
+    <Module path="../../../data/openni/lib/libnimCodecs.dylib" />
+    <Module path="../../../data/openni/lib/libnimRecorder.dylib" />
+    <Module p
