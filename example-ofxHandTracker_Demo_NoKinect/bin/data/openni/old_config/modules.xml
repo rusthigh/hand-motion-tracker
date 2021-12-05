@@ -5,4 +5,6 @@
     <Module path="../../../data/openni/lib/libXnVCNITE_1_5_2.dylib" configDir="../../../data/openni/config/" />
     <Module path="../../../data/openni/lib/libXnVFeatures_1_5_2.dylib" configDir="../../../data/openni/config/" />
     <Module path="../../../data/openni/lib/libXnVHandGenerator_1_5_2.dylib" configDir="../../../data/openni/config/" />
-    <Module path="../../../data/openni/lib/libXnDeviceSensorV2KM.dylib" configDir="../../../data/openni/
+    <Module path="../../../data/openni/lib/libXnDeviceSensorV2KM.dylib" configDir="../../../data/openni/config/" />
+    <Module path="../../../data/openni/lib/libXnDeviceFile.dylib" configDir="../../../data/openni/config/" />
+</Modules>
