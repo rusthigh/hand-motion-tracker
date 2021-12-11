@@ -23,4 +23,14 @@
 		<Node type="Depth" name="Depth1">
 			<Configuration>
 				<MapOutputMode xRes="640" yRes="480" FPS="30"/>
-				<Mirror on="true"
+				<Mirror on="true"/>
+			</Configuration>
+		</Node>
+		
+		<!-- ofxUserGenerator -->
+		<Node type="User" />
+        
+        <!-- ofxGestureGenerator -->
+		<Node type="Gesture" />
+		<Node type="Hands" />
+	</ProductionNo
