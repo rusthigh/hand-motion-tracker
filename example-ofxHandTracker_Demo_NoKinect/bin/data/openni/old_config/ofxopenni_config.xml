@@ -33,4 +33,5 @@
         <!-- ofxGestureGenerator -->
 		<Node type="Gesture" />
 		<Node type="Hands" />
-	</ProductionNo
+	</ProductionNodes>
+</OpenNI>
