@@ -9,4 +9,8 @@ varying float DEPTH;
 void main(void)
 {	
 	// far things appear white, near things black
-	//gl_Color.rgb=vec3(DEPTH,DEPTH,DEPT
+	//gl_Color.rgb=vec3(DEPTH,DEPTH,DEPTH);
+	//gl_FragColor = texture2DRect(sampler0, gl_TexCoord[0].st);
+	gl_FragColor.x = DEPTH;
+	gl_FragColor.y = DEPTH;
+}
