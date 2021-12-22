@@ -11,3 +11,9 @@ uniform int frag_height;
 //uniform vec2i kernel_size; // if we could use this would be better (but it wont work on with i)
 
 void main(void)
+{	
+/*---------------------------------------------------------------------------------------------------------
+	//float kernel_w_f = float(kernel_width);
+	//float kernel_h_f = float(kernel_width);
+	
+	vec2 kernel_si
