@@ -51,4 +51,9 @@ void main(void)
 	}
 ---------------------------------------------------------------------------------------------------------*/
 
-	vec2 kernel_size_f = vec2(float(kernel_widt
+	vec2 kernel_size_f = vec2(float(kernel_width), float(kernel_height));
+	
+	vec2 frag_coord = gl_TexCoord[0].st;
+	
+	float max_val = kernel_width * kernel_height; // max value for later normalization
+	vec4 maxValue = vec4(max_val, max_val, max_val,
