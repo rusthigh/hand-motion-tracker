@@ -70,4 +70,10 @@ void main(void)
 		vec4 sumValue = vec4(0.0, 0.0, 0.0, 0.0);
 		vec4 currValue;
 		
-		//int maxVal 
+		//int maxVal = 1;
+		
+		for (int i = 0; i<size_w; i++) {
+			for (int j = 0; j<size_h; j++) {
+				currValue = texture2DRect(sampler0, gl_TexCoord[0].st + vec2(float(i * frag_width), float(j * frag_height)));	
+
+				//if (currValue.x > 0.01 || currValue.y > 0.01
