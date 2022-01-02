@@ -85,4 +85,9 @@ void main(void)
 		
 		sumValue = sumValue / maxValue;
 		//sumValue = vec4(sumValue.x, 1.0 - sumValue.x, 0.0, 1.0); // debuging
-	
+		gl_FragColor = sumValue;
+	}
+	else {
+		gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
+	}
+}
