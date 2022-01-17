@@ -21,4 +21,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGloba
+	EndGlobalSection
+EndGlobal
