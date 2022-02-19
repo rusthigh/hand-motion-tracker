@@ -35,4 +35,8 @@
       <Filter>addons\ofxHandTracker\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxHandModel.cpp">
-      
+      <Filter>addons\ofxHandTracker\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxHandParameters.cpp">
+      <Filter>addons\ofxHandTracker\src</Filter>
+    </
