@@ -43,4 +43,8 @@
     <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxHandTracker.cpp">
       <Filter>addons\ofxHandTracker\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\add
+    <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxThumbModel.cpp">
+      <Filter>addons\ofxHandTracker\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxUtilityTimer.cpp">
+      
