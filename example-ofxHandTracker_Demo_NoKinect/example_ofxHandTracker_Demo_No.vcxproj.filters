@@ -47,4 +47,8 @@
       <Filter>addons\ofxHandTracker\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxUtilityTimer.cpp">
-      
+      <Filter>addons\ofxHandTracker\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxOpenNI\src\ofxDepthGenerator.cpp">
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClComp
