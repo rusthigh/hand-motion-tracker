@@ -69,4 +69,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxOpenNI\src\ofxOpenNIContext.cpp">
       <Filter>addons\ofxOpenNI\src</Filter>
-    
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxOpenNI\src\ofxOpenNIRecorder.cpp">
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxOpenNI\src\ofxTrackedHand.cpp">
+     
