@@ -64,4 +64,9 @@
     <ClCompile Include="..\..\..\addons\ofxOpenNI\src\ofxImageGenerator.cpp">
       <Filter>addons\ofxOpenNI\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\addons\ofxOpenNI\src\ofxIR
+    <ClCompile Include="..\..\..\addons\ofxOpenNI\src\ofxIRGenerator.cpp">
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxOpenNI\src\ofxOpenNIContext.cpp">
+      <Filter>addons\ofxOpenNI\src</Filter>
+    
