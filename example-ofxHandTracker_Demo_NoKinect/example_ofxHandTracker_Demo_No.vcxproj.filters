@@ -74,4 +74,9 @@
       <Filter>addons\ofxOpenNI\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxOpenNI\src\ofxTrackedHand.cpp">
-     
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxOpenNI\src\ofxTrackedUser.cpp">
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClCompile>
+    <ClCompile Inclu
