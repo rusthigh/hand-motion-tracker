@@ -84,4 +84,11 @@
     </ClCompile>
     <ClCompile Include="src\Presentation.cpp">
       <Filter>src</Filter>
-    
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons">
+      <Uniq
