@@ -108,4 +108,7 @@
     <Filter Include="addons\ofxOpenCv\libs\opencv\include">
       <UniqueIdentifier>{18bb18a3-47a8-9f08-1a3f-16fcca7e00b8}</UniqueIdentifier>
     </Filter>
-    <F
+    <Filter Include="addons\ofxOpenCv\libs\opencv\include\opencv">
+      <UniqueIdentifier>{c867b0de-b007-11b8-c182-5344514a3561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOpenCv\libs\opencv\include\
