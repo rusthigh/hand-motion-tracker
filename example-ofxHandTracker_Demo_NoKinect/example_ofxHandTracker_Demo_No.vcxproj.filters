@@ -115,4 +115,7 @@
       <UniqueIdentifier>{bcd8abd4-43e3-302d-a2d3-9fe1782a5426}</UniqueIdentifier>
     </Filter>
     <Filter Include="addons\ofxOpenCv\libs\opencv\include\opencv2\calib3d">
-      <UniqueIdentifier>{e7cfffa1-9df
+      <UniqueIdentifier>{e7cfffa1-9dfa-d919-100c-fdaa53aadf42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOpenCv\libs\opencv\include\opencv2\contrib">
+      <UniqueIdentifier>{776c25cb-cd33-75a7-df99-b8c
