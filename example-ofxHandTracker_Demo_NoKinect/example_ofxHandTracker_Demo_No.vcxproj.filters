@@ -126,4 +126,7 @@
     <Filter Include="addons\ofxOpenCv\libs\opencv\include\opencv2\features2d">
       <UniqueIdentifier>{ffed61a2-da84-e61f-daa8-23d87e82b0de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="
+    <Filter Include="addons\ofxOpenCv\libs\opencv\include\opencv2\flann">
+      <UniqueIdentifier>{35e18472-d925-59bd-12ef-e1e68e990a5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOpenCv\libs\opencv\include\opencv2\gpu
