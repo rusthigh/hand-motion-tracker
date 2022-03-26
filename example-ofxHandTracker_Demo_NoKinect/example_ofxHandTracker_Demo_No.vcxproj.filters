@@ -144,4 +144,8 @@
     <Filter Include="addons\ofxOpenCv\libs\opencv\include\opencv2\ml">
       <UniqueIdentifier>{c217a119-b337-c774-4eda-1accc9de1693}</UniqueIdentifier>
     </Filter>
-    <Filter Include="addons\ofxOpenCv\libs\opencv\include\o
+    <Filter Include="addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect">
+      <UniqueIdentifier>{d1260df5-dcb4-6729-cd66-ed90d29cfe79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOpenCv\libs\opencv\include\opencv2\ts">
+      <UniqueIdentifier>{aa1539ed-a54
