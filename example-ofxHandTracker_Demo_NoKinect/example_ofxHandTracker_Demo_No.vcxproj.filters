@@ -162,4 +162,10 @@
     <Filter Include="addons\ofxOpenNI">
       <UniqueIdentifier>{6e5d5334-77f3-8d5c-ab36-78728c31e2ad}</UniqueIdentifier>
     </Filter>
-   
+    <Filter Include="addons\ofxOpenNI\src">
+      <UniqueIdentifier>{ad812f33-7c24-a6ad-00da-ec2b245a4b11}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\testApp.h">
+      <Filter>src</Fil
