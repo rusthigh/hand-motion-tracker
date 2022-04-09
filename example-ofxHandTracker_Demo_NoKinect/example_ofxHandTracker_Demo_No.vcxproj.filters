@@ -157,4 +157,9 @@
       <UniqueIdentifier>{a0519868-f307-aa2d-b585-d0dc8f623026}</UniqueIdentifier>
     </Filter>
     <Filter Include="addons\ofxHandTracker\src">
+      <UniqueIdentifier>{2539278d-0dbe-b950-3780-d41e78425b30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOpenNI">
+      <UniqueIdentifier>{6e5d5334-77f3-8d5c-ab36-78728c31e2ad}</UniqueIdentifier>
+    </Filter>
    
