@@ -168,4 +168,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\testApp.h">
-      <Filter>src</Fil
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvBlob.h">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvColorImage.h">
+      <Filt
