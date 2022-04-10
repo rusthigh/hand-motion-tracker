@@ -174,4 +174,9 @@
       <Filter>addons\ofxOpenCv\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvColorImage.h">
-      <Filt
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvConstants.h">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addo
