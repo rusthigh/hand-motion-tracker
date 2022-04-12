@@ -179,4 +179,8 @@
     <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvConstants.h">
       <Filter>addons\ofxOpenCv\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\addo
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvContourFinder.h">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvFloatImage.h">
+      <Filter>addons\
