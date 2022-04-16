@@ -206,4 +206,8 @@
     <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv\cv.h">
       <Filter>addons\ofxOpenCv\libs\opencv\include\opencv</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\op
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv\cv.hpp">
+      <Filter>addons\ofxOpenCv\libs\opencv\include\opencv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv\cvaux.h">
+      <Filter>add
