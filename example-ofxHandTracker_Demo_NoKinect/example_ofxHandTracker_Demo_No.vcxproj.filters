@@ -252,4 +252,7 @@
       <Filter>addons\ofxOpenCv\libs\opencv\include\opencv2\core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\core\eigen.hpp">
-      <Filter>addons\ofxOpenCv\libs\op
+      <Filter>addons\ofxOpenCv\libs\opencv\include\opencv2\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\core\internal.hpp">
+      <Filter>addons\ofxOpenCv\libs\opencv\include\opencv2\co
