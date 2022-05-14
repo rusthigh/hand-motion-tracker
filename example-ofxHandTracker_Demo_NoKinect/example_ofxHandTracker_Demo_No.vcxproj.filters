@@ -284,4 +284,7 @@
     <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\any.h">
       <Filter>addons\ofxOpenCv\libs\opencv\include\opencv2\flann</Filter>
     </ClInclude>
-    <ClInclude Include="..
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\autotuned_index.h">
+      <Filter>addons\ofxOpenCv\libs\opencv\include\opencv2\flann</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofx
