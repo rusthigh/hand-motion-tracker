@@ -470,4 +470,7 @@
     <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxThumbModel.h">
       <Filter>addons\ofxHandTracker\src</Filter>
     </ClInclude>
-    <ClInclude
+    <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxUtilityTimer.h">
+      <Filter>addons\ofxHandTracker\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenNI\src
