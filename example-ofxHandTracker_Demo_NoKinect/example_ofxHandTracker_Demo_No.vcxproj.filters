@@ -479,4 +479,7 @@
     <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxGestureGenerator.h">
       <Filter>addons\ofxOpenNI\src</Filter>
     </ClInclude>
-  
+    <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxHandGenerator.h">
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxHardwareDriver.h">
