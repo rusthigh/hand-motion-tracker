@@ -473,4 +473,10 @@
     <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxUtilityTimer.h">
       <Filter>addons\ofxHandTracker\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\addons\ofxOpenNI\src
+    <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxDepthGenerator.h">
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxGestureGenerator.h">
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClInclude>
+  
