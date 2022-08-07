@@ -488,4 +488,8 @@
     <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxImageGenerator.h">
       <Filter>addons\ofxOpenNI\src</Filter>
     </ClInclude>
-    <C
+    <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxIRGenerator.h">
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxOpenNI.h">
+      <Filter>addons\ofxOpe
