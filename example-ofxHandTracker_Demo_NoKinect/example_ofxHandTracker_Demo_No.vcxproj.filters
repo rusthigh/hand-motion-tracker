@@ -503,4 +503,8 @@
     <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxOpenNIRecorder.h">
       <Filter>addons\ofxOpenNI\src</Filter>
     </ClInclude>
-    <ClInclu
+    <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxTrackedHand.h">
+      <Filter>addons\ofxOpenNI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenNI\src\ofxTrackedUser.h">
+      <Filter>addons
