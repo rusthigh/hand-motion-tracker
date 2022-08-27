@@ -154,3 +154,77 @@ void Presentation::windowResized(int w, int h)
 void Presentation::disable()
 {
    /* timeoutEnabled = false;
+    timeoutTimer.stop();
+    
+    //TODO: disable all buttons, etc.
+    
+    ofUnregisterMouseEvents(this);*/
+}
+
+void Presentation::enable()
+{
+    // at the moment timeoutTimer also runs in MM, however,
+    // visual is not affected by drawing bugs when timeout occurs,
+    // so is ok if MM jumps back to MM
+   /* timeoutEnabled = true;
+    timeoutTimer.stop();
+    timeoutTimer.startTimer(INTERACTIVE_GALLERY_TIMEOUT);
+    
+    //TODO: enable all buttons, etc.
+    
+    ofRegisterMouseEvents(this);*/
+}
+
+void Presentation::slideToPage(int _step) {
+	if (!isSliding) {
+        imageIndex += _step;
+        if(imageIndex < 0) {
+            // TODO: here disable prev button
+            imageIndex = 0;
+        }
+		else if (imageIndex > images.size()-1) {
+            imageIndex = images.size()-1;
+        }
+        else {
+            //imageNextPos = imagePos + ofPoint(imgData[imageIndex].width,0);
+            imageNextPos = imagePos - ((_step/abs(_step)) * ofPoint(galleryArea.getWidth(),0)) - (imagePos - imageNextPos); //last brackets enable earlier sliding
+            isSliding = true;
+
+			timerSlide.stop();
+			timerSlide.start(TIMER_SLIDE_DURATION);
+        }
+    }
+}
+
+//when mouse is pressed reset the timer
+void Presentation::mousePressed(ofMouseEventArgs& args)
+{
+	if(args.button == 0)
+		slideToPage(1);
+	else if(args.button == 2)
+		slideToPage(-1);
+	else {
+		reset();
+	}
+	/*
+    timeoutEnabled = true;
+    timeoutTimer.stop();
+    timeoutTimer.startTimer(INTERACTIVE_GALLERY_TIMEOUT);
+	*/
+}
+
+void Presentation::reset() {
+	timerTotal.stop();
+	timerTotal.start(TIMER_TOTAL_DURATION);
+
+	timerSlide.stop();
+	timerSlide.start(TIMER_SLIDE_DURATION);
+
+	imageIndex = 0;
+
+	imageNextPos = ofPoint(0,0);
+}
+
+bool Presentation::hasFinished() {
+	return imageIndex == images.size()-1;
+}
