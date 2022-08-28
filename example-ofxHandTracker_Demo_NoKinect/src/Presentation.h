@@ -30,4 +30,13 @@ class Presentation
     ~Presentation();
     
     void setup();
-    void updat
+    void update();
+    void draw();
+    
+    void        windowResized(int w, int h);
+
+    void        enable();
+    void        disable();
+
+    // mouse events (for timeout reset)
+    void        mousePr
