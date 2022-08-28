@@ -19,4 +19,15 @@
 #define     FULL_HD_H	800.0
 
 #define TIMER_SLIDE_DURATION	60000
-#define TIM
+#define TIMER_TOTAL_DURATION	600000
+
+class Presentation
+{
+
+ public:
+    Presentation();
+    Presentation(string _assetsFilename, string _menusFilename, string _vizualType);
+    ~Presentation();
+    
+    void setup();
+    void updat
