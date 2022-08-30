@@ -39,4 +39,7 @@ class Presentation
     void        disable();
 
     // mouse events (for timeout reset)
-    void        mousePr
+    void        mousePressed(ofMouseEventArgs& args);
+    void        mouseDragged(ofMouseEventArgs& args){};
+    void        mouseReleased(ofMouseEventArgs& args){};
+    void        mouseMoved(ofMouseEventArg
