@@ -54,4 +54,13 @@ class Presentation
 
     // presentation specific components
     vector<ofImage> images;
-  
+    int             imageIndex;
+    ofPoint         imagePos;
+    ofPoint         imageNextPos;
+    ofFbo           galleryArea;
+    ofFbo           galleryImages;
+
+	// scale ratios
+	float			wRatio, hRatio;
+
+    // determines i
