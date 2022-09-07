@@ -63,4 +63,9 @@ class Presentation
 	// scale ratios
 	float			wRatio, hRatio;
 
-    // determines i
+    // determines if presentation is in process of animating from
+    // one image to another (when clicked by next or prev button)
+    bool            isSliding; 
+
+	// informative timers
+	ofxUtilityTimer			timerSlide; // 1 minute for eac
