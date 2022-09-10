@@ -68,4 +68,7 @@ class Presentation
     bool            isSliding; 
 
 	// informative timers
-	ofxUtilityTimer			timerSlide; // 1 minute for eac
+	ofxUtilityTimer			timerSlide; // 1 minute for each slide
+	ofxUtilityTimer			timerTotal; // 10 minutes total for presentation
+
+};
