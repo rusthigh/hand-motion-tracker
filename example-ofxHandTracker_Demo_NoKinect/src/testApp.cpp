@@ -112,3 +112,43 @@ void testApp::mousePressed(int x, int y, int button){
 	activeKeys['a'] = false;
 	activeKeys['s'] = false;
 	activeKeys['d'] = false;
+	activeKeys['f'] = false;
+	activeKeys['g'] = false;
+	activeKeys['h'] = false;
+}
+
+//--------------------------------------------------------------
+void testApp::mouseReleased(int x, int y, int button){
+	activeKeys['q'] = false;
+	activeKeys['w'] = false;
+	activeKeys['e'] = false;
+	activeKeys['r'] = false;
+	activeKeys['t'] = false;
+	activeKeys['z'] = false;
+
+	activeKeys['a'] = true;
+	activeKeys['s'] = true;
+	activeKeys['d'] = true;
+	activeKeys['f'] = true;
+	activeKeys['g'] = true;
+	activeKeys['h'] = true;
+}
+
+//--------------------------------------------------------------
+void testApp::windowResized(int w, int h){
+	thesisPresentation.windowResized(w,h);
+}
+
+//--------------------------------------------------------------
+void testApp::gotMessage(ofMessage msg){
+
+}
+
+//--------------------------------------------------------------
+void testApp::dragEvent(ofDragInfo dragInfo){ 
+
+}
+
+//--------------------------------------------------------------
+void testApp::exit(){ 
+}
