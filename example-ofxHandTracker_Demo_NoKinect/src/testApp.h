@@ -11,4 +11,14 @@
 //#include "ofxOpenCv.h"
 #include "Presentation.h"
 
-class testApp : public o
+class testApp : public ofBaseApp{
+
+	public:
+		void setup();
+		void update();
+		void draw();
+
+		void keyPressed  (int key);
+		void keyReleased(int key);
+		void mouseMoved(int x, int y );
+		void mouseDragged(int
