@@ -26,4 +26,12 @@ class testApp : public ofBaseApp{
 		void mouseReleased(int x, int y, int button);
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
-		void gotMessage(ofMessage 
+		void gotMessage(ofMessage msg);
+	
+		void exit(); // cleanup on exit (not needed yet here)
+
+		ofxHandModel h; // for demo of hand model
+		Presentation		thesisPresentation;
+
+		// for multiple keys to be active at the same time
+		bool activeKey
