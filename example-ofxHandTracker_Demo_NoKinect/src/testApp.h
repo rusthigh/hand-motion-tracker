@@ -34,4 +34,12 @@ class testApp : public ofBaseApp{
 		Presentation		thesisPresentation;
 
 		// for multiple keys to be active at the same time
-		bool activeKey
+		bool activeKeys[256];
+		
+		// points for grabbing & releasing references
+		ofPoint				pointGrabbed;
+		ofPoint				pointReleased;
+
+		bool				wasGrabbed;
+		bool				wasReleased;
+};
