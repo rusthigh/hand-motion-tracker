@@ -1,0 +1,7 @@
+<OpenNI>
+	<Licenses>
+		<!-- Add licenses here 
+		<License vendor="vendor" key="key"/>
+		-->
+	</Licenses>
+	<Log writeToConsole="false" writeT
