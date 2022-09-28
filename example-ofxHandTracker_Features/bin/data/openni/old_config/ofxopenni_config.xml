@@ -4,4 +4,15 @@
 	</Licenses>
 	<Log writeToConsole="true" writeToFile="true">
 		<!-- 0 - Verbose, 1 - Info, 2 - Warning, 3 - Error (default) -->
-		<
+		<LogLevel value="3"/>
+		<Masks>
+			<Mask name="ALL" on="true"/>
+		</Masks>
+		<Dumps>
+		</Dumps>
+	</Log>
+	<ProductionNodes>
+        <!-- ofxImageGenerator -->
+        <Node type="Image" name="Image1">
+			<Configuration>
+				<MapOutputMode xRes="640
