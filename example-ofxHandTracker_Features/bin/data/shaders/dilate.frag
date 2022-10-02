@@ -7,4 +7,10 @@ uniform sampler2DRect sampler0;
 uniform int kernel_size;
 
 // useful random function?
-float ra
+float rand(vec2 co){
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
+
+void main(void)
+{	/* // alter fragments only around mouse coords
+	float dist = distance(gl_FragCoord.xy, mouse); 
