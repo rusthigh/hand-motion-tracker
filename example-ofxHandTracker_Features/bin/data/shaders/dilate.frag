@@ -14,3 +14,11 @@ float rand(vec2 co){
 void main(void)
 {	/* // alter fragments only around mouse coords
 	float dist = distance(gl_FragCoord.xy, mouse); 
+	float radius = 240.0;
+	
+	if(dist < radius) {
+		int size = kernel_size;
+		vec4 maxValue = vec4(0.0, 0.0, 0.0, 0.0);
+		vec4 currValue;
+		for (int i = -size; i<=size; i++) {
+			for (in
