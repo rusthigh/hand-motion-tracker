@@ -29,4 +29,13 @@ void main(void)
 		gl_FragColor = maxValue* (1.4 * (1 - dist/radius));
 	}
 	else {
+		gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
+	}
+	*/
+	
+	// run dilation on each fragment 
+	int size = kernel_size;
+	vec4 maxValue = vec4(0.0, 0.0, 0.0, 0.0);
+	vec4 currValue;
+	for (int i = -size; i<=size; i++) {
 	
