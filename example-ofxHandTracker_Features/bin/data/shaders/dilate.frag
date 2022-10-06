@@ -21,4 +21,12 @@ void main(void)
 		vec4 maxValue = vec4(0.0, 0.0, 0.0, 0.0);
 		vec4 currValue;
 		for (int i = -size; i<=size; i++) {
-			for (in
+			for (int j = -size; j<=size; j++) {
+				currValue = texture2DRect(sampler0, gl_TexCoord[0].st + vec2(float(i), float(j)));
+				maxValue = max(currValue, maxValue);
+			}
+		}
+		gl_FragColor = maxValue* (1.4 * (1 - dist/radius));
+	}
+	else {
+	
