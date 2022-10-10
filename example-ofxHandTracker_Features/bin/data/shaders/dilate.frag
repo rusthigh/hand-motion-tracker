@@ -38,4 +38,8 @@ void main(void)
 	vec4 maxValue = vec4(0.0, 0.0, 0.0, 0.0);
 	vec4 currValue;
 	for (int i = -size; i<=size; i++) {
-	
+		for (int j = -size; j<=size; j++) {
+			float dist = distance(vec2(0.0, 0.0), vec2(i, j)); 
+			float radius = float(size);
+			if(dist <= radius) { // exclude corners of the kernel
+				currValue = texture2DRect(sa
