@@ -49,4 +49,5 @@ void main(void)
 	}
 	gl_FragColor = maxValue;
 	//gl_FragColor.x = gl_FragDepth/10;
-	//gl_FragColor = vec4(maxValue.x
+	//gl_FragColor = vec4(maxValue.x, maxValue.y+gl_FragCoord.z, maxValue.z);
+}
