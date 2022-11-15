@@ -17,4 +17,10 @@ public:
 	void update();
 	void mouseMoved(int x, int y );
 	void mouseDragged(int x, int y, int button);
-	void mousePresse
+	void mousePressed(int x, int y, int button);
+	void mouseReleased(int x, int y, int button);
+	void windowResized(int w, int h);
+
+	void setColor(ofColor _mapColor, ofColor _locColor);
+	void setMapSize(int _mapWidth, int _mapHeight);
+	ofPoint 
