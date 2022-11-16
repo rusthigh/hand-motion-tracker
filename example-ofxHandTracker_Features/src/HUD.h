@@ -37,4 +37,10 @@ private:
 	float	realWidth, realHeight;
 	float	hPages, wPages;
 
-	b
+	bool	lockDim;
+
+	float wRatio, hRatio;
+	ofPoint initMapPos;
+	int		initMapWidth, initMapHeight;
+};
+
