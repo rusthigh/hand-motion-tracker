@@ -23,4 +23,18 @@ public:
 
 	void setColor(ofColor _mapColor, ofColor _locColor);
 	void setMapSize(int _mapWidth, int _mapHeight);
-	ofPoint 
+	ofPoint getTranslation();
+
+private:
+
+	ofColor	mapColor;
+	ofColor locColor;
+	ofPoint mapPos;
+	ofPoint locPos;
+	ofPoint nextLocPos;
+	
+	float	mapWidth, mapHeight;
+	float	realWidth, realHeight;
+	float	hPages, wPages;
+
+	b
