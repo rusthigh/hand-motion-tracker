@@ -16,4 +16,13 @@ void testApp::setup(){
 	//hud = HUD(ofPoint(10, 870, 0), 250, 150, 2000, 7000); // init hud with locked resolution to be available (you want 10k x 8k res or even more? fine, just set it up)
 	//hud = HUD(ofPoint(0, 0, 0), 100, 1000, 1000, 10000); // setup for ppt
 	//hud = HUD(ofPoint(0, 0, 0), 1, 1, 1.0f, 1.0f);
-	hud.se
+	hud.setColor(ofColor(64, 128, 96, 64), ofColor(255, 96, 32, 150));
+	
+	h.origin.x = ofGetWidth()/2;
+	h.origin.y = ofGetHeight()/2;
+
+	//ofSetFullscreen(true);
+	ofSetFrameRate(30);
+	ofSetVerticalSync(true);
+
+	wasGrab
