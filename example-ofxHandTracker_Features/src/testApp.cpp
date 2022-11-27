@@ -25,4 +25,15 @@ void testApp::setup(){
 	ofSetFrameRate(30);
 	ofSetVerticalSync(true);
 
-	wasGrab
+	wasGrabbed = false;
+	wasReleased = true;
+
+#ifdef USE_KINECT
+	oniContext.setup();
+	//oniContext.setMirror(true);
+
+	depthGen.setup(&oniContext);
+	imageGen.setup(&oniContext);
+
+	userGen.setup(&oniContext);
+	userGen.setSmoothing(0.1);
