@@ -39,4 +39,9 @@ void testApp::setup(){
 	userGen.setSmoothing(0.1);				// built in openni skeleton smoothing...
 	//userGen.setUseMaskPixels(true);
 	userGen.setUseCloudPoints(true); // must be enabled to be able to draw cloud points
-	userGen.setMaxNumberOfUsers(2);					// use this to s
+	userGen.setMaxNumberOfUsers(2);					// use this to set dynamic max number of users (NB: that a hard upper limit is defined by MAX_NUMBER_USERS in ofxUserGenerator)
+	
+	handGen.setup(&oniContext, 2);	
+	handGen.setSmoothing(0.02);
+
+	oniContext.toggleRegisterVi
