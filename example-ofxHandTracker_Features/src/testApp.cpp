@@ -44,4 +44,8 @@ void testApp::setup(){
 	handGen.setup(&oniContext, 2);	
 	handGen.setSmoothing(0.02);
 
-	oniContext.toggleRegisterVi
+	oniContext.toggleRegisterViewport();
+	oniContext.toggleMirror();
+
+	tracker = new ofxHandTracker(&userGen, &handGen, &depthGen, 0);
+	//tracker2 = new ofxHandTracker(&userGen, &handGen, &depthGen, 1); // use whe
