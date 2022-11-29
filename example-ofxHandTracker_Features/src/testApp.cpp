@@ -56,4 +56,15 @@ void testApp::setup(){
 	/*drawBuffer.allocate(640, 480);
 	prevIndexPos = ofPoint(-1,-1,-1);
 	prevMidPos = ofPoint(-1,-1,-1);
-	prevPinkyPos = ofPoint(-1,-1,
+	prevPinkyPos = ofPoint(-1,-1,-1);*/
+#endif
+}
+
+//--------------------------------------------------------------
+void testApp::update(){
+#ifdef USE_KINECT
+	oniContext.update();
+	imageGen.update();
+	depthGen.update();
+
+	userGen.
