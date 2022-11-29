@@ -48,4 +48,12 @@ void testApp::setup(){
 	oniContext.toggleMirror();
 
 	tracker = new ofxHandTracker(&userGen, &handGen, &depthGen, 0);
-	//tracker2 = new ofxHandTracker(&userGen, &handGen, &depthGen, 1); // use whe
+	//tracker2 = new ofxHandTracker(&userGen, &handGen, &depthGen, 1); // use when code is ready to track and handle multiple hands
+#endif
+
+#ifdef USE_KINECT
+	// demo drawing app setup
+	/*drawBuffer.allocate(640, 480);
+	prevIndexPos = ofPoint(-1,-1,-1);
+	prevMidPos = ofPoint(-1,-1,-1);
+	prevPinkyPos = ofPoint(-1,-1,
