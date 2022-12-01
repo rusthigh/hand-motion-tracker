@@ -82,4 +82,12 @@ void testApp::update(){
 
 	hud.update();
 	
-	for(int i=
+	for(int i=0; i<256; i++)
+		if(activeKeys[i])
+			h.keyPressed(i);
+	
+	h.update();
+	
+	// quick box moving demo 
+	if(abs(h.getIndexFingerWorldCoord().z - boxPos.z) < 20
+	&& abs(h.getIndexFingerWorldCoord().y - boxPos.y) < 
