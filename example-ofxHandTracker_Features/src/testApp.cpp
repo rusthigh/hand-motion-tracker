@@ -90,4 +90,11 @@ void testApp::update(){
 	
 	// quick box moving demo 
 	if(abs(h.getIndexFingerWorldCoord().z - boxPos.z) < 20
-	&& abs(h.getIndexFingerWorldCoord().y - boxPos.y) < 
+	&& abs(h.getIndexFingerWorldCoord().y - boxPos.y) < 20
+	&& abs(h.getIndexFingerWorldCoord().x - boxPos.x) < 20){
+		boxPos.x = h.getIndexFingerWorldCoord().x;
+		boxPos.y = h.getIndexFingerWorldCoord().y;
+		boxPos.z = h.getIndexFingerWorldCoord().z;
+	}
+
+	in
