@@ -97,4 +97,14 @@ void testApp::update(){
 		boxPos.z = h.getIndexFingerWorldCoord().z;
 	}
 
-	in
+	int x = ofGetMouseX();
+	int y = ofGetMouseY();
+
+	x += hud.getTranslation().x;
+	y += hud.getTranslation().y;
+
+	h.origin.x = h.origin.x + ((x - h.origin.x)*0.3f);
+	h.origin.y = h.origin.y + ((y - h.origin.y)*0.3f);
+}
+
+/
