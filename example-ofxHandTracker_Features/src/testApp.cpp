@@ -107,4 +107,10 @@ void testApp::update(){
 	h.origin.y = h.origin.y + ((y - h.origin.y)*0.3f);
 }
 
-/
+//--------------------------------------------------------------
+void testApp::draw(){
+
+	ofClear(ofColor::black); // prevents uncleared pixels (caused by auto background set to false in setup)
+
+	ofPushMatrix();
+	ofTranslate(-hud.ge
