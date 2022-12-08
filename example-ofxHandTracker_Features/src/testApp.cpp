@@ -123,4 +123,12 @@ void testApp::draw(){
 		
 		ofPushMatrix();
 		ofPushStyle();
-		ofSetColor(
+		ofSetColor(ofColor::white);
+		//ofTranslate(0, ofGetHeight());
+		imageGen.draw(640, 0, 640, 480);
+		depthGen.draw(0, 0, 640, 480);
+		userGen.draw();	
+		//handGen.drawHands();
+		//ofSetColor(255,255,255);
+		tracker->draw();
+		ofPopStyle();
