@@ -113,4 +113,14 @@ void testApp::draw(){
 	ofClear(ofColor::black); // prevents uncleared pixels (caused by auto background set to false in setup)
 
 	ofPushMatrix();
-	ofTranslate(-hud.ge
+	ofTranslate(-hud.getTranslation().x, -hud.getTranslation().y);
+
+#ifdef USE_KINECT
+
+	ofSetColor(ofColor::white);
+	try {
+		ofPoint hPos = tracker->getHandModel()->origin;
+		
+		ofPushMatrix();
+		ofPushStyle();
+		ofSetColor(
