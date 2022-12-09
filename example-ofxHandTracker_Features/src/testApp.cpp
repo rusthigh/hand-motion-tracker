@@ -132,3 +132,12 @@ void testApp::draw(){
 		//ofSetColor(255,255,255);
 		tracker->draw();
 		ofPopStyle();
+		ofPopMatrix();
+		
+		// this enables user to move around using fist
+		if(tracker->getNumFingerTips() == 0) {
+			hud.mouseDragged(100*((hPos.x)/640.0)-10, 100*((hPos.y)/480.0)-10, 1);
+		}
+		
+		/*
+		if (tracker->get
