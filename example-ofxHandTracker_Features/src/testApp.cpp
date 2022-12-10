@@ -140,4 +140,9 @@ void testApp::draw(){
 		}
 		
 		/*
-		if (tracker->get
+		if (tracker->getNumFingerTips() == 1) {
+			if(!wasGrabbed && dispPos.distance(ofPoint(0,0,0)) > 5 &&
+				(dispPos.x > ofGetWidth()*0.25 && dispPos.x < ofGetWidth()*0.75)) {
+				wasGrabbed = true;
+				wasReleased = false;
+				pointGr
