@@ -159,4 +159,10 @@ void testApp::draw(){
 		}
 
 		if (wasGrabbed) {
-		
+			pointReleased = dispPos;
+			if (pointReleased.distance(pointGrabbed) > ofGetWidth()/2) {
+				wasGrabbed = false;
+				wasReleased = true;
+				
+				pointGrabbed = ofPoint(0,0,0);
+				pointReleased = pointGrabbed
