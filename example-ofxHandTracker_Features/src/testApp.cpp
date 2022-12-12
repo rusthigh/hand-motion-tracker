@@ -165,4 +165,17 @@ void testApp::draw(){
 				wasReleased = true;
 				
 				pointGrabbed = ofPoint(0,0,0);
-				pointReleased = pointGrabbed
+				pointReleased = pointGrabbed;
+			}
+		}
+
+		ofPushStyle();
+		ofFill();
+		ofSetLineWidth(4.0);
+		ofSetColor(120, 120, 120, 64);
+		ofLine(pointGrabbed, pointReleased);
+		//ofDrawArrow(pointGrabbed, pointReleased, 10.0f);
+		ofPopStyle();
+		*/
+
+		float wRatio
