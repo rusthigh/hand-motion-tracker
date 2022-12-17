@@ -178,4 +178,8 @@ void testApp::draw(){
 		ofPopStyle();
 		*/
 
-		float wRatio
+		float wRatioKinect = ofGetWidth()/640.0;
+		float hRatioKinect = ofGetHeight()/480.0;
+		ofPoint dispPos = ofPoint(hPos.x * wRatioKinect, hPos.y * hRatioKinect, hPos.z); // position in boundary dimensions 640x480
+
+		ofPushMatr
