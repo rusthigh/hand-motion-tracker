@@ -182,4 +182,12 @@ void testApp::draw(){
 		float hRatioKinect = ofGetHeight()/480.0;
 		ofPoint dispPos = ofPoint(hPos.x * wRatioKinect, hPos.y * hRatioKinect, hPos.z); // position in boundary dimensions 640x480
 
-		ofPushMatr
+		ofPushMatrix();
+		//ofScale(1.5, 1.5);
+		ofTranslate(hud.getTranslation().x, hud.getTranslation().y);
+		ofPushStyle();
+		//ofSetLineWidth(3.0);
+		//ofNoFill();
+		ofSetColor(128, 255, 0);
+		//ofCircle(dispPos, 50);
+		//of
