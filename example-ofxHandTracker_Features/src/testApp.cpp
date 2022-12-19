@@ -196,4 +196,14 @@ void testApp::draw(){
 		ofPopMatrix();
 	}
 	catch(const char *e) {
-		std::cerr << "CRITICAL ERR (draw): "
+		std::cerr << "CRITICAL ERR (draw): " << e;
+	}
+
+	//tracker2->draw();
+#endif
+	
+#ifdef	USE_KINECT
+	// if no hands tracked draw demo counting or shifting
+	// this is parameters saving/restoring demo
+	/*if(handGen.getNumTrackedHands() == 0) {
+		if(ofGetFrameN
