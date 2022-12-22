@@ -228,4 +228,14 @@ void testApp::draw(){
 
 	float indexAngleZ = hRef->f[1]->getAngleZ();
 	float midAngleZ = hRef->f[2]->getAngleZ();
-	//float ringAngleZ = hRef->f3.g
+	//float ringAngleZ = hRef->f3.getAngleZ();
+	float pinkyAngleZ = hRef->f[4]->getAngleZ();
+
+	ofSetColor(ofColor::white);
+
+	if(indexAngleZ < 10) {
+		ofSetLineWidth(5.0f);
+		
+		ofSetColor(ofColor::blue);
+
+		ofPoint indexPos
