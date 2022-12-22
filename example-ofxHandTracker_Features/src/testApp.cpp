@@ -222,4 +222,10 @@ void testApp::draw(){
 #ifdef USE_KINECT	
 	// demo drawing app logic
 	/*
-	vector<ofPoint> activeFin
+	vector<ofPoint> activeFingers = tracker->getActiveFingerTips();
+
+	ofxHandModel *hRef = tracker->getHandModel();
+
+	float indexAngleZ = hRef->f[1]->getAngleZ();
+	float midAngleZ = hRef->f[2]->getAngleZ();
+	//float ringAngleZ = hRef->f3.g
