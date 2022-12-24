@@ -238,4 +238,12 @@ void testApp::draw(){
 		
 		ofSetColor(ofColor::blue);
 
-		ofPoint indexPos
+		ofPoint indexPos = hRef->getFingerWorldCoord(1)[3];
+		//fingerPos.z = hRef->origin.z;
+		if(prevIndexPos.distance(ofPoint(-1,-1,-1)) > 0.5) {
+			drawBuffer.begin();
+				ofLine(indexPos, prevIndexPos);
+			drawBuffer.end();
+		}
+
+		ofSetLin
