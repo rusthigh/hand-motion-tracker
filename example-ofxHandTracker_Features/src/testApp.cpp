@@ -246,4 +246,17 @@ void testApp::draw(){
 			drawBuffer.end();
 		}
 
-		ofSetLin
+		ofSetLineWidth(1.0f);
+	
+		prevIndexPos = indexPos;
+	}	
+	else {
+		prevIndexPos = ofPoint(-1,-1,-1);
+	}
+
+	if(midAngleZ < 10) {
+		ofSetLineWidth(5.0f);
+		
+		//ofSetColor(ofRandom(255));
+		ofSetColor(ofColor::cyan);
+
