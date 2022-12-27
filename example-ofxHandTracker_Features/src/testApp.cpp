@@ -267,4 +267,16 @@ void testApp::draw(){
 			drawBuffer.end();
 		}
 
+		ofSetLineWidth(1.0f);
+	
+		prevMidPos = midPos;
+	}
+	else {
+		prevMidPos = ofPoint(-1,-1,-1);
+	}
+
+	if(pinkyAngleZ < 10) {
+		ofSetLineWidth(5.0f);
 		
+		//ofSetColor(ofRandom(255));
+		ofSetColor(ofColor::magenta);
