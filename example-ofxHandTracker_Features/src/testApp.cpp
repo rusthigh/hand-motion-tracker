@@ -260,3 +260,11 @@ void testApp::draw(){
 		//ofSetColor(ofRandom(255));
 		ofSetColor(ofColor::cyan);
 
+		ofPoint midPos = hRef->getFingerWorldCoord(2)[3];
+		if(prevMidPos.distance(ofPoint(-1,-1,-1)) > 0.5) {
+			drawBuffer.begin();
+				ofLine(midPos, prevMidPos);
+			drawBuffer.end();
+		}
+
+		
