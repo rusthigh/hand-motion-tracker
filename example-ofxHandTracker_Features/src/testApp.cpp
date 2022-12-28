@@ -280,3 +280,12 @@ void testApp::draw(){
 		
 		//ofSetColor(ofRandom(255));
 		ofSetColor(ofColor::magenta);
+
+		ofPoint pinkyPos = hRef->getFingerWorldCoord(4)[3];
+		if(prevPinkyPos.distance(ofPoint(-1,-1,-1)) > 0.5) {
+			drawBuffer.begin();
+				ofLine(pinkyPos, prevPinkyPos);
+			drawBuffer.end();
+		}
+
+		ofSetLineWidth(1
