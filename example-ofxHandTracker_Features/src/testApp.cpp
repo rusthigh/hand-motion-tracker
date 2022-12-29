@@ -298,4 +298,10 @@ void testApp::draw(){
 	
 	if(pinkyAngleZ > 80 && indexAngleZ > 80 && midAngleZ > 80) {
 		prevIndexPos = ofPoint(-1,-1,-1);
-		prevMidPos = ofPoint(-1,
+		prevMidPos = ofPoint(-1,-1,-1);
+		prevPinkyPos = ofPoint(-1,-1,-1);
+		drawBuffer.begin(); 
+			//glClearColor(0.0, 0.0, 0.0, 255.0);    
+			//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
+			//ofClear(0, 255);
+			ofClearAlpha();
