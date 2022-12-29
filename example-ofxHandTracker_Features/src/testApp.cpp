@@ -288,4 +288,14 @@ void testApp::draw(){
 			drawBuffer.end();
 		}
 
-		ofSetLineWidth(1
+		ofSetLineWidth(1.0f);
+	
+		prevPinkyPos = pinkyPos;
+	}
+	else {
+		prevPinkyPos = ofPoint(-1,-1,-1);
+	}
+	
+	if(pinkyAngleZ > 80 && indexAngleZ > 80 && midAngleZ > 80) {
+		prevIndexPos = ofPoint(-1,-1,-1);
+		prevMidPos = ofPoint(-1,
