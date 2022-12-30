@@ -318,4 +318,10 @@ void testApp::draw(){
 	hud.draw();
 
 	ofPushStyle();
-	ofSet
+	ofSetColor(200, 200, 255);
+	ofDrawBitmapString("FPS: " + ofToString(ofGetFrameRate()), 20, -40, 0);
+	ofPopStyle(); 
+}
+
+//--------------------------------------------------------------
+void testApp::
