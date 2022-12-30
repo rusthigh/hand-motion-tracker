@@ -305,3 +305,17 @@ void testApp::draw(){
 			//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
 			//ofClear(0, 255);
 			ofClearAlpha();
+			ofSetColor(0,0,0,64);
+			ofRect(0, 0, 640, 480);
+		drawBuffer.end();  
+	}
+
+	drawBuffer.draw(0, 0, 640, 480);*/
+	// demo drawing app logic end
+#endif
+
+	ofPopMatrix();
+	hud.draw();
+
+	ofPushStyle();
+	ofSet
