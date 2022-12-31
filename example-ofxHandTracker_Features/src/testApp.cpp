@@ -334,4 +334,12 @@ void testApp::keyPressed(int key){
 		ofSetFullscreen(false);
 }
 
-//----------------------------------------------------------
+//--------------------------------------------------------------
+void testApp::keyReleased(int key){
+	if(key < 256)
+		activeKeys[key] = false;
+}
+
+//--------------------------------------------------------------
+void testApp::mouseMoved(int x, int y ){
+	hud.mouse
