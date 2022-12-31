@@ -324,4 +324,14 @@ void testApp::draw(){
 }
 
 //--------------------------------------------------------------
-void testApp::
+void testApp::keyPressed(int key){
+	if(key < 256)
+		activeKeys[key] = true;
+
+	if(key == 'p')
+		ofSetFullscreen(true);
+	else if(key == 'l')
+		ofSetFullscreen(false);
+}
+
+//----------------------------------------------------------
