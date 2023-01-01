@@ -342,4 +342,12 @@ void testApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void testApp::mouseMoved(int x, int y ){
-	hud.mouse
+	hud.mouseMoved(x, y);
+	
+	x += hud.getTranslation().x;
+	y += hud.getTranslation().y;
+}
+
+//--------------------------------------------------------------
+void testApp::mouseDragged(int x, int y, int button){
+	hud.mouseDr
