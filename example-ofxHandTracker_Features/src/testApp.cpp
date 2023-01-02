@@ -350,4 +350,13 @@ void testApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
-	hud.mouseDr
+	hud.mouseDragged(x, y, button);
+
+	x += hud.getTranslation().x;
+	y += hud.getTranslation().y;
+
+	h.mouseDragged(x, y, button);
+}
+
+//--------------------------------------------------------------
+void testApp::mousePressed(int x, int y, int b
