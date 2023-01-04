@@ -359,4 +359,14 @@ void testApp::mouseDragged(int x, int y, int button){
 }
 
 //--------------------------------------------------------------
-void testApp::mousePressed(int x, int y, int b
+void testApp::mousePressed(int x, int y, int button){
+	hud.mousePressed(x, y, button);
+
+	x += hud.getTranslation().x;
+	y += hud.getTranslation().y;
+
+	h.mousePressed(x, y, button);
+	
+	activeKeys['q'] = true;
+	activeKeys['w'] = true;
+	activeKeys['e'] = true;
