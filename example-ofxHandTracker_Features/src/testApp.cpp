@@ -379,4 +379,9 @@ void testApp::mousePressed(int x, int y, int button){
 	activeKeys['d'] = false;
 	activeKeys['f'] = false;
 	activeKeys['g'] = false;
-	a
+	activeKeys['h'] = false;
+}
+
+//--------------------------------------------------------------
+void testApp::mouseReleased(int x, int y, int button){
+	hud.mouseReleased(x, y, button);
