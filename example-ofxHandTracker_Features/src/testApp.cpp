@@ -370,3 +370,13 @@ void testApp::mousePressed(int x, int y, int button){
 	activeKeys['q'] = true;
 	activeKeys['w'] = true;
 	activeKeys['e'] = true;
+	activeKeys['r'] = true;
+	activeKeys['t'] = true;
+	activeKeys['z'] = true;
+
+	activeKeys['a'] = false;
+	activeKeys['s'] = false;
+	activeKeys['d'] = false;
+	activeKeys['f'] = false;
+	activeKeys['g'] = false;
+	a
