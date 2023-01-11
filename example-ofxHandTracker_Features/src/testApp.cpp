@@ -385,3 +385,12 @@ void testApp::mousePressed(int x, int y, int button){
 //--------------------------------------------------------------
 void testApp::mouseReleased(int x, int y, int button){
 	hud.mouseReleased(x, y, button);
+
+	x += hud.getTranslation().x;
+	y += hud.getTranslation().y;
+
+	activeKeys['q'] = false;
+	activeKeys['w'] = false;
+	activeKeys['e'] = false;
+	activeKeys['r'] = false;
+	activeKeys['t'
