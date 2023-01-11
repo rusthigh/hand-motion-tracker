@@ -393,4 +393,15 @@ void testApp::mouseReleased(int x, int y, int button){
 	activeKeys['w'] = false;
 	activeKeys['e'] = false;
 	activeKeys['r'] = false;
-	activeKeys['t'
+	activeKeys['t'] = false;
+	activeKeys['z'] = false;
+
+	activeKeys['a'] = true;
+	activeKeys['s'] = true;
+	activeKeys['d'] = true;
+	activeKeys['f'] = true;
+	activeKeys['g'] = true;
+	activeKeys['h'] = true;
+}
+
+//-----------------------------------
