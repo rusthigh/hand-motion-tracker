@@ -411,4 +411,13 @@ void testApp::windowResized(int w, int h){
 }
 
 //--------------------------------------------------------------
-void t
+void testApp::gotMessage(ofMessage msg){
+
+}
+
+//--------------------------------------------------------------
+void testApp::dragEvent(ofDragInfo dragInfo){ 
+
+}
+
+//------------------------------------------------------
