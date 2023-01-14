@@ -404,4 +404,11 @@ void testApp::mouseReleased(int x, int y, int button){
 	activeKeys['h'] = true;
 }
 
-//-----------------------------------
+//--------------------------------------------------------------
+void testApp::windowResized(int w, int h){
+	//hud.setMapSize(w/10, h/10);
+	hud.windowResized(w,h);
+}
+
+//--------------------------------------------------------------
+void t
