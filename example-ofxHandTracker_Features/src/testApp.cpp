@@ -420,4 +420,17 @@ void testApp::dragEvent(ofDragInfo dragInfo){
 
 }
 
-//------------------------------------------------------
+//--------------------------------------------------------------
+void testApp::exit(){ 
+
+#ifdef USE_KINECT
+	if (tracker != NULL) {
+		delete tracker;
+		tracker = NULL;
+	}
+
+	// if using another tracker
+	//delete tracker2;
+	//tracker2 = NULL;
+#endif
+}
