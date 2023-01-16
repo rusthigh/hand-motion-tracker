@@ -8,4 +8,17 @@
 #include "ofxHandTracker.h"
 #include "ofxOpenNI.h"
 #include "ofxOpenCv.h"
-#i
+#include "HUD.h"
+
+#define USE_KINECT
+#define NUM_DEMO_PARAMS_X		6
+#define NUM_DEMO_PARAMS_Y		4
+
+class testApp : public ofBaseApp{
+
+	public:
+		void setup();
+		void update();
+		void draw();
+
+		void ke
