@@ -37,3 +37,10 @@ class testApp : public ofBaseApp{
 		ofPoint boxPos;
 
 		HUD hud;
+
+		// for multiple keys to be active at the same time
+		bool activeKeys[256];
+
+#ifdef USE_KINECT
+		ofxHandTracker *tracker;
+		ofxHandTracker *tracker2; // if not pointer it causes heap corruption 
