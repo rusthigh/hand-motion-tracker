@@ -43,4 +43,13 @@ class testApp : public ofBaseApp{
 
 #ifdef USE_KINECT
 		ofxHandTracker *tracker;
-		ofxHandTracker *tracker2; // if not pointer it causes heap corruption 
+		ofxHandTracker *tracker2; // if not pointer it causes heap corruption (too much data to be stored on heap i guess)
+#endif
+
+#ifdef USE_KINECT
+		// OpenNI init
+		ofxOpenNIContext	oniContext;
+		ofxDepthGenerator	depthGen;
+		ofxIRGenerator		imageGen;
+		//ofxImageGenerator   imageGen;
+		//ofxOp
