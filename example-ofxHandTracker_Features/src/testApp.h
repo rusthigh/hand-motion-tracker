@@ -66,4 +66,13 @@ class testApp : public ofBaseApp{
 		//vector<ofPoint>		prevActiveFingers;
 		ofPoint				prevIndexPos;
 		ofPoint				prevMidPos;
-		ofPoint				prev
+		ofPoint				prevPinkyPos;*/
+#endif
+
+		// points for grabbing & releasing references
+		ofPoint				pointGrabbed;
+		ofPoint				pointReleased;
+
+		bool				wasGrabbed;
+		bool				wasReleased;
+};
