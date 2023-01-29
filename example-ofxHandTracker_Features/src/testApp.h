@@ -61,4 +61,9 @@ class testApp : public ofBaseApp{
 #ifdef USE_KINECT
 		// drawing demo app
 		// when user has any pointing fingers, then draw off screen and display buffer
-		// al
+		// also good option is to have a button which can clear buffer option
+		/*ofFbo				drawBuffer;
+		//vector<ofPoint>		prevActiveFingers;
+		ofPoint				prevIndexPos;
+		ofPoint				prevMidPos;
+		ofPoint				prev
