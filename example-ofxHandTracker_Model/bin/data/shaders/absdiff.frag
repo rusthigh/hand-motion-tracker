@@ -18,4 +18,14 @@ uniform sampler2DRect tex2;
 void main(void)
 {
    // get texture info
-   vec4 v
+   vec4 v1 = texture2DRect(tex1, gl_TexCoord[0].st);
+   vec4 v2 = texture2DRect(tex2, gl_TexCoord[0].st);
+   gl_FragColor =  vec4(mix(v1, v2, 0.5).rgb, 1.0);
+}
+*/
+
+
+
+uniform sampler2DRect tex1;
+uniform sampler2DRect tex2;
+//uniform ve
