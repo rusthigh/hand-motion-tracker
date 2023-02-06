@@ -17,4 +17,9 @@ void main(void)
 	float radius = 240.0;
 	
 	if(dist < radius) {
-	
+		int size = kernel_size;
+		vec4 maxValue = vec4(0.0, 0.0, 0.0, 0.0);
+		vec4 currValue;
+		for (int i = -size; i<=size; i++) {
+			for (int j = -size; j<=size; j++) {
+				currValue = texture2DRect(sampler0, gl_TexCo
