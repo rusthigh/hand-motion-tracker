@@ -43,4 +43,11 @@ void main(void)
 			float radius = float(size);
 			if(dist <= radius) { // exclude corners of the kernel
 				currValue = texture2DRect(sampler0, gl_TexCoord[0].st + vec2(float(i), float(j)));
-				maxVa
+				maxValue = max(currValue, maxValue);
+			}
+		}
+	}
+	gl_FragColor = maxValue;
+	//gl_FragColor.x = gl_FragDepth/10;
+	//gl_FragColor = vec4(maxValue.x, maxValue.y+gl_FragCoord.z, maxValue.z);
+}
