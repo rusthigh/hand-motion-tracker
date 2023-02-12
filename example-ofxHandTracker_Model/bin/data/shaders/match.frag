@@ -12,4 +12,10 @@ uniform int frag_height;
 
 void main(void)
 {	
-/*------------------------------------------------------
+/*---------------------------------------------------------------------------------------------------------
+	//float kernel_w_f = float(kernel_width);
+	//float kernel_h_f = float(kernel_width);
+	
+	vec2 kernel_size_f = vec2(float(kernel_width), float(kernel_height));
+	
+	vec
