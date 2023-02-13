@@ -23,4 +23,8 @@ void main(void)
 	float max_val = kernel_width * kernel_height; // max value for later normalization
 	vec4 maxValue = vec4(max_val, max_val, max_val, max_val);
 	
-	int scaled_kernel_width = k
+	int scaled_kernel_width = kernel_width * frag_width;
+	int scaled_kernel_height = kernel_height * frag_height;
+	
+	// run kernel sum operation only in %kernel == 0 regions
+	if((int(frag_coord.x) + scaled_kernel_width/2)%(scaled_kernel_
