@@ -27,4 +27,10 @@ void main(void)
 	int scaled_kernel_height = kernel_height * frag_height;
 	
 	// run kernel sum operation only in %kernel == 0 regions
-	if((int(frag_coord.x) + scaled_kernel_width/2)%(scaled_kernel_
+	if((int(frag_coord.x) + scaled_kernel_width/2)%(scaled_kernel_width) == 0 && (int(frag_coord.y) + kernel_height/2)%(scaled_kernel_height) == 0) {
+	
+		int size_w = kernel_width/2;
+		int size_h = kernel_height/2;
+		
+		vec4 sumValue = vec4(0.0, 0.0, 0.0, 0.0);
+		v
