@@ -33,4 +33,8 @@ void main(void)
 		int size_h = kernel_height/2;
 		
 		vec4 sumValue = vec4(0.0, 0.0, 0.0, 0.0);
-		v
+		vec4 currValue;
+		
+		for (int i = -size_w; i<size_w; i++) {
+			for (int j = -size_h; j<size_h; j++) {
+				currValue = texture2DRect(sampler0, gl_TexCoord[0].st + vec2(float(i*frag_width), float(j*frag_width)));		
