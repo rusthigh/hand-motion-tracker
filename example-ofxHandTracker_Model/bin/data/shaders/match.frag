@@ -38,3 +38,13 @@ void main(void)
 		for (int i = -size_w; i<size_w; i++) {
 			for (int j = -size_h; j<size_h; j++) {
 				currValue = texture2DRect(sampler0, gl_TexCoord[0].st + vec2(float(i*frag_width), float(j*frag_width)));		
+				sumValue = sumValue + currValue;
+			}
+		}
+		
+		sumValue = sumValue / maxValue;
+		sumValue = vec4(sumValue.x, 1.0 - sumValue.x, 0.0, 1.0); // debuging
+		gl_FragColor = sumValue;
+	}
+	else {
+		gl_F
