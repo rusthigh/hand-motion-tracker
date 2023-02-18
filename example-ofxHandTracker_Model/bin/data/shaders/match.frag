@@ -47,4 +47,8 @@ void main(void)
 		gl_FragColor = sumValue;
 	}
 	else {
-		gl_F
+		gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
+	}
+---------------------------------------------------------------------------------------------------------*/
+
+	vec2 kernel_size_f = vec2(float(kernel_width), float(k
