@@ -56,4 +56,10 @@ void main(void)
 	vec2 frag_coord = gl_TexCoord[0].st;
 	
 	float max_val = kernel_width * kernel_height; // max value for later normalization
-	vec4 maxValue = vec4(max_val, max_val, max_val,
+	vec4 maxValue = vec4(max_val, max_val, max_val, max_val);
+	
+	int scaled_kernel_width = kernel_width * frag_width;
+	int scaled_kernel_height = kernel_height * frag_height;
+	
+	// run kernel sum operation only in %kernel == 0 regions
+	if((int(frag_coord.x)) % (ker
