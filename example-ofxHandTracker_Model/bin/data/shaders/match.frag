@@ -76,4 +76,12 @@ void main(void)
 			for (int j = 0; j<size_h; j++) {
 				currValue = texture2DRect(sampler0, gl_TexCoord[0].st + vec2(float(i * frag_width), float(j * frag_height)));	
 
-				//if (currValue.x >
+				//if (currValue.x > 0.01 || currValue.y > 0.01 || currValue.z > 0.01) {
+				//	maxVal++;
+					sumValue = sumValue + currValue;
+				//}
+			}
+		}
+		
+		sumValue = sumValue / maxValue;
+		//sumValue = vec4(sum
