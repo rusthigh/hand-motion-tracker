@@ -83,4 +83,8 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\addons\ofxHandTracker\libs;..\..\..\addons\ofxHandTracker\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <IgnoreAllDefaultLibra
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
