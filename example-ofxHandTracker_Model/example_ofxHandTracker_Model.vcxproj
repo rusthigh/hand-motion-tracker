@@ -100,4 +100,7 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\testApp.cpp" />
-    <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxFinger
+    <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxFingerModel.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxFingerSegment.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxHandModel.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxHandTrack
