@@ -103,4 +103,9 @@
     <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxFingerModel.cpp" />
     <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxFingerSegment.cpp" />
     <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxHandModel.cpp" />
-    <ClCompile Include="..\..\..\addons\ofxHandTrack
+    <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxHandParameters.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxThumbModel.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxUtilityTimer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Includ
