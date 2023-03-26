@@ -111,4 +111,6 @@
     <ClInclude Include="src\testApp.h" />
     <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxFingerModel.h" />
     <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxFingerSegment.h" />
-    <ClInclude Include="..\..\..\addons\ofxH
+    <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxHandModel.h" />
+    <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxHandParameters.h" />
+    <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxImageMatcher.h" 
