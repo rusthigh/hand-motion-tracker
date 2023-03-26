@@ -108,4 +108,7 @@
     <ClCompile Include="..\..\..\addons\ofxHandTracker\src\ofxUtilityTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Includ
+    <ClInclude Include="src\testApp.h" />
+    <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxFingerModel.h" />
+    <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxFingerSegment.h" />
+    <ClInclude Include="..\..\..\addons\ofxH
