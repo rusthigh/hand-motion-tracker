@@ -113,4 +113,9 @@
     <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxFingerSegment.h" />
     <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxHandModel.h" />
     <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxHandParameters.h" />
-    <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxImageMatcher.h" 
+    <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxImageMatcher.h" />
+    <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxThumbModel.h" />
+    <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxUtilityTimer.h" />
+  </ItemGroup>
+  <ItemGroup>
+   
