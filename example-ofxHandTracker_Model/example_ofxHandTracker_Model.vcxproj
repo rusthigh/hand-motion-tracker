@@ -118,4 +118,8 @@
     <ClInclude Include="..\..\..\addons\ofxHandTracker\src\ofxUtilityTimer.h" />
   </ItemGroup>
   <ItemGroup>
-   
+    <ProjectReference Include="..\..\..\libs\openFrameworksCompiled\project\vs2010\openframeworksLib.vcxproj">
+      <Project>{5837595d-aca9-485c-8e76-729040ce4b0b}</Project>
+    </ProjectReference>
+  </ItemGroup>
+ 
