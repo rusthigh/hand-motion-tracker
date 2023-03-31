@@ -29,4 +29,9 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 	
-		void e
+		void exit(); // cleanup on exit (not needed yet here)
+
+		ofxHandModel h; // for demo of hand model
+		ofxFingerParameters demoParams[NUM_DEMO_PARAMS_X][NUM_DEMO_PARAMS_Y];
+
+		// for multiple keys to be active at the same time
