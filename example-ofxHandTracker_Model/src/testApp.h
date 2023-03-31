@@ -35,3 +35,12 @@ class testApp : public ofBaseApp{
 		ofxFingerParameters demoParams[NUM_DEMO_PARAMS_X][NUM_DEMO_PARAMS_Y];
 
 		// for multiple keys to be active at the same time
+		bool activeKeys[256];
+
+		// points for grabbing & releasing references
+		ofPoint				pointGrabbed;
+		ofPoint				pointReleased;
+
+		bool				wasGrabbed;
+		bool				wasReleased;
+};
