@@ -62,3 +62,49 @@ void ofxFingerSegment::update()
 	//rotationMatrix.
 	//direction = rotationMatrix.postMult(ofVec3f(-length, 0, 0));
 	direction = rotateByZ.postMult(ofVec3f(-length, 0, 0));
+    direction = rotateByX.postMult(direction);
+
+	/*direction.x = cos(angleZ) * length;
+	direction.y = sin(angleZ) * sin(angleX) * length;
+	direction.z = cos(angleX) * length;*/
+}
+
+void ofxFingerSegment::draw()
+{
+	//ofSetLineWidth(4);
+	ofSetColor(ofColor::green);
+
+	//ofSphere((origin+direction*0.25), 20);
+	//ofSphere((origin+direction*0.5), 20);
+	//ofSphere((origin+direction*0.75), 20);
+
+	ofLine(origin, origin+direction);
+
+	//TODO: draw simple volumetric objects aligned to bones, for easier projection generation
+
+	ofSetColor(ofColor::cyan);
+	ofLine(origin, direction.getPerpendicular(direction)+origin);
+
+	/*
+	float r = 20;
+	float s = 15;
+
+	ofLine(origin, origin + ofPoint(r, 0, 0));
+	ofLine(origin, origin + ofPoint(-r, 0, 0));
+	ofLine(origin, origin + ofPoint(0, 0, r));
+	ofLine(origin, origin + ofPoint(0, 0, -r));
+
+	ofLine(origin, origin + ofPoint(s, 0, s));
+	ofLine(origin, origin + ofPoint(-s, 0, s));
+	ofLine(origin, origin + ofPoint(s, 0, -s));
+	ofLine(origin, origin + ofPoint(-s, 0, -s));
+	*/
+
+	//ofSetColor(ofColor::yellow);
+	//ofCircle(origin, 15);
+
+	//ofSetColor(ofColor::red);
+	//ofCircle(origin+direction, 7);
+	ofSphere(origin, 7);
+}
+
