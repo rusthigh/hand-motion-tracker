@@ -327,3 +327,217 @@ void ofxHandModel::drawProjection()
 	for(int i=0; i<NUM_FINGERS; i++) {
 		drawFingerProjection(*f[i]);
 	}
+
+	//ofSetColor(ofColor::green);
+	//ofLine(f[0]->root.origin, ofPoint(f[0]->root.origin.x, f[0]->root.origin.y, -f[0]->root.origin.z));
+	//ofLine(f[0]->root.origin, ofPoint(f[0]->root.origin.x, f[0]->root.origin.y+20, 0));
+	ofSetLineWidth(2.0f);
+	ofLine(ofPoint(f[0]->mid.origin.x, f[0]->mid.origin.y, f[0]->mid.origin.z),
+		   f[1]->root.origin);
+
+	ofLine(f[3]->root.origin,
+		   ofPoint(f[0]->root.origin.x, f[0]->root.origin.y, f[3]->root.origin.z));
+	ofLine(f[2]->root.origin,
+		   ofPoint(f[0]->root.origin.x, f[0]->root.origin.y, f[2]->root.origin.z));
+
+	ofLine(f[1]->root.origin,
+		   ofPoint(f[0]->root.origin.x, f[0]->root.origin.y, f[1]->root.origin.z));
+	ofLine(ofPoint(f[0]->root.origin.x, f[0]->root.origin.y, f[1]->root.origin.z), 
+		   ofPoint(f[0]->root.origin.x, f[0]->root.origin.y+20, 0));
+	ofLine(ofPoint(f[0]->root.origin.x, f[0]->root.origin.y+20, 0), 
+		   ofPoint(f[0]->root.origin.x, f[0]->root.origin.y, f[4]->root.origin.z));
+	ofLine(ofPoint(f[0]->root.origin.x, f[0]->root.origin.y, f[4]->root.origin.z),
+		   f[4]->root.origin);
+	ofSetLineWidth(1.0f);
+
+	glPopMatrix();
+}
+
+void ofxHandModel::drawFingerProjection(ofxFingerModel f) {
+	glBegin(GL_LINES);
+
+	ofPoint hRootWorld = ofPoint(IMG_DIM/2, IMG_DIM/2, 0);
+	ofPoint fRootWorld = getWorldCoord(f.root.origin, hRootWorld);
+	hRootWorld.z = -100;
+	float zDiff = 255 + (((hRootWorld.z - fRootWorld.z)));
+	
+	//cout << "DIFF root - f.root" << (hRootWorld.z - fRootWorld.z) << endl;
+
+	glColor3d(zDiff, zDiff, zDiff);
+	glVertex3f(f.root.origin.x, f.root.origin.y, f.root.origin.z);
+
+	fRootWorld = getWorldCoord(f.mid.origin, hRootWorld);
+	zDiff = 255 - (((hRootWorld.z - fRootWorld.z))+128);
+	glColor3d(zDiff, zDiff, zDiff);
+
+	glVertex3f(f.mid.origin.x, f.mid.origin.y, f.mid.origin.z);
+
+	glVertex3f(f.mid.origin.x, f.mid.origin.y, f.mid.origin.z);
+	
+	fRootWorld = getWorldCoord(f.top.origin, hRootWorld);
+	zDiff = 255 - (((hRootWorld.z - fRootWorld.z)));
+	glColor3d(zDiff, zDiff, zDiff);
+	glVertex3f(f.top.origin.x, f.top.origin.y, f.top.origin.z);
+
+	glVertex3f(f.top.origin.x, f.top.origin.y, f.top.origin.z);
+	
+	fRootWorld = getWorldCoord(f.fingerTip, hRootWorld);
+	zDiff = 255 - (((hRootWorld.z - fRootWorld.z))-128);
+	glColor3d(zDiff, zDiff, zDiff);
+	glVertex3f(f.fingerTip.x, f.fingerTip.y, f.fingerTip.z);
+
+	glEnd();
+}
+
+ofImage ofxHandModel::getProjection(ofPoint _palmCenter, int _kernelSize) {
+
+
+	meshFbo.begin();
+	ofClear(0,0,0);
+	//ofRect(0,0,IMG_DIM, IMG_DIM);
+	drawMesh();
+	meshFbo.end();
+
+	//meshFbo.draw(IMG_DIM, 0, IMG_DIM, IMG_DIM); // this is not drawn?
+	/*ofPixels projPixels;
+	meshFbo.readToPixels(projPixels);
+
+	ofImage projImg;
+	projImg.setFromPixels(projPixels);
+	*/
+
+
+	//ofFbo resultFbo;
+	//resultFbo.allocate(IMG_DIM, IMG_DIM);
+	
+	//meshFbo.begin();
+	dilateFbo.begin();
+		ofClear(0,0,0);
+		dilateShader.begin();
+			dilateShader.setUniformTexture("sampler0", meshFbo.getTextureReference(), 0);
+			dilateShader.setUniform1i("kernel_size", _kernelSize);
+			meshFbo.draw(_palmCenter.x - IMG_DIM/2, _palmCenter.y - IMG_DIM/2,IMG_DIM, IMG_DIM);
+			ofRect(0,0,0,IMG_DIM, IMG_DIM);
+		dilateShader.end();
+	dilateFbo.end();
+	//meshFbo.end();
+	
+	//meshFbo.draw(0,0);
+	//resultFbo.draw(0,0);
+	
+
+	dilateFbo.readToPixels(projPix);
+	projImg.setFromPixels(projPix);
+
+	//resultFbo.draw(0, 0, IMG_DIM, IMG_DIM);
+	//resultImg.draw(0, 640, 100, 100);
+	
+	//projImg.setAnchorPoint(_palmCenter.x, _palmCenter.y);
+	//projImg.setAnchorPercent(_palmCenter.x/IMG_DIM, _palmCenter.y/IMG_DIM);
+
+	return projImg;
+}
+
+void ofxHandModel::keyPressed(int key)
+{
+	//cout << "KEY:" << (char)key << " " << key << endl;
+
+	switch(key) {
+		// finger control keys
+		case 'q':	f[1]->keyPressed('+');	break;	
+		case 'a':	f[1]->keyPressed('-');	break;	
+
+		case 'w':	f[2]->keyPressed('+');	break;	
+		case 's':	f[2]->keyPressed('-');	break;	
+
+		case 'e':	f[3]->keyPressed('+');	break;	
+		case 'd':	f[3]->keyPressed('-');	break;	
+
+		case 'r':	f[4]->keyPressed('+');	break;	
+		case 'f':	f[4]->keyPressed('-');	break;	
+
+		case 't':	f[0]->keyPressed('+');	break;	
+		case 'g':	f[0]->keyPressed('-');	break;	
+
+		case 'z':	f[0]->keyPressed('*');	
+					/*f[1]->keyPressed('*');*/	break;	
+
+		case 'h':	f[0]->keyPressed('/');	
+					/*f[1]->keyPressed('/');*/	break;
+
+		// rotation keys
+		case '8':	curRot *= ofQuaternion(1, ofVec3f(1,0,0));	break;
+		case '2':	curRot *= ofQuaternion(-1, ofVec3f(1,0,0));	break;
+	
+		case '4':	curRot *= ofQuaternion(1, ofVec3f(0,1,0));	break;
+		case '6':	curRot *= ofQuaternion(-1, ofVec3f(0,1,0));	break;
+
+		case '5':	curRot *= ofQuaternion(1, ofVec3f(0,0,1));	break;
+		case '0':	curRot *= ofQuaternion(-1, ofVec3f(0,0,1));	break;
+	
+		default: break;
+	}
+}
+
+void ofxHandModel::mouseDragged(int x, int y, int button){
+	//every time the mouse is dragged, track the change
+	//accumulate the changes inside of curRot through multiplication
+    ofVec2f mouse(x,y);  
+    ofQuaternion yRot((x-lastMouse.x)*dampen, ofVec3f(0,1,0));  
+    ofQuaternion xRot((y-lastMouse.y)*dampen, ofVec3f(-1,0,0));  
+    curRot *= yRot*xRot;  
+    lastMouse = mouse;  
+}
+
+void ofxHandModel::mousePressed(int x, int y, int button){
+    //store the last mouse point when it's first pressed to prevent popping
+	lastMouse = ofVec2f(x,y);
+}
+
+ofPoint ofxHandModel::getIndexFingerWorldCoord()
+{
+	ofPoint worldCoords;
+	ofMatrix4x4 m;
+	m.glTranslate(origin.x, origin.y, origin.z);
+
+	//Extract the rotation from the current rotation
+    float angle; ofVec3f axis;  
+    curRot.getRotate(angle, axis);  
+	m.glRotate(angle, axis.x, axis.y, axis.z); //apply the quaternion's rotation 
+	m.glScale(scaling.x, scaling.y, scaling.z); // - right hand, + left hand
+
+	worldCoords = m.preMult(f[1]->fingerTip);
+	return worldCoords;
+}
+
+ofPoint ofxHandModel::getWorldCoord(ofPoint localPoint, ofPoint translateOrigin)
+{
+	ofPoint worldPoint;
+	ofMatrix4x4 m;
+
+	m.glTranslate(translateOrigin.x, translateOrigin.y, translateOrigin.z);
+
+	//Extract the rotation from the current rotation
+    float angle; ofVec3f axis;  
+    curRot.getRotate(angle, axis);  
+	m.glRotate(angle, axis.x, axis.y, axis.z);  //apply the quaternion's rotation
+	m.glScale(scaling.x, scaling.y, scaling.z); // - right hand, + left hand
+
+	worldPoint = m.preMult(localPoint);
+	return worldPoint;
+}
+
+vector<ofPoint> ofxHandModel::getFingerWorldCoord(int index)
+{
+	// safety, we return index finger coords if index exceeded
+	if(index < 0 || index >= NUM_FINGERS)
+		index = 1;
+
+	vector<ofPoint> joints;
+
+	ofMatrix4x4 m;
+	m.glTranslate(origin.x, origin.y, origin.z);
+	
+	//Extract the rotation from the current rotation
+    float angle; ofVec3f axis; 
+    curRot.getRotate(angle, axis);  
