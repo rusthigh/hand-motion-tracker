@@ -541,3 +541,184 @@ vector<ofPoint> ofxHandModel::getFingerWorldCoord(int index)
 	//Extract the rotation from the current rotation
     float angle; ofVec3f axis; 
     curRot.getRotate(angle, axis);  
+	m.glRotate(angle, axis.x, axis.y, axis.z);  //apply the quaternion's rotation
+	m.glScale(scaling.x, scaling.y, scaling.z); // - right hand, + left hand
+
+	joints.push_back(m.preMult(f[index]->root.origin));
+	joints.push_back(m.preMult(f[index]->mid.origin));
+	joints.push_back(m.preMult(f[index]->top.origin));
+	joints.push_back(m.preMult(f[index]->fingerTip));
+	/*
+	switch(index){
+		case 1:
+			joints.push_back(m.preMult(f[1]->root.origin));
+			joints.push_back(m.preMult(f[1]->mid.origin));
+			joints.push_back(m.preMult(f[1]->top.origin));
+			joints.push_back(m.preMult(f[1]->fingerTip));
+			break;
+		case 2:
+			joints.push_back(m.preMult(f[2]->root.origin));
+			joints.push_back(m.preMult(f[2]->mid.origin));
+			joints.push_back(m.preMult(f[2]->top.origin));
+			joints.push_back(m.preMult(f[2]->fingerTip));
+			break;
+		case 3:
+			joints.push_back(m.preMult(f[3]->root.origin));
+			joints.push_back(m.preMult(f[3]->mid.origin));
+			joints.push_back(m.preMult(f[3]->top.origin));
+			joints.push_back(m.preMult(f[3]->fingerTip));
+			break;
+		case 4:
+			joints.push_back(m.preMult(f[4]->root.origin));
+			joints.push_back(m.preMult(f[4]->mid.origin));
+			joints.push_back(m.preMult(f[4]->top.origin));
+			joints.push_back(m.preMult(f[4]->fingerTip));
+			break;
+		case 5:
+			joints.push_back(m.preMult(f[0]->root.origin));
+			joints.push_back(m.preMult(f[0]->mid.origin));
+			joints.push_back(m.preMult(f[0]->top.origin));
+			joints.push_back(m.preMult(f[0]->fingerTip));
+			break;
+		default:
+			break;
+	}
+	*/
+	return joints;
+}
+
+
+vector<ofPoint> ofxHandModel::getFillWorldCoord()
+{
+	vector<ofPoint> fillPoints;
+
+	ofMatrix4x4 m;
+	m.glTranslate(origin.x, origin.y, origin.z);
+
+	//Extract the rotation from the current rotation
+    float angle; ofVec3f axis;  
+    curRot.getRotate(angle, axis);  
+	m.glRotate(angle, axis.x, axis.y, axis.z);  //apply the quaternion's rotation 
+	m.glScale(scaling.x, scaling.y, scaling.z); // - right hand, + left hand (x axis?)
+
+	fillPoints.push_back(m.preMult(ofPoint(f[0]->mid.origin.x, f[0]->mid.origin.y, f[0]->mid.origin.z)));
+	fillPoints.push_back(m.preMult(f[1]->root.origin));
+
+	fillPoints.push_back(m.preMult(f[3]->root.origin));
+	fillPoints.push_back(m.preMult(ofPoint(f[0]->root.origin.x, f[0]->root.origin.y, f[3]->root.origin.z)));
+
+	fillPoints.push_back(m.preMult(f[2]->root.origin));
+	fillPoints.push_back(m.preMult(ofPoint(f[0]->root.origin.x, f[0]->root.origin.y, f[2]->root.origin.z)));
+
+	fillPoints.push_back(m.preMult(f[1]->root.origin));
+	fillPoints.push_back(m.preMult(ofPoint(f[0]->root.origin.x, f[0]->root.origin.y, f[1]->root.origin.z)));
+
+	fillPoints.push_back(m.preMult(ofPoint(f[0]->root.origin.x, f[0]->root.origin.y, f[1]->root.origin.z)));
+	fillPoints.push_back(m.preMult(ofPoint(f[0]->root.origin.x, f[0]->root.origin.y+20, 0)));
+
+	fillPoints.push_back(m.preMult(ofPoint(f[0]->root.origin.x, f[0]->root.origin.y+20, 0)));
+	fillPoints.push_back(m.preMult(ofPoint(f[0]->root.origin.x, f[0]->root.origin.y, f[4]->root.origin.z)));
+	
+	fillPoints.push_back(m.preMult(ofPoint(f[0]->root.origin.x, f[0]->root.origin.y, f[4]->root.origin.z)));
+	fillPoints.push_back(m.preMult(f[4]->root.origin));
+
+	return fillPoints;
+}
+
+/* DEPRECATED:
+void ofxHandModel::restoreFrom(DiscreteLocalParameters _discParams) {
+	
+	if(_discParams.states[1]) {
+		f[1]->setAngleZ(0);
+	}
+	else {
+		f[1]->setAngleZ(90);
+	}
+	
+	if(_discParams.states[2]) {
+		f[2]->setAngleZ(0);
+	}
+	else {
+		f[2]->setAngleZ(90);
+	}
+
+	if(_discParams.states[3]) {
+		f[3]->setAngleZ(0);
+	}
+	else {
+		f[3]->setAngleZ(90);
+	}
+
+	if(_discParams.states[4]) {
+		f[4]->setAngleZ(0);
+	}
+	else {
+		f[4]->setAngleZ(90);
+	}
+	
+	if(_discParams.states[0]) {
+		f[0]->setAngleX(30);
+		f[0]->setAngleZ(0);
+	}
+	else {
+		f[0]->setAngleX(-10);
+		f[0]->setAngleZ(20);
+	}
+	
+	
+	/*
+	f[1]->setAngleZ((-90*PI)/180);
+	f[2]->setAngleZ((-90*PI)/180);
+	f[3]->setAngleZ((-90*PI)/180);
+	f[4]->setAngleZ((-90*PI)/180);
+	*
+	
+	//f[1]->setAngleZ(-10);
+	//f[2]->setAngleZ(-20);
+	//f[3]->setAngleZ(-30);
+	//f[4]->setAngleZ(-40);
+	
+	update();
+}
+*/
+
+void ofxHandModel::restoreFrom(ofxFingerParameters _localParams, bool _includeAngleX) {
+	/* // to be included (setting left, right swing angles)
+	f[1]->root.angleX = _localParams.fx1;
+	f[2]->root.angleX = _localParams.fx2;
+	f[3]->root.angleX = _localParams.fx3;
+	f[4]->root.angleX = _localParams.fx4;
+	*/
+	/*
+	f[1]->root.angleZ = _localParams.fz1;
+	f[2]->root.angleZ = _localParams.fz2;
+	f[3]->root.angleZ = _localParams.fz3;
+	f[4]->root.angleZ = _localParams.fz4;
+
+	f[0]->root.angleX = _localParams.tx;
+	f[0]->root.angleZ = _localParams.tz;
+	*/
+	// proper way of setting angles, cause internal update is needed
+	// (propagation of angle values towards finger tip segments)
+	f[1]->setAngleZ(_localParams.fz1);
+	f[2]->setAngleZ(_localParams.fz2);
+	f[3]->setAngleZ(_localParams.fz3);
+	f[4]->setAngleZ(_localParams.fz4);
+
+	f[0]->setAngleX(_localParams.tx);
+	f[0]->setAngleZ(_localParams.tz);
+
+	if (_includeAngleX) {
+		f[1]->setAngleX(_localParams.fx1);
+		f[2]->setAngleX(_localParams.fx2);
+		f[3]->setAngleX(_localParams.fx3);
+		f[4]->setAngleX(_localParams.fx4);
+	}
+
+	update();
+}
+
+ofxFingerParameters	ofxHandModel::saveFingerParameters() {
+	ofxFingerParameters p = ofxFingerParameters(f[1]->root.angleZ,
+										f[2]->root.angleZ,
+										f[3]->root.angleZ,
