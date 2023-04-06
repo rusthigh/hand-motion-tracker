@@ -722,3 +722,66 @@ ofxFingerParameters	ofxHandModel::saveFingerParameters() {
 	ofxFingerParameters p = ofxFingerParameters(f[1]->root.angleZ,
 										f[2]->root.angleZ,
 										f[3]->root.angleZ,
+										f[4]->root.angleZ,
+										f[0]->root.angleX,
+										f[0]->root.angleZ);
+	
+	p.fx1 = f[1]->root.angleX;
+	p.fx2 = f[2]->root.angleX;
+	p.fx3 = f[3]->root.angleX;
+	p.fx4 = f[4]->root.angleX;
+
+	p.params = 0;
+/*
+// front and back thumb swing
+#define THUMB_MIN_ANGLE_Z		   0
+#define THUMB_MAX_ANGLE_Z		  20
+
+// define other fingers front and back swing limits (actual angle of first segment, value is then propagated to others)
+#define FINGER_MIN_ANGLE_Z	 0
+#define FINGER_MAX_ANGLE_Z	90
+*/
+	// thumb
+	if(p.tx < 45 && p.tz < 10)
+		p.params += 1;
+	if(p.fz1 < 45)
+		p.params += 2;
+	if(p.fz2 < 45)
+		p.params += 4;
+	if(p.fz3 < 45)
+		p.params += 8;
+	if(p.fz4 < 45)
+		p.params += 16;
+
+	return p;
+}
+/*
+GlobalParameters ofxHandModel::saveGlobalParameters() {
+	GlobalParameters p = GlobalParameters();
+	return p;
+}*/
+
+// TODO: not functional at the moment 
+// (should be realized similarly in a way that is 
+// implemented in BezierConnection class - so no timers are used)
+void ofxHandModel::interpolate(ofxFingerParameters _to) {
+	ofxFingerParameters prevParams = saveFingerParameters();
+	ofxFingerParameters newParams;
+	desiredParams = _to;
+
+	// TODO: in parameters include operator +, - to simplify that kind of operations
+	desiredParams = prevParams + ((desiredParams - prevParams)*0.1f);
+
+	/*
+	newParams.fz1 = prevParams.fz1 + ((desiredParams.fz1 - prevParams.fz1)*0.1f);
+	newParams.fz2 = prevParams.fz2 + ((desiredParams.fz2 - prevParams.fz2)*0.1f);
+	newParams.fz3 = prevParams.fz3 + ((desiredParams.fz3 - prevParams.fz3)*0.1f);
+	newParams.fz4 = prevParams.fz4 + ((desiredParams.fz4 - prevParams.fz4)*0.1f);
+	newParams.tz = prevParams.tz + ((desiredParams.tz - prevParams.tz)*0.1f);
+	newParams.tx = prevParams.tx + ((desiredParams.tx - prevParams.tx)*0.1f);
+	*/
+
+	restoreFrom(desiredParams);
+
+	//rollAngle = prevRollAngle + ((rollAngle - prevRollAngle)*0.5f); // smoothing
+}
