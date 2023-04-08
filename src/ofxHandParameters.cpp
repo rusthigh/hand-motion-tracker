@@ -24,4 +24,18 @@ DiscreteLocalParameters::DiscreteLocalParameters(int _params) {
 	while(index < 5) {
 		value = params & 0x1;
 		states[index] = value;
-		//cout << "PARAMS: " << params << " INDEX: " << index << " VALUE: " << valu
+		//cout << "PARAMS: " << params << " INDEX: " << index << " VALUE: " << value << endl;
+
+		params = params >> 1; //params / 2;
+		index++;
+	}
+}
+*/
+
+ofxFingerParameters ofxFingerParameters::operator+(const ofxFingerParameters&  other)
+{
+	ofxFingerParameters temp;
+
+	temp.fz1 = fz1 + other.fz1;
+	temp.fz2 = fz2 + other.fz2;
+	
