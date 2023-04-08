@@ -38,4 +38,13 @@ ofxFingerParameters ofxFingerParameters::operator+(const ofxFingerParameters&  o
 
 	temp.fz1 = fz1 + other.fz1;
 	temp.fz2 = fz2 + other.fz2;
+	temp.fz3 = fz3 + other.fz3;
+	temp.fz4 = fz4 + other.fz4;
+
+	temp.fx1 = fx1 + other.fx1;
+	temp.fx2 = fx2 + other.fx2;
+	temp.fx3 = fx3 + other.fx3;
+	temp.fx4 = fx4 + other.fx4;
 	
+	temp.tz = tz + other.tz;
+	temp.tx = t
