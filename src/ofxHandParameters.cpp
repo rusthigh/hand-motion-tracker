@@ -47,4 +47,15 @@ ofxFingerParameters ofxFingerParameters::operator+(const ofxFingerParameters&  o
 	temp.fx4 = fx4 + other.fx4;
 	
 	temp.tz = tz + other.tz;
-	temp.tx = t
+	temp.tx = tx + other.tx;
+
+	temp.clampParams();
+
+	return temp;
+
+	/*return ofxFingerParameters(fz1 + other.fz1,
+						   fz2 + other.fz2,
+						   fz3 + other.fz3,
+						   fz4 + other.fz4,
+						   tx + other.tx,
+						   tz
