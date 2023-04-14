@@ -75,4 +75,13 @@ ofxFingerParameters ofxFingerParameters::operator-(const ofxFingerParameters&  o
 ofxFingerParameters ofxFingerParameters::operator*(const float factor)
 {
 	return ofxFingerParameters(fz1*factor,
-						   fz2
+						   fz2*factor,
+						   fz3*factor,
+						   fz4*factor,
+						   tx*factor,
+						   tz*factor);
+}
+/*
+ofxFingerParameters& ofxFingerParameters::operator=(const ofxFingerParameters&  other)
+{
+	// D
