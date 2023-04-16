@@ -93,4 +93,11 @@ ofxFingerParameters& ofxFingerParameters::operator=(const ofxFingerParameters&  
 	this->fz1 = other.fz1;
 	this->fz2 = other.fz2;
 	this->fz3 = other.fz3;
-	this->fz4 = oth
+	this->fz4 = other.fz4;
+
+	this->tx = other.tx;
+	this->tz = other.tz;
+
+	//return other; 
+	return *this;
+}*/
