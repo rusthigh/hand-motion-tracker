@@ -84,4 +84,13 @@ ofxFingerParameters ofxFingerParameters::operator*(const float factor)
 /*
 ofxFingerParameters& ofxFingerParameters::operator=(const ofxFingerParameters&  other)
 {
-	// D
+	// Do the assignment operation!
+	this->fx1 = other.fx1;
+	this->fx2 = other.fx2;
+	this->fx3 = other.fx3;
+	this->fx4 = other.fx4;
+
+	this->fz1 = other.fz1;
+	this->fz2 = other.fz2;
+	this->fz3 = other.fz3;
+	this->fz4 = oth
