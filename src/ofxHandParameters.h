@@ -29,4 +29,16 @@ class ofxFingerParameters
 	public:
 		ofxFingerParameters() {
 			fx1 = 0;
-			
+			fx2 = fx1;
+			fx3 = fx2;
+			fx4 = fx3;
+
+			fz1 = FINGER_MAX_ANGLE_Z;
+			fz2 = FINGER_MAX_ANGLE_Z;
+			fz3 = FINGER_MAX_ANGLE_Z;
+			fz4 = FINGER_MAX_ANGLE_Z;
+
+			params = 0;
+
+			tx = 0; 
+			tz = 0
