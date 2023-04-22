@@ -15,4 +15,8 @@
 #define THUMB_MIN_ANGLE_Z		   0
 #define THUMB_MAX_ANGLE_Z		  20
 
-// define other fingers fr
+// define other fingers front and back swing limits (actual angle of first segment, value is then propagated to others)
+#define FINGER_MIN_ANGLE_Z	 0
+#define FINGER_MAX_ANGLE_Z	90
+
+// also need to define non-thumb finer x angles -> but 
