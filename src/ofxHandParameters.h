@@ -19,4 +19,14 @@
 #define FINGER_MIN_ANGLE_Z	 0
 #define FINGER_MAX_ANGLE_Z	90
 
-// also need to define non-thumb finer x angles -> but 
+// also need to define non-thumb finer x angles -> but they are different for each finger
+#define FINGER_MIN_ANGLE_X -10
+#define FINGER_MAX_ANGLE_X	10
+
+// used to store local finger parameters
+class ofxFingerParameters
+{
+	public:
+		ofxFingerParameters() {
+			fx1 = 0;
+			
