@@ -57,4 +57,17 @@ class ofxFingerParameters
 			fz3 = fz2;
 			fz4 = fz3;
 
-			params = 
+			params = 0;
+
+			clampParams();
+		};
+
+		ofxFingerParameters(float _fz1, float _fz2, float _fz3, float _fz4, float _tx, float _tz){
+			fz1 = _fz1;
+			fz2 = _fz2;
+			fz3 = _fz3;
+			fz4 = _fz4;
+			tx = _tx;
+			tz = _tz;
+
+			fx1
