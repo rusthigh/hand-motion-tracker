@@ -83,4 +83,20 @@ class ofxFingerParameters
 		ofxFingerParameters(int _fz1, int _fz2, int _fz3, int _fz4, int _tx, int _tz){
 			fz1 = _fz1;
 			fz2 = _fz2;
-			fz3 = _fz
+			fz3 = _fz3;
+			fz4 = _fz4;
+			tx = _tx;
+			tz = _tz;
+
+			fx1 = 0;
+			fx2 = fx1;
+			fx3 = fx2;
+			fx4 = fx3;
+
+			params = 0;
+
+			clampParams();
+		};
+		//~ofxFingerParameters(void){};
+
+		ofxFingerParameter
