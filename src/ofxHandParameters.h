@@ -112,4 +112,17 @@ class ofxFingerParameters
 
 			tx = 0; 
 			tz = 0;
+			
+			params = _params;
+
+			//params = params & 0x11111;
+
+			//cout << "INPUT PARAMS: " << params << endl;
+
+			int value = 0;
+			int index = 0;
+
+			int _temp_params = params;
+
+			while(index < 5) {
 		
