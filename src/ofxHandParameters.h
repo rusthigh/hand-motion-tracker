@@ -125,4 +125,8 @@ class ofxFingerParameters
 			int _temp_params = params;
 
 			while(index < 5) {
-		
+				value = _temp_params & 0x1;
+				states[index] = value;
+				//cout << "PARAMS: " << params << " INDEX: " << index << " VALUE: " << value << endl;
+
+				_temp_params = _tem
