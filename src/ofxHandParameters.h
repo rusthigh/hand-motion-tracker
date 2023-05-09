@@ -138,4 +138,14 @@ class ofxFingerParameters
 			if(states[1]) 	fz1 = FINGER_MIN_ANGLE_Z;
 			else			fz1 = FINGER_MAX_ANGLE_Z;
 	
-			if(states[2])   fz2 = FINGER_M
+			if(states[2])   fz2 = FINGER_MIN_ANGLE_Z;
+			else 			fz2 = FINGER_MAX_ANGLE_Z;
+
+			if(states[3]) 	fz3 = FINGER_MIN_ANGLE_Z;
+			else			fz3 = FINGER_MAX_ANGLE_Z;
+	
+			if(states[4])   fz4 = FINGER_MIN_ANGLE_Z;
+			else 			fz4 = FINGER_MAX_ANGLE_Z;
+
+			// thumb binary setting
+		
