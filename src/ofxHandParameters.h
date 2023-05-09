@@ -129,4 +129,13 @@ class ofxFingerParameters
 				states[index] = value;
 				//cout << "PARAMS: " << params << " INDEX: " << index << " VALUE: " << value << endl;
 
-				_temp_params = _tem
+				_temp_params = _temp_params >> 1; //params / 2;
+				index++;
+			}
+
+			// binary setting finger parameters 
+			// (only open/closed value)
+			if(states[1]) 	fz1 = FINGER_MIN_ANGLE_Z;
+			else			fz1 = FINGER_MAX_ANGLE_Z;
+	
+			if(states[2])   fz2 = FINGER_M
