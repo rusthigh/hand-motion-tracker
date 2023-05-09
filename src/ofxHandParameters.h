@@ -148,4 +148,14 @@ class ofxFingerParameters
 			else 			fz4 = FINGER_MAX_ANGLE_Z;
 
 			// thumb binary setting
-		
+			// TODO: test if min/max combination written correctly
+			if(states[0]) { 
+				tx = THUMB_MAX_ANGLE_X;
+				tz = THUMB_MIN_ANGLE_Z;
+			}
+			else { 
+				tx = THUMB_MIN_ANGLE_X;
+		  		tz = THUMB_MAX_ANGLE_Z; 
+			}
+
+			/*i
