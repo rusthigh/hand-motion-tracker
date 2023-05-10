@@ -171,4 +171,11 @@ class ofxFingerParameters
 		ofxFingerParameters operator+(const ofxFingerParameters& other);
 		ofxFingerParameters operator-(const ofxFingerParameters& other);
 		ofxFingerParameters operator*(const float factor);
-        //ofxFingerParameters& operator=(const ofxFingerPar
+        //ofxFingerParameters& operator=(const ofxFingerParameters& other);
+
+		float fz1, fz2, fz3, fz4; 
+		float fx1, fx2, fx3, fx4; // left, right finger rotation params - UNUSED
+		float tx, tz;
+		//float hx, hy, hz;
+
+		// merged from 
