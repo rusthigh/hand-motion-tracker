@@ -158,4 +158,14 @@ class ofxFingerParameters
 		  		tz = THUMB_MAX_ANGLE_Z; 
 			}
 
-			/*i
+			/*if(states[0]) { 
+				tx = THUMB_MAX_ANGLE_X;
+				tz = THUMB_MAX_ANGLE_Z;
+			}
+			else { 
+				tx = THUMB_MIN_ANGLE_X;
+		  		tz = THUMB_MIN_ANGLE_Z; 
+			}*/
+		}
+
+		ofxFingerParameters operator+(const ofxFingerPa
