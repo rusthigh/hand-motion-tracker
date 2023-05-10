@@ -168,4 +168,7 @@ class ofxFingerParameters
 			}*/
 		}
 
-		ofxFingerParameters operator+(const ofxFingerPa
+		ofxFingerParameters operator+(const ofxFingerParameters& other);
+		ofxFingerParameters operator-(const ofxFingerParameters& other);
+		ofxFingerParameters operator*(const float factor);
+        //ofxFingerParameters& operator=(const ofxFingerPar
