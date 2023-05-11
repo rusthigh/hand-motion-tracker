@@ -178,4 +178,8 @@ class ofxFingerParameters
 		float tx, tz;
 		//float hx, hy, hz;
 
-		// merged from 
+		// merged from DiscreteLocalParams;
+		// TODO: later better to organize angles (fx*, fz*) as
+		// arrays and directly acess them without states array
+		// that way we simplify many code lines with loops
+		int param
