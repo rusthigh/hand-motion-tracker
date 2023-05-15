@@ -190,4 +190,8 @@ class ofxFingerParameters
 			// here we should do safety clamping
 			fz1 = ofClamp(fz1, FINGER_MIN_ANGLE_Z, FINGER_MAX_ANGLE_Z); 
 			fz2 = ofClamp(fz2, FINGER_MIN_ANGLE_Z, FINGER_MAX_ANGLE_Z); 
-			fz3 = ofClamp(
+			fz3 = ofClamp(fz3, FINGER_MIN_ANGLE_Z, FINGER_MAX_ANGLE_Z); 
+			fz4 = ofClamp(fz4, FINGER_MIN_ANGLE_Z, FINGER_MAX_ANGLE_Z); 
+
+			fx1 = ofClamp(fx1, FINGER_MIN_ANGLE_X, FINGER_MAX_ANGLE_X); 
+			fx2 = ofClamp(fx2, FINGER
