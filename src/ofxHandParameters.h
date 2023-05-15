@@ -182,4 +182,12 @@ class ofxFingerParameters
 		// TODO: later better to organize angles (fx*, fz*) as
 		// arrays and directly acess them without states array
 		// that way we simplify many code lines with loops
-		int param
+		int params;
+		bool states[5];
+
+	private:
+		void clampParams() {
+			// here we should do safety clamping
+			fz1 = ofClamp(fz1, FINGER_MIN_ANGLE_Z, FINGER_MAX_ANGLE_Z); 
+			fz2 = ofClamp(fz2, FINGER_MIN_ANGLE_Z, FINGER_MAX_ANGLE_Z); 
+			fz3 = ofClamp(
