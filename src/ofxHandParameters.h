@@ -194,4 +194,12 @@ class ofxFingerParameters
 			fz4 = ofClamp(fz4, FINGER_MIN_ANGLE_Z, FINGER_MAX_ANGLE_Z); 
 
 			fx1 = ofClamp(fx1, FINGER_MIN_ANGLE_X, FINGER_MAX_ANGLE_X); 
-			fx2 = ofClamp(fx2, FINGER
+			fx2 = ofClamp(fx2, FINGER_MIN_ANGLE_X, FINGER_MAX_ANGLE_X); 
+			fx3 = ofClamp(fx3, FINGER_MIN_ANGLE_X, FINGER_MAX_ANGLE_X); 
+			fx4 = ofClamp(fx4, FINGER_MIN_ANGLE_X, FINGER_MAX_ANGLE_X); 
+		};
+};
+
+
+
+// used to store global ro
