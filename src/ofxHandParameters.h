@@ -202,4 +202,17 @@ class ofxFingerParameters
 
 
 
-// used to store global ro
+// used to store global rotation - TODO
+class ofxPalmParameters
+{
+public:
+	ofxPalmParameters(float _ax, float _ay, float _az){
+		ax = _ax;
+		ay = _ay;
+		az = _az;
+	};
+
+	float ax, ay, az; // euler rotation angles
+};
+
+//#endif
