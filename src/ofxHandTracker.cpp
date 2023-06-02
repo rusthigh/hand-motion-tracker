@@ -217,3 +217,250 @@ void ofxHandTracker::fetchHandPointCloud(ofPoint _handTrackedPos) {
 		}
 	}
 	
+	handCentroid = getCentroid(handPoints);
+
+//	ofPoint prevHandRootCentroid = handRootCentroid;
+	handRootCentroid = getCentroid(handRootPoints);
+
+	ofPoint maxDistCentroidPoint = ofPoint(handCentroid);
+	float maxDistCentroid = 0;
+
+	ofPoint maxDistTrackedPoint = ofPoint(handTrackedPos);
+	float maxDistTracked = 0;
+
+	ofPoint maxDistRootPoint = ofPoint(handRootCentroid);
+	float maxDistRoot = 0;
+
+	// calculate approx. oritentation by calcing max distance from centroid
+	for(std::vector<ofPoint>::iterator it = handPoints.begin(); it != handPoints.end(); ++it) {
+		/* std::cout << *it; ... */
+		ofPoint p = *it;
+		if(p.distance(handCentroid) > maxDistCentroid) {
+			maxDistCentroid = p.distance(handCentroid);
+			maxDistCentroidPoint = ofPoint(p);
+		}
+		if(p.distance(handTrackedPos) > maxDistTracked) {
+			maxDistTracked = p.distance(handCentroid);
+			maxDistTrackedPoint = ofPoint(p);
+		}
+		if(p.distance(handRootCentroid) > maxDistRoot) {
+			maxDistRoot = p.distance(handRootCentroid);
+			maxDistRootPoint = ofPoint(p);
+		}
+	}
+
+	// prevent jumping rootCentroid to 0,0,0, need better solution
+	if(handRootCentroid.distance(ofPoint(0,0,0)) < 10)
+		handRootCentroid = handCentroid;
+
+	/*bool usingCentroid = false;
+	
+	ofPoint estimatedPalmCenter = palmCenter;
+	if(estimatedPalmCenter.distance(ofPoint::zero()) < 10) {
+		estimatedPalmCenter = handCentroid;
+		usingCentroid = true;
+	}*/
+
+	int i = 0;
+	for(std::vector<ofPoint>::iterator it = handPoints.begin(); it != handPoints.end(); ++it) {
+		ofPoint pos = *it;
+		i++;
+		//if(usingCentroid) {
+			if (i%2 == 0 || pos.distance(handCentroid) > (maxDistCentroid * 0.60)) continue;
+		/*}
+		else
+			if (pos.distance(estimatedPalmCenter) > 60) continue;
+		*/
+		handPalmCandidates.push_back(pos);
+	}
+}
+
+float ofxHandTracker::distFactor(float zDist) {
+	float zz = zDist;
+	return (zz) * 1/30;
+}
+
+ofPoint ofxHandTracker::getPalmCenter() {
+	/* PALM CENTER CALCULATION - from: http://blog.candescent.ch/2011/04/center-of-palm-hand-tracking.html
+	1. foreach x-th candidate 
+	2. calculate the smallest distance to any point in the contour
+	3. then take the candidate with the largest minimum distance 
+	*/
+	float minDistance = 1000000;
+	float minMaxDistance = 0;
+
+	ofPoint minCandidate;
+	ofPoint minMaxCandidate;
+
+	//for(std::vector<ofPoint>::iterator canIt = handPalmCandidates.begin(); canIt != handPalmCandidates.end(); ++canIt) {
+	for(std::vector<ofPoint>::iterator canIt = imgPalmCandidates.begin(); canIt != imgPalmCandidates.end(); ++canIt) {
+	
+		ofPoint canPos = *canIt;
+		minDistance = 10000000;
+
+		//for(std::vector<ofPoint>::iterator edgeIt = handEdgePoints.begin(); edgeIt != handEdgePoints.end(); ++edgeIt) {
+		for(std::vector<ofPoint>::iterator edgeIt = blobPoints.begin(); edgeIt != blobPoints.end(); ++edgeIt) {
+		
+			ofPoint edgePos = *edgeIt;
+			
+			float currentDistance = edgePos.distance(canPos);
+			if (currentDistance < minDistance && currentDistance > 5){ //
+				minDistance = currentDistance;
+				minCandidate = canPos;
+			}
+		}
+
+		if(minDistance > minMaxDistance){
+			minMaxDistance = minDistance;
+			minMaxCandidate = minCandidate;
+		}
+	}
+
+	//ofNoFill();
+	//ofCircle(minMaxCandidate, minMaxDistance);
+	//ofFill();
+
+	palmRadius = minMaxDistance;
+	return minMaxCandidate;
+}
+
+void ofxHandTracker::update() {
+	/*
+	depthFbo.begin();
+	int tx = handGen->getHand(hIndex)->projectPos.x;
+	int ty = handGen->getHand(hIndex)->projectPos.y;
+	ofRect(0,0,IMG_DIM,IMG_DIM);
+	depthGen->draw(-tx + IMG_DIM/2, -ty + IMG_DIM/2);
+	depthFbo.end();
+	*/
+	ofPoint prevActiveHandPos = activeHandPos;
+
+	
+		// new way of image clearing - any faster?
+		realImg.setFromPixels(blankImg.getPixelsRef());
+	/*
+		for (int i=0; i<IMG_DIM; i++) {    
+			for (int j=0; j<IMG_DIM; j++) {    
+				realImg.setColor(i, j, ofColor::black); 
+				//modelImg.setColor(i, j, ofColor::black);
+				//colorImg.setColor(i, j, ofColor::black);
+			}    
+		} 
+	*/
+	bool handDetected = false;
+
+	if(handGen->getNumTrackedHands() > 0) { // else use handGen
+		int xx = handGen->getHand(hIndex)->projectPos.x;
+		int yy = handGen->getHand(hIndex)->projectPos.y;
+		int zz = handGen->getHand(hIndex)->projectPos.z;
+		int raw = handGen->getHand(hIndex)->rawPos.Z;
+
+		activeHandPos = ofPoint(xx,yy,zz);
+
+		if(activeHandPos.distance(ofPoint::zero()) > 10) {
+			h.origin.x = activeHandPos.x;
+			h.origin.y = activeHandPos.y;
+
+			handDetected = true;
+		}
+	}
+	else if (userGen->getNumberOfTrackedUsers() > 0) { // if skeleton available use skeleton data
+  												// here we can determine left or right hand?
+		for (int i=0; i < userGen->getNumberOfTrackedUsers(); i++) {
+			if(i == 0) {
+				ofxTrackedUser* currentUser = userGen->getTrackedUser(i+1);
+					
+				ofxLimb closerArm;
+				if (currentUser->left_lower_arm.position[1].Z < currentUser->right_lower_arm.position[1].Z) {
+					closerArm = currentUser->left_lower_arm;
+					//if (h.scaling.z < 0)
+					//	h.scaling.z = abs(h.scaling.z);
+				}
+				else {
+					closerArm = currentUser->right_lower_arm;
+					//if (h.scaling.z > 0)
+					//	h.scaling.z = -abs(h.scaling.z);
+				}
+
+				int xx = closerArm.position[1].X;
+				int yy = closerArm.position[1].Y;
+				int zz = closerArm.position[1].Z;
+				int raw = handGen->getHand(hIndex)->rawPos.Z;
+
+				activeHandPos = ofPoint(xx,yy,zz);
+
+				if(activeHandPos.distance(ofPoint::zero()) > 10) {
+					//h.origin.x = h.origin.x + (handTrackedPos.x - h.origin.x);
+					//h.origin.y = handTrackedPos.y;
+
+					h.origin = activeHandPos;
+					h.origin.z = 0;
+
+					handDetected = true;
+				}
+			}
+		}
+
+	}
+	
+
+	if(handDetected) {
+		fetchHandPointCloud(activeHandPos);	
+
+		for(std::vector<ofPoint>::iterator it = handPoints.begin(); it != handPoints.end(); ++it) {
+			ofPoint pos = *it;
+			/*realImg.setColor((pos.x - palmCenter.x)*(IMG_DIM/300.0) + IMG_DIM/2, // too much shaking
+							 (pos.y - palmCenter.y)*(IMG_DIM/300.0) + IMG_DIM/2, 
+							 ofColor((-pos.z +  palmCenter.z)+128, 255));*/
+			
+			float tX = (pos.x - handCentroid.x)*(IMG_DIM/300.0) + IMG_DIM/2;
+			float tY = (pos.y - handCentroid.y)*(IMG_DIM/300.0) + IMG_DIM/2;
+			if (tX >= 0 && tX < IMG_DIM && tY >= 0 && tY < IMG_DIM) {
+				// if crosses border causes 0xC0000005: Access violation reading location
+				int col = 255 - (((pos.z - (handCentroid.z))/0.5)+128);
+				if (col >= 255) col = 255;
+				if (col <= 0)	col = 0;
+
+				realImg.setColor((pos.x - handCentroid.x)*(IMG_DIM/300.0) + IMG_DIM/2, 
+								 (pos.y - handCentroid.y)*(IMG_DIM/300.0) + IMG_DIM/2, 
+								 //ofColor(((-pos.z + handCentroid.z)+128), 255));
+								 ofColor(col, 255));
+			}
+		}
+
+		//ofPixels depthPixels;
+		//depthFbo.readToPixels(depthPixels);
+		//colorImg.setFromPixels(depthPixels);
+
+		imgPalmCandidates.clear();
+		for(std::vector<ofPoint>::iterator it = handPalmCandidates.begin(); it != handPalmCandidates.end(); ++it) {
+			ofPoint pos = *it;
+
+			imgPalmCandidates.push_back(ofPoint((pos.x - handCentroid.x)*(IMG_DIM/300.0) + IMG_DIM/2,
+												(pos.y - handCentroid.y)*(IMG_DIM/300.0) + IMG_DIM/2, 0));
+
+		}
+
+		ofPoint prevPalmCenter = palmCenter;
+		palmCenter = getPalmCenter();
+
+		if(palmCenter.distance(ofPoint::zero()) < 10)
+			palmCenter = prevPalmCenter;
+		//if(palmCenter.distance(prevPalmCenter) > 50 && prevPalmCenter.distance(ofPoint(0,0,0)) > 100) // bad solution
+		//	palmCenter = prevPalmCenter;
+		else {
+			palmCenter = prevPalmCenter + ((palmCenter - prevPalmCenter)*0.6f); // we can smooth & interpolate to new center
+		}
+		//cout << "PALM CENTER: " << palmCenter << endl;
+		realImg.setColor(palmCenter.x, palmCenter.y, 255);
+
+
+		// calculate average orientation
+		/*ofPoint orientationVector;
+		for(std::vector<ofPoint>::iterator it = handEdgePoints.begin(); it != handEdgePoints.end(); ++it) {
+			ofPoint pos = *it;
+			orientationVector += (pos - handRootCentroid);
+		}
+		ofPoint pos = handRootCentroid + orientationVector;
+		
+		glBegin(GL_LINES);
