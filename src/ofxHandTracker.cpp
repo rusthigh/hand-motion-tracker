@@ -464,3 +464,242 @@ void ofxHandTracker::update() {
 		ofPoint pos = handRootCentroid + orientationVector;
 		
 		glBegin(GL_LINES);
+		glColor4ub(255, 128, 0, 0);
+		glVertex3f(pos.x, pos.y, pos.z);
+		glVertex3f(handRootCentroid.x, handRootCentroid.y, handRootCentroid.z);
+		glEnd();
+		*/
+			
+		ofPoint dirDown = ofPoint(handCentroid.x, handCentroid.y+50, 0);
+		ofPoint dirRot = ofPoint(handRootCentroid.x, handRootCentroid.y, 0);
+		
+		//ofPoint downVector = dirDown - handCentroid;
+		//ofPoint rotVector = dirRot - handCentroid;
+		
+		ofPoint downVector = ofPoint(0, -50, 0);
+		ofPoint rotVectorZ = ofPoint(handRootCentroid.x - handCentroid.x,
+									 handRootCentroid.y - handCentroid.y, 
+									 0);
+		ofPoint rotVectorX = ofPoint(0,
+									 handRootCentroid.y - handCentroid.y, 
+									 handRootCentroid.z - handCentroid.z);
+
+		
+		float prevRollAngle = rollAngle;
+		rollAngle = angleOfVectors(downVector, rotVectorZ);
+
+		if (abs(rollAngle - prevRollAngle) < 180)
+			rollAngle = prevRollAngle + ((rollAngle - prevRollAngle)*0.5f); // smoothing
+
+
+		//cout << " hand angle: " << angle << endl;
+		/*
+		double x = (handCentroid.x - handRootCentroid.x);
+		double y = (handCentroid.y - handRootCentroid.y);
+		
+		double angleInRadiansXY = std::atan2(y, x);
+		double angleInDegreesXY = (angleInRadiansXY / PI) * 180.0 + 90;
+		*/
+
+		// pre-rotate, so hand is facing us
+		h.curRot = ofQuaternion(90, ofVec3f(0,1,0));
+
+		// check if hand facing sensor directly and rotate accordingly
+		// TODO: make smooth transition
+		if(rotVectorZ == ofPoint::zero()) {
+			//cout << rotVectorZ <<endl;
+			rollAngle = 0;
+			h.curRot *= ofQuaternion((-90), ofVec3f(1,0,0));
+		}
+		else {
+			float angle = angleOfVectors(downVector, rotVectorX, false);
+			//cout << "xangle: " << angle << endl;
+			h.curRot *= ofQuaternion((180+angle), ofVec3f(1,0,0));
+		}
+
+		//h.curRot *= ofQuaternion((angleInDegreesXY), ofVec3f(0,0,1));
+		h.curRot *= ofQuaternion((rollAngle), ofVec3f(0,0,1));
+		
+
+
+		/*
+		//x = (maxZ - minZ);
+		x = (handCentroid.z - handRootCentroid.z);
+		
+		double angleInRadiansZY = std::atan2(y, x);
+		double angleInDegreesZY = (angleInRadiansZY * 180/PI) + 90;
+		
+		//h.curRot *= ofQuaternion((angleInDegreesZY), ofVec3f(1,0,0));
+		*/
+		realImg.update();
+
+		// maybe scaling like this?
+		//realImg.setAnchorPercent(0.5, 0.5);
+		//realImg.resize();
+		//realImg.crop();
+
+		h.update();
+		
+		generateModelProjection();
+		
+		analyzeContours();
+
+		// here call contourAnalysis method when implemented
+
+		//modelImgCV.dilate();
+		/*modelImgCV.dilate();
+		modelImgCV.dilate();
+		modelImgCV.dilate();
+		modelImgCV.dilate();*/
+	//}
+
+
+	//for(int itY=0; itY<3; itY++) 
+	///for(int itX=0; itX<3; itX++) {
+		//int startX = palmCenter.x + (itX-1)*15; //(int)(IMG_DIM/2); //
+		//int startY = palmCenter.y + (itY-1)*15; //(int)(IMG_DIM/2); //
+
+		// here we try with searching for peaks on image
+	/*
+	int numberOfPoints = 8;
+	float angle = 360.0f/numberOfPoints;
+    
+    for (int itX=0; itX<numberOfPoints; itX++) {
+
+		int startX = palmCenter.x + 20 * cosf((angle*itX)*PI/180);
+		int startY = palmCenter.y + 20 * sinf((angle*itX)*PI/180);
+		//int max = modelImg.getColor(i,j).getBrightness();
+		int maxVal = 0;
+		int maxX = 0, maxY = 0;
+		int counter = 0;
+
+		int neighbours[3][3];
+
+		while(counter < 20) {
+		
+			counter++;
+
+			//cout << "3x3 part from img: \n >--------<" << endl;
+			for(int i=0; i<3; i++) {
+				for(int j=0; j<3; j++) {
+					neighbours[i][j] = realImg.getColor(startX + (i-1), startY + (j-1)).getBrightness();
+					//cout << " " << neighbours[i][j] << " ";
+
+					if(i==1 && j==1)
+						neighbours[i][j]= -1;
+				}
+				cout << endl;
+			}
+
+			bool newMaxFound = false; 
+
+			for(int i=0; i<3; i++) {
+				for(int j=0; j<3; j++) {
+					if(neighbours[i][j] >= maxVal) {
+						maxVal = neighbours[i][j];
+						maxX = (i-1);
+						maxY = (j-1);
+
+						newMaxFound = true;
+					}
+				}
+			}
+
+			if(!newMaxFound)
+				break;
+
+			//neighbours[i][j] = modelImg.getColor(x + (i-1),y + (j-1)).getBrightness();
+
+			startX += maxX;
+			startY += maxY;
+
+			maxX = 0, maxY = 0;
+
+			if(startX < 0 || startX >= IMG_DIM)
+				break;
+			if(startY < 0 || startY >= IMG_DIM)
+				break;
+
+			realImg.setColor(startX, startY, ofColor::black); 
+		}
+	}
+	realImg.update();
+	*/
+	
+		/*handMask.setFromPixels(depthGen.getDepthPixels(zz-100, zz+100),
+							   depthGen.getWidth(), 
+							   depthGen.getHeight(), 
+							   OF_IMAGE_GRAYSCALE);*/
+
+		//handMask.setFromPixels(userGen.getUserPixels(), userGen.getWidth(), userGen.getHeight(), OF_IMAGE_GRAYSCALE);
+			
+		/*handMask.setFromPixels(depthGen.getDepthPixels(zz-120, zz+120),
+						depthGen.getWidth(), 
+						depthGen.getHeight(), 
+						OF_IMAGE_GRAYSCALE);*/
+
+		//if(thresh != 0)
+		
+		// temporary calling convex hull methods
+		/*if(handEdgePoints.size() > 0) {
+		//if(filteredMaxHandPoints.size() > 5) {
+			//ofPoint pivot = ofPoint(maxDistRootPoint);
+			ofPoint pivot = ofPoint(xx-bbMinX, yy+bbMaxY, 0);
+
+			//pivot = ofPoint(minX, maxY, handCentroid.z);
+			vector<ofPoint> convexHull = getConvexHull(handEdgePoints, pivot);
+
+			//cout << "EDGE SIZE: " << handEdgePoints.size() << "\nHULL SIZE: " << convexHull.size() << endl;
+
+			drawOfPointVector(convexHull);
+			drawOfPointVectorFromCenter(convexHull, handCentroid);
+		}
+		*/
+
+
+		// calc another angle
+		/*double y2 = (handCentroid.y - handRootCentroid.y);
+		double z = (handCentroid.z - handRootCentroid.z);
+		double angleInRadiansYZ = std::atan2(y2, z);
+	    double angleInDegreesYZ = (angleInRadiansYZ / PI) * 180.0 + 90;
+		h.curRot *= ofQuaternion((angleInDegreesYZ), ofVec3f(1,0,0));
+		*/
+
+		//float handAngle = atan2(maxDistCentroidPoint.x-maxDistOppositePoint.x, maxDistCentroidPoint.y-maxDistOppositePoint.y);
+
+		//float centroidDistance2D = sqrt(pow(handCentroid.x - handRootCentroid.x,2) + pow(handCentroid.y - handRootCentroid.y,2));
+
+	}
+}
+
+void ofxHandTracker::analyzeContours() {
+	realImgCV_previous.setFromPixels(realImgCV.getPixelsRef());
+
+	realImgCV.setFromPixels(realImg.getPixelsRef());
+	realImgCV.dilate();
+	realImgCV.erode();
+
+	realImgCV_previous.absDiff(realImgCV);
+
+	tinyModelImg.scaleIntoMe(modelImgCV);
+	tinyHandImg.scaleIntoMe(realImgCV);
+
+	realImgCvContour.findContours(realImgCV,0,IMG_DIM*IMG_DIM,1, false, false);
+
+	int prevFingerTipsCounter = fingerTipsCounter;
+	fingerTipsCounter = -1;
+
+	if(realImgCvContour.blobs.size() > 0) {
+	//if(realImgCvContour.nBlobs > 0) {
+
+		ofxCvBlob handBlob = realImgCvContour.blobs[0];
+		//blobPoints.clear();
+		blobPoints = handBlob.pts;
+
+		int size = blobPoints.size();
+		
+		vector<float> angles;
+		vector<ofPoint>	fingerTips;
+
+		int step = 12;
+		float minAngle = 360;
