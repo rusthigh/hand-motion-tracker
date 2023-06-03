@@ -937,3 +937,216 @@ void ofxHandTracker::draw() {
 	ofScale(2,2,2);
 	
 	glBegin(GL_POINTS);
+
+	// drawing points
+	for(std::vector<ofPoint>::iterator it = handPoints.begin(); it != handPoints.end(); ++it) {
+		ofPoint pos = *it;
+		ofColor color = userGen->getWorldColorAt(pos.x,pos.y, userID);
+		glColor4ub((unsigned char)color.r, (unsigned char)color.g, (unsigned char)color.b, (unsigned char)color.a);
+		glVertex3f(pos.x, pos.y, pos.z);
+	}
+
+	glColor4ub(127, 255, 0, 127);
+	for(std::vector<ofPoint>::iterator it = handRootPoints.begin(); it != handRootPoints.end(); ++it) {
+		// std::cout << *it; 
+		ofPoint pos = *it;
+		glVertex3f(pos.x, pos.y, pos.z);
+	}
+
+	//for(std::vector<ofPoint>::iterator it = handEdgePoints.begin(); it != handEdgePoints.end(); ++it) {
+	//	ofPoint pos = *it;
+	//	glColor4ub(255, 0, 255, 0);
+	//	glVertex3f(pos.x, pos.y, pos.z);
+	//}
+
+	//for(std::vector<ofPoint>::iterator it = handPalmCandidates.begin(); it != handPalmCandidates.end(); ++it) {
+	//	ofPoint pos = *it;
+	//	glColor4ub(255, 100, 100, 0);
+	//	glVertex3f(pos.x, pos.y, pos.z);
+	//}
+
+	glEnd();
+	
+	//draw BBox
+	/*glBegin(GL_LINES);
+	glColor3f(0.5f, 1.0f, 0.5f);
+	glVertex3f(minX, minY, handCentroid.z);
+	glVertex3f(maxX, minY, handCentroid.z);
+	glVertex3f(minX, maxY, handCentroid.z);
+	glVertex3f(maxX, maxY, handCentroid.z);
+
+	glVertex3f(minX, minY, handCentroid.z);
+	glVertex3f(minX, maxY, handCentroid.z);
+	glVertex3f(maxX, minY, handCentroid.z);
+	glVertex3f(maxX, maxY, handCentroid.z);
+	glEnd();*/
+
+	// drawing orientation
+	
+	glBegin(GL_LINES);
+
+	glColor3f(1.0f, 0.0f, 1.0f);
+	// first (half) line of orientation
+	//glVertex3f(handCentroid.x, handCentroid.y, handCentroid.z);
+	/*glVertex3f(maxDistCentroidPoint.x, maxDistCentroidPoint.y, maxDistCentroidPoint.z);
+	// second half (line in opposite direction)
+	//glVertex3f(handCentroid.x, handCentroid.y, handCentroid.z);
+	glVertex3f(maxDistOppositePoint.x, maxDistOppositePoint.y, maxDistOppositePoint.z);
+
+
+	glColor3f(1.0f, 1.0f, 0.0f);
+	glVertex3f(handTrackedPos.x, handTrackedPos.y, handTrackedPos.z);
+	glVertex3f(maxDistTrackedPoint.x, maxDistTrackedPoint.y, maxDistTrackedPoint.z);*/
+	//TODO: make these vars members of class so we can draw them
+	glVertex3f(handCentroid.x, handCentroid.y, handCentroid.z);
+	glVertex3f(handRootCentroid.x, handRootCentroid.y, handRootCentroid.z);
+	
+	glVertex3f(handCentroid.x, handCentroid.y, handCentroid.z);
+	glVertex3f(handCentroid.x, handCentroid.y+50, handCentroid.z);
+	
+
+	//glVertex3f(palmCenter.x, palmCenter.y, palmCenter.z);
+
+	/*glColor3f(0.0f, 1.0f, 1.0f);
+	glVertex3f(handRootCentroid.x, handRootCentroid.y, handRootCentroid.z);
+	glVertex3f(maxDistRootPoint.x, maxDistRootPoint.y, maxDistRootPoint.z);
+	*/
+	//glColor3f(1.0f, 1.0f, 0.0f);
+	//glVertex3f(handCentroid.x, handCentroid.y, handCentroid.z);
+	// palm center vars
+	//glVertex3f(minMaxCandidate.x, minMaxCandidate.y, minMaxCandidate.z);
+	//glVertex3f(minCandidate.x, minCandidate.y, minCandidate.z);
+
+	glEnd();
+
+	glPopMatrix();
+
+	glColor3f(1.0f, 1.0f, 1.0f);
+
+	ofDrawBitmapString("HAND MODEL:", 20, 460);
+	ofPushStyle();
+	//ofSetColor(255, 0, 0);
+	modelImg.draw(0, 480, 200, 200);
+	ofPopStyle();
+
+	ofDrawBitmapString("DILATED\nHAND MODEL:", 220, 450);
+	modelImgCV.draw(200, 480, 200, 200);
+
+	//h.draw();
+	//h.getProjection().draw(200, 680, 200, 200);
+
+	ofDrawBitmapString("HAND \nPOINT CLOUD:", 420, 450);
+
+	ofPushStyle();
+	//ofSetColor(0, 255, 0);
+	realImg.draw(400, 480, 200, 200);
+	ofPopStyle();
+
+	ofDrawBitmapString("DILATED HAND \nPOINT CLOUD:", 620, 450);
+	realImgCV.draw(600, 480, 200, 200);
+
+	ofDrawBitmapString("PREV FRAME \n ABS DIFF:", 620, 680);
+	realImgCV_previous.draw(600, 680, 200, 200);
+
+	realImgCvContour.draw(1000, 480, 200, 200);
+	ofDrawBitmapString("CV Contour:", 1060, 460);
+
+	// just drawing part of contour analysis
+	if(realImgCvContour.blobs.size() > 0) {
+	//if(realImgCvContour.nBlobs > 0) {
+
+		ofxCvBlob handBlob = realImgCvContour.blobs[0];
+
+		int size = blobPoints.size();
+		
+		glPushMatrix();
+		glTranslatef(1500, 0, 0);
+		ofScale(2,2,1);
+		ofNoFill();
+		ofSetColor(255,255,255);
+		ofCircle(palmCenter, palmRadius);
+		ofFill();
+		glPopMatrix();
+		
+		vector<float> angles;
+		vector<ofPoint>	fingerTips;
+
+		int step = 12;
+		float minAngle = 360;
+		int minIndex = -1;
+
+		for(int i=step; i < (size+step); i++) { //*=step*/
+			ofPoint prevPos = blobPoints[(i-step)];
+			ofPoint curPos = blobPoints[(i)%size];
+			ofPoint nextPos = blobPoints[(i+(step))%size];
+
+			ofPoint prevVector = curPos - prevPos;
+			ofPoint nextVector = curPos - nextPos;
+
+			float kCosine = prevVector.dot(nextVector)/(prevVector.length()*nextVector.length());
+			float angle = acosf(kCosine)*180/PI; //*180/PI
+			//cout << "index : " << i << " angle: " << angle << endl;
+
+			float normalZ = prevVector.crossed(nextVector).z; // for filtering peaks -> fingertips
+
+			ofPushMatrix();
+			glTranslatef(1250, 0, 0);
+			ofScale(2,2,1);
+			ofSetColor(255-(angle*255.0/360.0), 0, angle*255.0/360.0);
+			ofRect(blobPoints[(i)%size].x, blobPoints[(i)%size].y, 2,2);
+
+			glTranslatef(-25, 0, 0);
+			ofScale(0.5,0.5,1);
+			glBegin(GL_LINES);
+			glColor4ub(255-(angle*255.0/360.0), 0, angle*255.0/360.0, 255); // hand contour angle plotting
+			glVertex3f(i+100, 500, 0);
+			glVertex3f(i+100, 500 - angle, 0);
+			glEnd();
+
+			ofPopMatrix();
+
+			glPushMatrix();
+			glTranslatef(1500, 0, 0);
+			ofScale(2,2,1);
+			// here we search for minimum angles which define fingertips and gaps between them
+			// also check if normalZ is greater or equal zero for fingertips
+			if (angle < 60.0 && normalZ >= 0)
+			{
+				if (minAngle >= angle) {
+					minIndex = i;
+					minAngle = angle;
+				}
+			}
+			else if (minIndex != -1){
+					ofSetColor(255,0,0);
+					ofRect(blobPoints[(minIndex)%size].x, blobPoints[(minIndex)%size].y, 3, 3);
+
+					glBegin(GL_LINES);
+			
+						glColor4ub(128, 255, 128, 255);
+						glVertex3f(blobPoints[(minIndex)%size].x, blobPoints[(minIndex)%size].y, 0);
+						glVertex3f(palmCenter.x, palmCenter.y, 0);
+			
+					glEnd();
+
+					minAngle = 360;
+					minIndex = -1;
+			}
+			
+			glBegin(GL_LINES);
+			
+			glColor4ub(255, 255, i, 255);
+			glVertex3f(blobPoints[(i)%size].x, blobPoints[(i)%size].y, 0);
+			glVertex3f(blobPoints[(i+1)%size].x, blobPoints[(i+1)%size].y, 0);
+			glEnd();
+			
+			glPopMatrix();
+		}
+
+		glPushMatrix();
+		glTranslatef(1325, 500, 0);
+		ofScale(2,2,1);
+		for(int i=0; i<fingerTipsCounter; i++) {
+			ofSetColor(255 - i*255/fingerTipsCounter, i*255/fingerTipsCounter, 0);
+			ofRect(i*50, 0, 50, 50);
+		}
