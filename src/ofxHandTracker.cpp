@@ -703,3 +703,237 @@ void ofxHandTracker::analyzeContours() {
 
 		int step = 12;
 		float minAngle = 360;
+		int minIndex = -1;
+
+		fingerTipsCounter = 0;
+
+		for(int i=step; i < (size+step); i++) { //*=step*/
+			ofPoint prevPos = blobPoints[(i-step)];
+			ofPoint curPos = blobPoints[(i)%size];
+			ofPoint nextPos = blobPoints[(i+(step))%size];
+
+			ofPoint prevVector = curPos - prevPos;
+			ofPoint nextVector = curPos - nextPos;
+
+			float kCosine = prevVector.dot(nextVector)/(prevVector.length()*nextVector.length());
+			float angle = acosf(kCosine)*180/PI; //*180/PI
+			//cout << "index : " << i << " angle: " << angle << endl;
+
+			float normalZ = prevVector.crossed(nextVector).z; // for filtering peaks -> fingertips
+
+			// here we search for minimum angles which define fingertips and gaps between them
+			// also check if normalZ is greater or equal zero for fingertips
+			if (angle < 60.0 && normalZ >= 0)
+			{
+				if (minAngle >= angle) {
+					minIndex = i;
+					minAngle = angle;
+				}
+			}
+			else if (minIndex != -1){
+
+					fingerTipsCounter++;
+					fingerTips.push_back(ofPoint(blobPoints[(minIndex)%size].x, blobPoints[(minIndex)%size].y, 0));
+					
+					//fingerTips.at(fingerTipsCounter++) = ofPoint(blobPoints[(minIndex)%size].x, blobPoints[(minIndex)%size].y, 0);
+
+					minAngle = 360;
+					minIndex = -1;
+			}
+
+			angles.push_back(angle);
+		}
+
+		ofPoint rotVectorZ = ofPoint(handRootCentroid.x - handCentroid.x,
+									 handRootCentroid.y - handCentroid.y, 
+									 0);
+
+		int prevCounter = fTipHistory[((fTipLastInd-1)%FTIP_HIST_SIZE)];
+
+		fTipHistory[(fTipLastInd++)%FTIP_HIST_SIZE] = fingerTipsCounter;
+
+		float avgFingerTips = 0;
+
+		for (int i=0; i<FTIP_HIST_SIZE; i++) {
+			avgFingerTips += fTipHistory[i];
+		}
+		avgFingerTips /= FTIP_HIST_SIZE;
+		
+		/*bool fistFormed = false;
+		if(fingerTipsCounter == 0) {
+			fistFormed = true;
+			for (int i=0; i<FTIP_HIST_SIZE; i++) {
+				if(fTipHistory[i] != 0)
+					fistFormed = false;
+			}
+
+			//ofNotifyEvent(grabEvent, "grabbed");
+
+			if(!fistFormed) {
+				/*
+				int index = (fTipLastInd-1)%FTIP_HIST_SIZE;
+				while(fTipHistory[index] == 0) {
+					index--;
+					index = (index)%FTIP_HIST_SIZE;
+				}
+				fingerTipsCounter = fTipHistory[((index-1)%FTIP_HIST_SIZE)];
+				*
+				fingerTipsCounter = prevCounter;
+			}
+		}*/
+
+		//fingerTipsCounter = floor(avgFingerTips+0.5); //round to nearest int
+		//fingerTipsCounter = (int)(avgFingerTips+0.5);
+		int avgFingers = (int)(avgFingerTips+0.5);
+		fingerTipsCounter = avgFingers;
+		/*
+		stringstream ss;
+		ss << "F TIP HIST: ";
+		for (int i=0; i<FTIP_HIST_SIZE; i++) {
+			ss << fTipHistory[i] << " ";
+		}
+		ss << endl;
+		cout << ss.str() << "AVG FTIPS: " << avgFingerTips <<  endl;
+		*/
+		
+		activeFingerTips.clear();
+
+		for(int i=0; i<fingerTips.size(); i++) {
+			ofPoint fTip = fingerTips[i];
+			ofPoint tempTip = fingerTips[(i+1)%fingerTips.size()];
+
+			float angle = angleOfVectors(rotVectorZ, fTip - palmCenter);
+
+			int xx = handGen->getHand(hIndex)->projectPos.x;
+			int yy = handGen->getHand(hIndex)->projectPos.y;
+			ofPoint handTrackedPos = ofPoint(xx,yy,0);
+
+			activeFingerTips.push_back((fTip - palmCenter) + handTrackedPos);
+		}
+
+		// TODO: consider creating set of parameters which define only x angles (lets say 4 different parameter objects)
+		// then for each case in checking for best parameters add one more for loop and each time add x angle param to current param
+		// that way we can check for multiple finger poses (by x angle)
+		// also we should check for which fingers we have to apply angles (not to all, just to these which are straight)
+		// PARTIALLY DONE: distinguishing between fist and aligned fingers position is working
+		const int X_PARAMS_SIZE = 6;
+		ofxFingerParameters xParams[X_PARAMS_SIZE];
+
+		xParams[0] = ofxFingerParameters(11, 0, -10, -17, 0); //default hand setup
+		xParams[1] = ofxFingerParameters(9, 0, -8, -14, 0); 
+		xParams[2] = ofxFingerParameters(7, 0, -6, -9, 0);
+		xParams[3] = ofxFingerParameters(4, 0, -4, -4, 0);
+		xParams[4] = ofxFingerParameters(1, 0, -2, 1, 0);
+		xParams[5] = ofxFingerParameters(-3, 0, -1, 5, 0);    // fingers aligned tight by x angle
+
+		//int p[2];
+		//p[0] = (31);
+		//p[1] = (0);
+
+		//cout << "prev_curr img diff: " << getImageMatching(realImgCV_previous) << endl;
+		//if (getImageMatching(realImgCV_previous) > 5) // 10?
+		//	findParamsOptimum(p, 2);
+
+		//TODO: here update hand model logic which is handled by different rules (palm radius, fingerTipsCounter, ...)
+		if(fingerTipsCounter == 0) {
+		//if(avgFingers == 0) {
+		//if(fistFormed) {
+			//here check if hand completely closed or just closed fingers
+			ofxFingerParameters zeroTips[2];
+			zeroTips[0] = ofxFingerParameters(31) + ofxFingerParameters(1, 0, -1, -2, -30); // just fingers
+			zeroTips[1] = ofxFingerParameters(0);				// fist formed
+			findParamsOptimum(zeroTips, 2);
+		}
+		else if (fingerTipsCounter >= 5) {
+		//else if (avgFingers >= 5) {
+			ofxFingerParameters p = ofxFingerParameters(31);
+		//	p = p + xParams[0];
+
+			//const int X_PARAMS_5_SIZE = 6;
+			//ofxFingerParameters xParams5[X_PARAMS_5_SIZE];
+
+			xParams[0] = ofxFingerParameters(11, 0, -10, -17, 0); //default hand setup
+			xParams[1] = ofxFingerParameters(9, 0, -8, -14, -5); 
+			xParams[2] = ofxFingerParameters(7, 0, -6, -9, -10);
+			xParams[3] = ofxFingerParameters(4, 0, -4, -4, -15);
+			xParams[4] = ofxFingerParameters(1, 0, -2, 1, -20);
+			xParams[5] = ofxFingerParameters(0, 0, 0, 2, -25);    // fingers aligned tight by x angle
+
+			int params[] = {31};
+			int size = 1;
+
+			//findParamsOptimum(params, size, xParams, X_PARAMS_SIZE); // not working properly
+			//findParamsOptimum(params, size);
+			h.restoreFrom(p, false);
+			//h.interpolate(p);
+		}
+		else if(fingerTipsCounter == 1) {
+		//else if (avgFingers == 1) {
+			//int params1[] = {1, 2, 4, 8, 16};
+			//int size = 5;
+			// with no ring finger cause it's difficult to form that shape - 8,
+			//int params1[] = {1, 2, /*4,*/ 16};
+			//int size = 3;
+
+			int params1[] = {2};
+			int size = 1;
+			//findParamsOptimum(params1, size, xParams, X_PARAMS_SIZE);
+			findParamsOptimum(params1, size);
+		}
+		else if(fingerTipsCounter == 2) {
+		//else if (avgFingers == 2) {
+			// 12 is index & middle which is hard to form together
+			int params2[] = {3, 6, 17, 18}; 
+			int size = 4;
+			//findParamsOptimum(params2, size, xParams, X_PARAMS_SIZE);
+			findParamsOptimum(params2, size);
+		}
+		else if(fingerTipsCounter == 3) {
+		//else if (avgFingers == 3) {
+			int params3[] = {7, 11, 14, 19, 22, 28};
+			int size = 6;
+			findParamsOptimum(params3, size);
+		}
+		else if(fingerTipsCounter == 4) {
+		//else if (avgFingers == 4) {
+			int params4[] = {15, 23, 27, 29, 30};
+			int size = 5;
+			findParamsOptimum(params4, size);
+		}
+	}
+}
+
+float ofxHandTracker::angleOfVectors(ofPoint _downVector, ofPoint _rotVector, bool _absolute) {
+	_downVector.normalize();
+	_rotVector.normalize();
+
+	float cosine = _downVector.dot(_rotVector); ///(downVector.length()*rotVector.length());
+	float angle = acosf(cosine)*180/PI; //*180/PI
+	
+	if (_absolute) {
+		float normalZ = _downVector.crossed(_rotVector).z; // for filtering peaks -> fingertips
+		if(normalZ < 0)
+			angle *= -1;
+		angle += 180;
+	}
+
+	return angle;
+}
+
+void ofxHandTracker::draw() {
+
+	int userID = 0;
+
+	int width = userGen->getWidth();
+	int height = userGen->getHeight();
+		
+	//int xx = handGen->getHand(handIndex)->projectPos.x;
+	//int yy = handGen->getHand(handIndex)->projectPos.y;
+	//int zz = handGen->getHand(handIndex)->projectPos.z;
+	int thresh = handGen->getHand(hIndex)->rawPos.Z;
+
+	glPushMatrix();
+	glTranslatef(-width/2, -height/2, -thresh*3);
+	ofScale(2,2,2);
+	
+	glBegin(GL_POINTS);
