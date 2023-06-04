@@ -1556,3 +1556,135 @@ ofPoint ofxHandTracker::getCentroid(vector<ofPoint> &points){
 		// calculating of centroid
 		for(std::vector<ofPoint>::iterator it = points.begin(); it != points.end(); ++it) {
 			/* std::cout << *it; ... */
+			ofPoint p = *it;
+			centroidX += p.x;
+			centroidY += p.y;
+			centroidZ += p.z;
+		}
+
+		if(points.size() > 0) {
+			centroidX /= points.size();
+			centroidY /= points.size();
+			centroidZ /= points.size();
+		}
+
+		ofPoint centroid = ofPoint(centroidX, centroidY, centroidZ);
+		return centroid;
+}
+
+
+//Bitmap/Bresenham's line algorithm - source: http://rosettacode.org/wiki/Bitmap/Bresenham's_line_algorithm#C
+void ofxHandTracker::drawLine(ofImage *img, int x0, int y0, int z0, int x1, int y1, int z1) {
+
+	z0 += 120;
+	z1 += 120;
+	int dz = (z1-z0)/20;
+	/*if(z0 > z1){
+		int temp = z0;
+		z0 = z1;
+		z1 = temp;
+	}*/
+
+	//cout << "z0: " << z0 << " z1: " << z1 << endl;
+
+	int dx = abs(x1-x0), sx = x0<x1 ? 1 : -1;
+	int dy = abs(y1-y0), sy = y0<y1 ? 1 : -1; 
+	int err = (dx>dy ? dx : -dy)/2, e2;
+ 
+	
+	int startX = x0;
+	/*float stepZ;
+	if(dx != 0)
+		stepZ = dz/dx;
+	else if(dy != 0)
+		stepZ = dz/dy;
+	else
+		stepZ = 1;*/
+	//int step = 2;
+	for(;;){
+		//if(step%2 == 0)
+			img->setColor(x0, y0, ofColor(z0, 255));
+		//step++;
+		
+		z0 += dz;
+		
+		//	img.setColor(x0, y0, ofColor::white);
+		
+		/*img.setColor(x0+1, y0+1, ofColor::white);
+		img.setColor(x0+1, y0-1, ofColor::white);
+		img.setColor(x0-1, y0+1, ofColor::white);
+		img.setColor(x0-1, y0-1, ofColor::white);*/
+		//rasterizedModel.setROI(x0, y0, 2, 2);
+		if (x0==x1 && y0==y1) break;
+		e2 = err;
+		if (e2 > -dx) { err -= dy; x0 += sx; }
+		if (e2 < dy) { err += dx; y0 += sy; }
+	}
+}
+
+// section with methods which provide useful data from tracker
+
+vector<ofPoint> ofxHandTracker::getActiveFingerTips() {
+	return activeFingerTips;
+}
+
+ofxHandModel* ofxHandTracker::getHandModel() {
+	return &h;
+}
+
+int	ofxHandTracker::getNumFingerTips() {
+	return fingerTipsCounter;
+}
+
+/*
+void ofxHandTracker::drawLine(ofImage *img, int x1, int y1, int z1, int x2, int y2, int z2)
+{
+	z1 += 120;
+	z2 += 120;
+
+	int dz = (z2-z1)/20;
+
+        // Bresenham's line algorithm
+	const bool steep = (abs(y2 - y1) > abs(x2 - x1));
+	if(steep)
+	{
+		std::swap(x1, y1);
+		std::swap(x2, y2);
+	}
+ 
+	if(x1 > x2)
+	{
+		std::swap(x1, x2);
+		std::swap(y1, y2);
+	}
+ 
+	const float dx = x2 - x1;
+	const float dy = abs(y2 - y1);
+ 
+	float error = dx / 2.0f;
+	const int ystep = (y1 < y2) ? 1 : -1;
+	int y = (int)y1;
+ 
+	const int maxX = (int)x2;
+ 
+	for(int x=(int)x1; x<maxX; x++)
+	{
+		if(steep)
+                {
+					img->setColor(y, x, ofColor(z1, 255));
+                }
+		else
+                {
+					img->setColor(x, y, ofColor(z1, 255));
+                }
+ 
+		//z1 += dz;
+
+                error -= dy;
+	        if(error < 0)
+	        {
+		        y += ystep;
+		        error += dx;
+	        }
+	}
+}*/
