@@ -1150,3 +1150,202 @@ void ofxHandTracker::draw() {
 			ofSetColor(255 - i*255/fingerTipsCounter, i*255/fingerTipsCounter, 0);
 			ofRect(i*50, 0, 50, 50);
 		}
+		glPopMatrix();
+
+		for(int i=0; i<fingerTips.size(); i++) {
+			ofPoint fTip = fingerTips[i];
+			ofPoint tempTip = fingerTips[(i+1)%fingerTips.size()];
+
+			ofSetColor(0, 255, 0);
+			ofRect(fTip.x, fTip.y, 10, 10);
+			
+			ofSetColor(50*(i+1), 0, 0);
+			ofLine(fTip, tempTip);
+		}
+	}
+	h.draw();
+
+	// comparison between legacy & shader projection generation
+	/*generateModelProjection(true);
+	modelImgCV.draw(10, 900, 300, 300);
+	generateModelProjection(false);
+	modelImgCV.draw(310, 900, 300, 300);
+	*/
+
+	//float matching = getImageMatching(realImgCV, modelImgCV, diffImg);
+	/*float matching = 0;// getImageMatching(tinyHandImg, tinyModelImg, tinyDiffImg);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	
+	char matchingBuffer[50];
+	int len;
+	len=sprintf (matchingBuffer, "HAND/MODEL MATCH: %f", matching);
+
+	string s = matchingBuffer;
+	ofDrawBitmapString(s, 800, 460, 0);
+
+	diffImg.draw(800, 480, 200, 200);
+	tinyDiffImg.draw(800, 480, 200, 200);
+	*/
+	ofPushStyle();
+		ofSetColor(255, 65, 170);
+		ofDrawBitmapString("EDGE SET SIZE: " + ofToString(handEdgePoints.size()) + 
+					   "\n% PALM SET SIZE: " + ofToString(handPalmCandidates.size()) + 
+					   "\n% HAND SET SIZE: " + ofToString(handPoints.size()), 20, 180);
+	ofPopStyle();
+	
+
+	ofPushStyle();
+		ofSetColor(255, 65, 170);
+		ofDrawBitmapString("RAW Z: " + ofToString(getHandDepth(activeHandPos.z, false)) + 
+						   "\n% Z: " + ofToString(getHandDepth(activeHandPos.z)), 20, 150);
+	ofPopStyle();
+	
+	ofPushStyle();
+		ofSetColor(255, 65, 170);
+		ofDrawBitmapString("FINGERTIPS: " + ofToString(fingerTipsCounter), 20, 120);
+	ofPopStyle();
+}
+
+float ofxHandTracker::getHandDepth(float _rawZ, bool _normalized, float _minZ, float _maxZ) {
+	float raw = _rawZ;
+
+	if (_normalized) {		
+		float percentage = (float)(raw - _minZ)/(float)(_maxZ - _minZ); // od 0 do 1500/1500
+		percentage = ofClamp(percentage, 0, 1);
+
+		return percentage;
+	}
+	return raw;
+}
+
+void ofxHandTracker::findParamsOptimum(int _params[], int _size) {
+	ofxFingerParameters bestParams = ofxFingerParameters(0);
+	float			bestMatching = 0;
+	//float			bestMatching = IMG_DIM*IMG_DIM;
+	for(int i=0; i<_size; i++) {
+		ofxFingerParameters curParams = ofxFingerParameters(_params[i]);
+		h.restoreFrom(curParams);
+
+		tinyModelImg.set(0);
+		generateModelProjection();
+		tinyModelImg.scaleIntoMe(modelImgCV);
+		tinyHandImg.scaleIntoMe(realImgCV);
+
+		//float matching = getImageMatching(tinyHandImg, tinyModelImg, tinyDiffImg);
+		//float matching = shaderMatcher.matchImages(modelImg, realImg);
+		float matching = getImageMatching(modelImg, shaderMatcher.imagesAbsDiff(modelImg, realImg));
+
+		if(matching > bestMatching) 
+		//if(matching < bestMatching && matching > 0.01)
+		{
+			bestMatching = matching;
+			bestParams = curParams;
+		}
+	}
+
+	ofSetColor(255,255,255);
+	ofDrawBitmapString("best_match: " + ofToString(bestMatching), 30, 30);
+
+	h.restoreFrom(bestParams);
+}
+
+void ofxHandTracker::findParamsOptimum(ofxFingerParameters _params[], int _size) {
+	ofxFingerParameters bestParams = ofxFingerParameters(0);
+	float			bestMatching = 0;
+	//float			bestMatching = IMG_DIM*IMG_DIM;
+	for(int i=0; i<_size; i++) {
+		ofxFingerParameters curParams = _params[i];
+		h.restoreFrom(curParams);
+
+		tinyModelImg.set(0);
+		generateModelProjection();
+		tinyModelImg.scaleIntoMe(modelImgCV);
+		tinyHandImg.scaleIntoMe(realImgCV);
+
+		//float matching = getImageMatching(tinyHandImg, tinyModelImg, tinyDiffImg);
+		//float matching = shaderMatcher.matchImages(modelImg, realImg);
+		float matching = getImageMatching(modelImg, shaderMatcher.imagesAbsDiff(modelImg, realImg));
+
+		if(matching > bestMatching) 
+		//if(matching < bestMatching && matching > 0.01)
+		{
+			bestMatching = matching;
+			bestParams = curParams;
+		}
+	}
+
+	ofSetColor(255,255,255);
+	ofDrawBitmapString("best_match: " + ofToString(bestMatching), 30, 30);
+
+	h.restoreFrom(bestParams);
+}
+
+void ofxHandTracker::findParamsOptimum(int _paramsZ[], int _sizeZ, ofxFingerParameters _paramsX[], int _sizeX) {
+	ofxFingerParameters bestParams = ofxFingerParameters(0);
+	float			bestMatching = 0;
+	//float			bestMatching = IMG_DIM*IMG_DIM;
+	for(int i=0; i<_sizeZ; i++) {
+		ofxFingerParameters curParams = ofxFingerParameters(_paramsZ[i]);
+		for(int j=0; j<_sizeX; j++) {
+			ofxFingerParameters merged = curParams + _paramsX[j];
+
+			h.restoreFrom(merged, true);
+
+			generateModelProjection();
+			tinyModelImg.scaleIntoMe(modelImgCV);
+			tinyHandImg.scaleIntoMe(realImgCV);
+
+			//float matching = getImageMatching(tinyHandImg, tinyModelImg, tinyDiffImg);
+			//float matching = shaderMatcher.matchImages(modelImg, realImg);
+			float matching = getImageMatching(modelImg, shaderMatcher.imagesAbsDiff(modelImg, realImg));
+
+			tinyModelImg.set(0);
+
+			if(matching > bestMatching) 
+			//if(matching < bestMatching && matching > 0.01)
+			{
+				bestMatching = matching;
+				bestParams = merged;
+			}
+		}
+	}
+
+	ofSetColor(255,255,255);
+	ofDrawBitmapString("best_match: " + ofToString(bestMatching), 30, 30);
+
+	h.restoreFrom(bestParams, true);
+}
+
+/*ofxHandTracker::~ofxHandTracker(void)
+{
+	//free(userGen);
+	//free(handGen);
+	//userGen = NULL;
+	//handGen = NULL;
+}*/
+
+
+//------------------------- helper methods -------------------------------------
+// here maybe rather than void we should return generated image directly?
+void ofxHandTracker::generateModelProjection(bool _useLegacy) {
+	if (_useLegacy) {
+		
+		for (int i=0; i<IMG_DIM; i++) {    
+			for (int j=0; j<IMG_DIM; j++) {    
+				modelImg.setColor(i, j, ofColor::black);    // ofColor(ofRandom(255), ofRandom(255), ofRandom(255))
+			}    
+		}
+		
+			float dOx = palmCenter.x;// IMG_DIM/2; // draw offset
+			float dOy = palmCenter.y;//IMG_DIM/2; // draw offset
+
+			for(int i=0; i<=4; i++){
+				vector<ofPoint> joints1 = h.getFingerWorldCoord(i);
+				drawLine(&modelImg, -(h.origin.x - joints1[0].x)*0.5 + dOx, -(h.origin.y - joints1[0].y)*0.5 + dOy, -(h.origin.z - joints1[0].z),
+					-(h.origin.x - joints1[1].x)*0.5 + dOx, -(h.origin.y - joints1[1].y)*0.5 + dOy, -(h.origin.z - joints1[1].z));
+				drawLine(&modelImg, -(h.origin.x - joints1[1].x)*0.5 + dOx, -(h.origin.y - joints1[1].y)*0.5 + dOy, -(h.origin.z - joints1[1].z),
+					-(h.origin.x - joints1[2].x)*0.5 + dOx, -(h.origin.y - joints1[2].y)*0.5 + dOy, -(h.origin.z - joints1[2].z));
+				drawLine(&modelImg, -(h.origin.x - joints1[2].x)*0.5 + dOx, -(h.origin.y - joints1[2].y)*0.5 + dOy, -(h.origin.z - joints1[2].z), 
+					-(h.origin.x - joints1[3].x)*0.5 + dOx, -(h.origin.y - joints1[3].y)*0.5 + dOy, -(h.origin.z - joints1[3].z));
+		
+				//drawLine(-(h.origin.x - joints1[0].x)*0.5 + 64, -(h.origin.y - joints1[0].y)*0.5 + 64, 0, 64, 64, 0);
