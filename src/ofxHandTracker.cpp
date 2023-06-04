@@ -1349,3 +1349,210 @@ void ofxHandTracker::generateModelProjection(bool _useLegacy) {
 					-(h.origin.x - joints1[3].x)*0.5 + dOx, -(h.origin.y - joints1[3].y)*0.5 + dOy, -(h.origin.z - joints1[3].z));
 		
 				//drawLine(-(h.origin.x - joints1[0].x)*0.5 + 64, -(h.origin.y - joints1[0].y)*0.5 + 64, 0, 64, 64, 0);
+			}
+
+			vector<ofPoint> filling = h.getFillWorldCoord();
+
+			//for(std::vector<ofPoint>::iterator it = filling.begin(); it != filling.end(); ++it) {
+			for(int i=0; i<filling.size(); i += 2) {
+				/* std::cout << *it; ... */
+					ofPoint p1 = filling[i];
+					ofPoint p2 = filling[i+1];
+
+					drawLine(&modelImg, -(h.origin.x - p1.x)*0.5 + dOx, -(h.origin.y+0.2 - p1.y)*0.5 + dOy, -(h.origin.z - p1.z), 
+							 -(h.origin.x - p2.x)*0.5 + dOx, -(h.origin.y+0.2 - p2.y)*0.5 + dOy, -(h.origin.z - p2.z));
+			}
+
+			modelImg.update(); 
+
+			modelImgCV.setFromPixels(modelImg.getPixelsRef());
+			// todo set dilate based on scaling
+			modelImgCV.dilate();
+			modelImgCV.dilate();
+			modelImgCV.dilate();
+			
+	}
+	else {
+		ofPoint backupScaling = h.scaling;
+		// rescale model, so it fits better to real hand depth image
+		// 0.6 downscales the actual scaling range (from 0 - 1 to 0 - 0.6),
+		// - 0.15 adds some startup scaling, so model is not underscaled 
+		h.scaling -= ((getHandDepth(activeHandPos.z)*0.6) - 0.15); 
+
+		//cout << "PALM CENTER: " << palmCenter << endl;
+		palmCenter.z = 0;
+		modelImg = h.getProjection(palmCenter, 6*(1-getHandDepth(activeHandPos.z)));
+		//modelImg = h.getProjection();
+		modelImg.setImageType(OF_IMAGE_GRAYSCALE);
+		modelImgCV.setFromPixels(modelImg);
+
+		h.scaling = backupScaling;
+	}
+		//modelImgCV.dilate();
+		//modelImgCV.erode();
+}
+/*
+ofImage ofxHandTracker::generateModelProjection(ofxHandModel h) {
+
+	ofImage modelImg;
+
+	for (int i=0; i<IMG_DIM; i++) {    
+		for (int j=0; j<IMG_DIM; j++) {    
+			modelImg.setColor(i, j, ofColor::black);    // ofColor(ofRandom(255), ofRandom(255), ofRandom(255))
+		}    
+	}
+		
+		float dOx = palmCenter.x;// IMG_DIM/2; // draw offset
+		float dOy = palmCenter.y;//IMG_DIM/2; // draw offset
+
+		for(int i=1; i<=5; i++){
+			vector<ofPoint> joints1 = h.getFingerWorldCoord(i);
+			drawLine(&modelImg, -(h.origin.x - joints1[0].x)*0.5 + dOx, -(h.origin.y - joints1[0].y)*0.5 + dOy, -(h.origin.z - joints1[0].z),
+				-(h.origin.x - joints1[1].x)*0.5 + dOx, -(h.origin.y - joints1[1].y)*0.5 + dOy, -(h.origin.z - joints1[1].z));
+			drawLine(&modelImg, -(h.origin.x - joints1[1].x)*0.5 + dOx, -(h.origin.y - joints1[1].y)*0.5 + dOy, -(h.origin.z - joints1[1].z),
+				-(h.origin.x - joints1[2].x)*0.5 + dOx, -(h.origin.y - joints1[2].y)*0.5 + dOy, -(h.origin.z - joints1[2].z));
+			drawLine(&modelImg, -(h.origin.x - joints1[2].x)*0.5 + dOx, -(h.origin.y - joints1[2].y)*0.5 + dOy, -(h.origin.z - joints1[2].z), 
+				-(h.origin.x - joints1[3].x)*0.5 + dOx, -(h.origin.y - joints1[3].y)*0.5 + dOy, -(h.origin.z - joints1[3].z));
+		
+			//drawLine(-(h.origin.x - joints1[0].x)*0.5 + 64, -(h.origin.y - joints1[0].y)*0.5 + 64, 0, 64, 64, 0);
+		}
+
+		vector<ofPoint> filling = h.getFillWorldCoord();
+
+		//for(std::vector<ofPoint>::iterator it = filling.begin(); it != filling.end(); ++it) {
+		for(int i=0; i<filling.size(); i += 2) {
+				ofPoint p1 = filling[i];
+				ofPoint p2 = filling[i+1];
+
+				drawLine(&modelImg, -(h.origin.x - p1.x)*0.5 + dOx, -(h.origin.y+0.2 - p1.y)*0.5 + dOy, -(h.origin.z - p1.z), 
+						 -(h.origin.x - p2.x)*0.5 + dOx, -(h.origin.y+0.2 - p2.y)*0.5 + dOy, -(h.origin.z - p2.z));
+		}
+
+		modelImg.update(); 
+
+		modelImgCV.setFromPixels(modelImg.getPixelsRef());
+		// todo set dilate based on scaling
+		modelImgCV.dilate();
+		modelImgCV.dilate();
+		modelImgCV.dilate();
+
+		//modelImgCV.dilate();
+		//modelImgCV.erode();
+}*/
+
+float ofxHandTracker::getImageMatching(ofxCvGrayscaleImage &realImage, 
+									ofxCvGrayscaleImage &modelImage,  
+									ofxCvGrayscaleImage &differenceImage) {
+					
+	//ofPixels realPixels = realImage.getPixelsRef();
+	//realPixels[0]
+
+	unsigned char *real = realImage.getPixels();
+	unsigned char *model = modelImage.getPixels();
+
+	int w = realImage.getWidth();
+	int h = realImage.getHeight();
+
+	float allDiff = 0;
+	float handSum = 0;
+	float modelSum = 0;
+
+	for (int i=0; i<w*h; i++) {
+		handSum += real[i];
+		real[i] =  abs(model[i] - real[i]);
+		allDiff += real[i];
+
+		//draw dilated hand model as point cloud
+		//if(model[i] != 0) {
+		//	int x = i%(int)(IMG_DIM);
+		//	int y = i/(int)(IMG_DIM);
+		//	glBegin(GL_POINTS);
+		//	glColor3d(model[i], 0, 0);
+		//	glVertex3f((x*2) + 100, (y*2)+ 100, 255 - model[i]);
+		//	glEnd();
+		//}
+	}
+	
+	differenceImage.setFromPixels(real, w, h);
+	//differenceImage.erode();
+
+	float matching = (handSum - allDiff)/handSum;
+	matching = matching * 10.0/6.0;
+	return matching;
+}
+
+float ofxHandTracker::getImageMatching(ofxCvGrayscaleImage &differenceImage) {
+
+	unsigned char *diff = differenceImage.getPixels();
+
+	int w = differenceImage.getWidth();
+	int h = differenceImage.getHeight();
+
+	float allDiff = 0;
+
+	for (int i=0; i<w*h; i++) {
+		allDiff += diff[i];
+	}
+	
+	float matching = allDiff/(w*h);
+	//matching = matching * 10.0/6.0;
+	return matching;
+}
+
+
+float ofxHandTracker::getImageMatching(ofImage &realImage,   
+									ofImage &diffImage) {
+					
+	ofPixels realPixels = realImage.getPixelsRef();
+	ofPixels diffPixels = diffImage.getPixelsRef();
+
+	int w = realImage.getWidth();
+	int h = realImage.getHeight();
+
+	float allDiff = 0;
+	float handSum = 0;
+	float modelSum = 0;
+
+	for (int i=0; i<w; i++) {
+		for (int j=0; j<h; j++) {
+			handSum += realPixels.getColor(i,j).getBrightness();
+			allDiff += diffPixels.getColor(i,j).getBrightness();
+		}
+	}
+
+	float matching = (handSum - allDiff)/handSum;
+	matching = matching * 10.0/6.0;
+	return matching;
+}
+/*
+float ofxHandTracker::getImageMatching(ofxCvGrayscaleImage &realImage,   
+									ofxCvGrayscaleImage &diffImage) {
+					
+	ofPixels realPixels = realImage.getPixelsRef();
+	ofPixels diffPixels = diffImage.getPixelsRef();
+
+	int w = realImage.getWidth();
+	int h = realImage.getHeight();
+
+	float allDiff = 0;
+	float handSum = 0;
+	float modelSum = 0;
+
+	for (int i=0; i<w; i++) {
+		for (int j=0; j<h; j++) {
+			handSum += realPixels.getColor(i,j).getBrightness();
+			allDiff += diffPixels.getColor(i,j).getBrightness();
+		}
+	}
+
+	float matching = (handSum - allDiff)/handSum;
+	matching = matching * 10.0/6.0;
+	return matching;
+}*/
+
+ofPoint ofxHandTracker::getCentroid(vector<ofPoint> &points){
+		float centroidX = 0, centroidY = 0, centroidZ = 0;
+
+		// calculating of centroid
+		for(std::vector<ofPoint>::iterator it = points.begin(); it != points.end(); ++it) {
+			/* std::cout << *it; ... */
