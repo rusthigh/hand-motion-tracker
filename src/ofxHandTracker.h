@@ -21,4 +21,13 @@ class ofxHandTracker
 {
 	public:
 		//ofxHandTracker();
-		ofxHandTracker(ofxUserGenerator *_userGen, ofxHandGenerator 
+		ofxHandTracker(ofxUserGenerator *_userGen, ofxHandGenerator *_handGen, ofxDepthGenerator *_depthGen, int _hIndex);
+		//~ofxHandTracker(void);
+
+		void update();
+		void draw();
+
+	// getters 
+		ofxHandModel*			getHandModel();
+		vector<ofPoint> getActiveFingerTips();
+		int				getNumFi
