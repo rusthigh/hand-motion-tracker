@@ -30,4 +30,12 @@ class ofxHandTracker
 	// getters 
 		ofxHandModel*			getHandModel();
 		vector<ofPoint> getActiveFingerTips();
-		int				getNumFi
+		int				getNumFingerTips();
+		
+		//ofEvent<string> handEvent;	// will notify about grabbing, releasing, etc.
+
+	private:
+		//OpenNI Generator references 
+		ofxUserGenerator	*userGen;
+		ofxHandGenerator	*handGen;
+		ofxDepth
