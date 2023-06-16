@@ -38,4 +38,14 @@ class ofxHandTracker
 		//OpenNI Generator references 
 		ofxUserGenerator	*userGen;
 		ofxHandGenerator	*handGen;
-		ofxDepth
+		ofxDepthGenerator	*depthGen; // not needed, remove if useless in future
+
+		// depth image fbo
+		ofFbo				depthFbo;
+
+		//hand model
+		ofxHandModel				h;
+		int					hIndex;
+
+		//Images
+		ofImage				blankImg;  //image for clea
