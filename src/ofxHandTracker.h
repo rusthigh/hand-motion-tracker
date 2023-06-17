@@ -48,4 +48,8 @@ class ofxHandTracker
 		int					hIndex;
 
 		//Images
-		ofImage				blankImg;  //image for clea
+		ofImage				blankImg;  //image for clearing (overriding) real image pixels
+		//	-> hand image from point cloud
+		ofImage				realImg;
+		ofxCvGrayscaleImage realImgCV;
+		ofxCvGrayscaleImage realImgCV_previous; // not used right now, stores info about hand pose
