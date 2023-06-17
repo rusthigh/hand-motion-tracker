@@ -58,4 +58,10 @@ class ofxHandTracker
 		ofImage				modelImg;
 		ofxCvGrayscaleImage modelImgCV;
 		// -> hand contour image
-		ofxCvCo
+		ofxCvContourFinder	realImgCvContour;
+		// -> difference image (between real and model hand)
+		ofxCvGrayscaleImage diffImg;
+
+		ofxCvGrayscaleImage				tinyModelImg;
+		ofxCvGrayscaleImage				tinyHandImg;
+		ofxCvGrayscale
