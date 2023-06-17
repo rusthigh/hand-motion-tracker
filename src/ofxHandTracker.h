@@ -52,4 +52,10 @@ class ofxHandTracker
 		//	-> hand image from point cloud
 		ofImage				realImg;
 		ofxCvGrayscaleImage realImgCV;
-		ofxCvGrayscaleImage realImgCV_previous; // not used right now, stores info about hand pose
+		ofxCvGrayscaleImage realImgCV_previous; // not used right now, stores info about hand pose changes in prev frame
+		//ofImage				colorImg; // maybe used to find contours on camera img
+		// -> hand image from model rasterization
+		ofImage				modelImg;
+		ofxCvGrayscaleImage modelImgCV;
+		// -> hand contour image
+		ofxCvCo
