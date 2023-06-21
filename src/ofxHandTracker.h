@@ -71,4 +71,14 @@ class ofxHandTracker
 		vector<ofPoint>		handRootPoints;
 		vector<ofPoint>		handEdgePoints; 
 		vector<ofPoint>		handPalmCandidates;
-		vector<ofPoint>		
+		vector<ofPoint>		imgPalmCandidates;
+
+		//Points from CV contour image
+		vector<ofPoint>		blobPoints;
+
+		//BBox 
+		int maxX, minX, maxY, minY, maxZ, minZ;
+
+		//Orientation & Centroids & PalmCenter
+		ofPoint handCentroid;
+	
