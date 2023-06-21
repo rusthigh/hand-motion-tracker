@@ -64,4 +64,11 @@ class ofxHandTracker
 
 		ofxCvGrayscaleImage				tinyModelImg;
 		ofxCvGrayscaleImage				tinyHandImg;
-		ofxCvGrayscale
+		ofxCvGrayscaleImage				tinyDiffImg;
+
+		//Points from Point cloud
+		vector<ofPoint>		handPoints;
+		vector<ofPoint>		handRootPoints;
+		vector<ofPoint>		handEdgePoints; 
+		vector<ofPoint>		handPalmCandidates;
+		vector<ofPoint>		
