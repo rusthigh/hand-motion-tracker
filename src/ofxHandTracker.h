@@ -81,4 +81,11 @@ class ofxHandTracker
 
 		//Orientation & Centroids & PalmCenter
 		ofPoint handCentroid;
-	
+		ofPoint handRootCentroid;
+		ofPoint palmCenter; // calculated on image, so it has not same coord system as previous vars
+		float	palmRadius;
+
+		// current active hand position
+		ofPoint	activeHandPos;
+
+		// angle for rotation left
