@@ -88,4 +88,12 @@ class ofxHandTracker
 		// current active hand position
 		ofPoint	activeHandPos;
 
-		// angle for rotation left
+		// angle for rotation left, right
+		float	rollAngle;
+
+		// fingerTips counter
+		int		fingerTipsCounter;
+
+		vector<ofPoint>	activeFingerTips; // to get active fingertips outside of tracker for any use (for example drawing)
+
+		int		
