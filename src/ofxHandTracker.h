@@ -96,4 +96,10 @@ class ofxHandTracker
 
 		vector<ofPoint>	activeFingerTips; // to get active fingertips outside of tracker for any use (for example drawing)
 
-		int		
+		int		fTipHistory[FTIP_HIST_SIZE];
+		int		fTipLastInd;
+
+		bool	recheckFingers;
+
+		//TODO: based on fTipHistory we can trigger events for grabbing, painting etc (for demo application & show usability)
+		//ofEvent<string>		grabEvent;
