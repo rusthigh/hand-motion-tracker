@@ -106,4 +106,10 @@ class ofxHandTracker
 		//ofEvent<string>		paintEvent; // not sure how will be used but ok
 	
 		//TODO: we can check radius changes over time -> we will need maxRad & minRad vars, 
-		//		then we can check if radius very small,
+		//		then we can check if radius very small, hand is probably facing kinect sideways
+
+		// contour analyzer method
+		void				analyzeContours();
+
+		//helper methods // should be private
+		float				getHandDepth(float _rawZ, bool _normalized = true, float _
