@@ -103,3 +103,7 @@ class ofxHandTracker
 
 		//TODO: based on fTipHistory we can trigger events for grabbing, painting etc (for demo application & show usability)
 		//ofEvent<string>		grabEvent;
+		//ofEvent<string>		paintEvent; // not sure how will be used but ok
+	
+		//TODO: we can check radius changes over time -> we will need maxRad & minRad vars, 
+		//		then we can check if radius very small,
