@@ -112,4 +112,7 @@ class ofxHandTracker
 		void				analyzeContours();
 
 		//helper methods // should be private
-		float				getHandDepth(float _rawZ, bool _normalized = true, float _
+		float				getHandDepth(float _rawZ, bool _normalized = true, float _min = MIN_HAND_DEPTH, float _max = MAX_HAND_DEPTH);
+		float				angleOfVectors(ofPoint _downVector, ofPoint _rotVector, bool _absolute = true);
+		float				distFactor(float zDist); 
+		void				genera
