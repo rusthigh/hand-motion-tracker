@@ -124,4 +124,9 @@ class ofxHandTracker
 		float				getImageMatching(ofxCvGrayscaleImage &differenceImage);
 		void				fetchHandPointCloud(ofPoint _handTrackedPos);
 		ofPoint				getPalmCenter();
-		ofPoint
+		ofPoint				getCentroid(vector<ofPoint> &points);
+		void				drawLine(ofImage *img, int x0, int y0, int z0, int x1, int y1, int z1);
+
+		// optimum searching methods (currently very basic)
+		void				findParamsOptimum(int _params[], int _size);
+		void	
