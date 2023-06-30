@@ -115,4 +115,8 @@ class ofxHandTracker
 		float				getHandDepth(float _rawZ, bool _normalized = true, float _min = MIN_HAND_DEPTH, float _max = MAX_HAND_DEPTH);
 		float				angleOfVectors(ofPoint _downVector, ofPoint _rotVector, bool _absolute = true);
 		float				distFactor(float zDist); 
-		void				genera
+		void				generateModelProjection(bool _useLegacy = false);
+		float				getImageMatching(ofxCvGrayscaleImage &realImage, 
+										     ofxCvGrayscaleImage &modelImage,  
+											 ofxCvGrayscaleImage &differenceImage);
+		float				getImageMatching(o
