@@ -119,4 +119,9 @@ class ofxHandTracker
 		float				getImageMatching(ofxCvGrayscaleImage &realImage, 
 										     ofxCvGrayscaleImage &modelImage,  
 											 ofxCvGrayscaleImage &differenceImage);
-		float				getImageMatching(o
+		float				getImageMatching(ofImage &realImage,   
+											 ofImage &diffImage);
+		float				getImageMatching(ofxCvGrayscaleImage &differenceImage);
+		void				fetchHandPointCloud(ofPoint _handTrackedPos);
+		ofPoint				getPalmCenter();
+		ofPoint
