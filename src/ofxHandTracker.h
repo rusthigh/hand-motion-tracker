@@ -129,4 +129,8 @@ class ofxHandTracker
 
 		// optimum searching methods (currently very basic)
 		void				findParamsOptimum(int _params[], int _size);
-		void	
+		void				findParamsOptimum(ofxFingerParameters _params[], int _size);
+		void				findParamsOptimum(int _paramsZ[], int _sizeZ, ofxFingerParameters _paramsX[], int _sizeX);
+
+		// here is place for advanced shader & fbo objects
+		// which will help
