@@ -133,4 +133,7 @@ class ofxHandTracker
 		void				findParamsOptimum(int _paramsZ[], int _sizeZ, ofxFingerParameters _paramsX[], int _sizeX);
 
 		// here is place for advanced shader & fbo objects
-		// which will help
+		// which will help us realize paralel image comparing on GPU
+		ofxImageMatcher		shaderMatcher;
+};
+
