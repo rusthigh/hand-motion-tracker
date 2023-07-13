@@ -122,3 +122,4 @@ class ofxImageMatcher
 		// results
 		ofPixels	resultPixels;
 		ofImage		resultImage;
+};
