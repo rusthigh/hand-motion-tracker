@@ -13,4 +13,9 @@ class ofxUtilityTimer
         void					draw(float _x, float _y);
 		void					draw(float _x, float _y, float _w, float _h, ofColor _color);
 
-        void                    start(fl
+        void                    start(float millis);
+        void                    stop();
+        
+        float                   getDuration(); // difference between duration and startDuration getters is? idk
+		float					getStartDuration();
+ 
