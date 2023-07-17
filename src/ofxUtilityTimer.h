@@ -18,4 +18,11 @@ class ofxUtilityTimer
         
         float                   getDuration(); // difference between duration and startDuration getters is? idk
 		float					getStartDuration();
- 
+        float                   getPercent();
+		float					getElapsed();
+
+        bool					isZero();
+
+        bool                    isCounting;
+                
+       // int                     countdownSiz
