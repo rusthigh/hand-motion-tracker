@@ -25,4 +25,11 @@ class ofxUtilityTimer
 
         bool                    isCounting;
                 
-       // int                     countdownSiz
+       // int                     countdownSize;
+        
+    private:
+		string					millisToString(int millis);
+
+		//not used
+       // char                    min[5], sec[5], mil[5];
+        float                   minutes, seconds, mil
