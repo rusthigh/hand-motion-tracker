@@ -40,4 +40,9 @@ class ofxUtilityTimer
 
       //  string                  fontPath;
        // int                     growingSize;
-   
+      //  string                  previousSec;
+
+		//TODO: add event
+		ofEvent<float>			finished; // maybe find better descriptor of finished counting
+};
+
