@@ -32,4 +32,12 @@ class ofxUtilityTimer
 
 		//not used
        // char                    min[5], sec[5], mil[5];
-        float                   minutes, seconds, mil
+        float                   minutes, seconds, miliseconds;
+        float                   durationTime, step, startTime;
+
+		float					durationMillis;
+		float					elapsedMillis;
+
+      //  string                  fontPath;
+       // int                     growingSize;
+   
