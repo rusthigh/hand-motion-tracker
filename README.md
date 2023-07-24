@@ -15,4 +15,9 @@ Keep updated with the latest improvements through the 0.8.1 branch.
 
 Requirements
 --------------
-For a complete setup, you will
+For a complete setup, you will need ofxOpenNI (install OpenNI, NITE) and SensorKinect drivers:
+https://github.com/gameoverhack/ofxOpenNI <br/> https://github.com/avin2/SensorKinect
+
+License
+--------------
+The code in this repository is available under the [CC B
