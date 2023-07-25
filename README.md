@@ -20,4 +20,8 @@ https://github.com/gameoverhack/ofxOpenNI <br/> https://github.com/avin2/SensorK
 
 License
 --------------
-The code in this repository is available under the [CC B
+The code in this repository is available under the [CC BY-SA 2.5 License](http://creativecommons.org/licenses/by-sa/2.5/)
+
+Images (to be updated in the future)
+--------------
+![ofxAddons Thumbnail](ofxaddons_thumbnail.png?raw=true 'ofxAddons thumbnail')
